@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { MessageComponentModule } from '../message/message.module';
+import { MessageComponentModule } from '../../components/message/message.module';
 
 import { HomePage } from './home.page';
 
@@ -11,7 +11,7 @@ describe('HomePage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePage ],
+      declarations: [HomePage],
       imports: [IonicModule.forRoot(), MessageComponentModule, RouterModule.forRoot([])]
     }).compileComponents();
 
