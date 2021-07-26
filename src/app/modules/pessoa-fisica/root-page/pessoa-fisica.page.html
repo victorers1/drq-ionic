@@ -1,0 +1,23 @@
+<ion-header>
+  <drq-header title="Pessoa Física" [showArrowBack]=false></drq-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-list-header *ngIf="usuarioCtrl.usuario.nome">
+      <ion-label>Olá, Dr. {{usuarioCtrl.usuario.nome}}</ion-label>
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+
+    <option-tile title="Dados Pessoais" link="/{{routes.PESSOA_FISICA}}/{{routes.DADOS_CONTA}}"></option-tile>
+    <option-tile title="Dados Profissionais" link="/{{routes.PESSOA_FISICA}}/{{routes.DADOS_PROFISSIONAIS}}">
+    </option-tile>
+    <option-tile title="Dados Bancários" link="/{{routes.PESSOA_FISICA}}/{{routes.DADOS_BANCARIOS}}"></option-tile>
+    <option-tile title="Planos de Saúde" link="/{{routes.PESSOA_FISICA}}/{{routes.DADOS_PLANO_SAUDE}}"></option-tile>
+
+  </ion-list>
+
+</ion-content>

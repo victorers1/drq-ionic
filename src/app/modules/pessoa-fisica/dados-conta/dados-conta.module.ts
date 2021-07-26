@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { DadosContaPageRoutingModule } from './dados-conta-routing.module';
 
-import { LoginPage } from './login.page';
+import { DadosContaPage } from './dados-conta.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -15,9 +15,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    LoginPageRoutingModule,
+    DadosContaPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginPage]
+  declarations: [DadosContaPage]
 })
-export class LoginPageModule { }
+export class DadosContaPageModule { }

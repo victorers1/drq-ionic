@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { DRQRoutes } from 'src/app/constants';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  routes = new DRQRoutes();
 
   loginForm: FormGroup;
 
@@ -24,6 +26,6 @@ export class LoginPage implements OnInit {
   doLogin() {
     console.log(`email: `, this.loginForm.get('email').value);
     console.log(`password: `, this.loginForm.get('password').value);
-    this.navCtrl.navigateForward('/pessoa_fisica');
+    this.navCtrl.navigateForward(`/${this.routes.PESSOA_FISICA}`);
   }
 }

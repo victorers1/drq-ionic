@@ -1,0 +1,46 @@
+<ion-header>
+  <drq-header title="Dados Pessoais"></drq-header>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="dadosContaForm" (ngSubmit)="saveDadosConta()">
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Documento</ion-label>
+      <ion-input formControlName="docFiscal" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Logradouro</ion-label>
+      <ion-input formControlName="endLogradouro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Sexo</ion-label>
+      <ion-input formControlName="sexo" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">RG</ion-label>
+      <ion-input formControlName="rg" type="text"></ion-input>
+    </ion-item>
+
+    <br />
+
+    <ion-button expand="block" color="primary" type="submit">
+      Salvar
+    </ion-button>
+  </form>
+
+</ion-content>
