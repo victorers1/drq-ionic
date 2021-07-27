@@ -10,6 +10,7 @@
       <ion-icon slot="start" name="person"></ion-icon>
       <ion-label>Dados da Conta</ion-label>
     </ion-item-divider>
+
     <ion-item button detail routerLink="./{{routes.EDIT_DADOS_CONTA}}">
       <ion-label>
         <h2>Username: {{usuarioCtrl.usuario.username}}</h2>
@@ -20,20 +21,18 @@
 
     <ion-item-divider>
       <ion-icon slot="start" name="construct"></ion-icon>
+      <ion-button fill="clear" slot="end" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
       <ion-label>Dados Profissionais</ion-label>
     </ion-item-divider>
-    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}">
+
+    <ion-item *ngFor="let dp of dadosProfissao; let i=index" button detail
+      routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}/{{i}}">
       <ion-label>
-        <h2>Carajás</h2>
-        <h2>De Jun/2020 à Mai/2021</h2>
-        <p>público</p>
-      </ion-label>
-    </ion-item>
-    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}">
-      <ion-label>
-        <h2>Assaí</h2>
-        <h2>De Abr/2021 até agora</h2>
-        <p>público</p>
+        <h2>{{dp.profissao}}</h2>
+        <h2>{{dp.grauDeInstrucao}}</h2>
+        <p>{{dp.isPublico ? 'público': 'privado'}}</p>
       </ion-label>
     </ion-item>
 
@@ -41,18 +40,13 @@
       <ion-icon slot="start" name="card"></ion-icon>
       <ion-label>Dados Bancários</ion-label>
     </ion-item-divider>
-    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}">
+
+    <ion-item *ngFor="let db of dadosBancarios; let i=index" button detail
+      routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}/{{i}}">
       <ion-label>
-        <h2>Banco do Brasil</h2>
-        <h2>Conta Corrente</h2>
-        <p>privado</p>
-      </ion-label>
-    </ion-item>
-    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}">
-      <ion-label>
-        <h2>Caixa Econômica Federal</h2>
-        <h2>Conta Poupança</h2>
-        <p>privado</p>
+        <h2>{{db.nome}}</h2>
+        <h2>{{db.codigoDeOperacao}}</h2>
+        <p>{{db.isPublico ? 'público': 'privado'}}</p>
       </ion-label>
     </ion-item>
 
@@ -60,6 +54,7 @@
       <ion-icon slot="start" name="medkit"></ion-icon>
       <ion-label>Planos de Saúde</ion-label>
     </ion-item-divider>
+
     <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PLANO_SAUDE}}">
       <ion-label>
         <h2>Hapvida</h2>

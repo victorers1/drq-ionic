@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DRQRoutes } from 'src/app/constants';
-import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 
 @Component({
   selector: 'app-pessoa-fisica',
@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 export class PessoaFisicaPage implements OnInit {
   routes = new DRQRoutes();
 
-  constructor(public navCtrl: NavController, private usuarioCtrl: UsuarioService) { }
+  constructor(public navCtrl: NavController, private usuarioCtrl: PessoaFisicaService) { }
 
   ngOnInit() {
   }

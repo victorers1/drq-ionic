@@ -1,4 +1,6 @@
-class DadosDePlanoDeSaude extends Dado {
+import { Dado } from "../dado";
+
+export class DadosDePlanoDeSaude extends Dado {
     public contrato: string;
 
     constructor(

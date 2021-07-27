@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PessoaFisica } from 'src/app/models/usuario/pessoa-fisica/pessoa-fisica';
-import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 
 @Component({
   selector: 'app-dados-conta',
@@ -12,8 +12,8 @@ export class DadosContaPage implements OnInit {
 
   dadosContaForm: FormGroup;
 
-  constructor(public usuarioCtrl: UsuarioService) {
-    let u = this.usuarioCtrl.usuario as PessoaFisica;
+  constructor(public usuarioCtrl: PessoaFisicaService) {
+    let u = this.usuarioCtrl.usuario;
 
     this.dadosContaForm = new FormGroup({
       nome: new FormControl(u.nome, Validators.required),

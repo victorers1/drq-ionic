@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DRQRoutes } from 'src/app/constants';
-import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { DadosBancarios } from 'src/app/models/usuario/pessoa-fisica/dados-bancarios';
+import { DadosDeProfissao } from 'src/app/models/usuario/pessoa-fisica/dados-profissao';
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 
 @Component({
   selector: 'app-config-dados',
@@ -10,7 +12,16 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 export class ConfigDadosPage implements OnInit {
   routes = new DRQRoutes();
 
-  constructor(public usuarioCtrl: UsuarioService) { }
+  dadosProfissao: DadosDeProfissao[] = [];
+  dadosBancarios: DadosBancarios[] = [];
 
-  ngOnInit() { }
+  constructor(public usuarioCtrl: PessoaFisicaService) { }
+
+  async ngOnInit() {
+    await this.usuarioCtrl.getDadosBancarios();
+    await this.usuarioCtrl.getDadosProfissao();
+
+    this.dadosBancarios = this.usuarioCtrl.usuario.dadosBancarios;
+    this.dadosProfissao = this.usuarioCtrl.usuario.dadosProfissao;
+  }
 }

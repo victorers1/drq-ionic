@@ -1,6 +1,13 @@
 import { Pessoa } from "../pessoa";
+import { DadosBancarios } from "./dados-bancarios";
+import { DadosDePlanoDeSaude } from "./dados-plano-saude";
+import { DadosDeProfissao } from "./dados-profissao";
 
 export class PessoaFisica extends Pessoa {
+    public dadosProfissao: DadosDeProfissao[];
+    public dadosBancarios: DadosBancarios[];
+    public dadosPlanoSaude: DadosDePlanoDeSaude[];
+
     public rg: string;
 
     constructor(

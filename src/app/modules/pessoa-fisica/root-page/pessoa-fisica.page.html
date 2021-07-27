@@ -3,17 +3,23 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list class="options-list">
+
     <ion-item>
+
       <ion-avatar slot="start">
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
       </ion-avatar>
+
       <ion-label>
         <h2>Olá, Dr. Fulano da Silva</h2>
       </ion-label>
-      <ion-button fill="outlined" (click)="logOut()">
-        <ion-icon color="primary" slot="icon-only" name="log-out"></ion-icon>
+
+      <ion-button fill="clear" (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
+
     </ion-item>
 
     <option-tile title="Configurar Dados" link="/{{routes.PESSOA_FISICA}}/{{routes.CONFIG_DADOS}}"></option-tile>
@@ -27,6 +33,7 @@
   <br />
 
   <ion-list class="agenda-list">
+
     <ion-list-header>
       <ion-label>
         <h1>Agenda</h1>
@@ -70,8 +77,7 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+
   </ion-list>
-
-
 
 </ion-content>
