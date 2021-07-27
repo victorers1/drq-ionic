@@ -1,12 +1,12 @@
 class DadosDeProfissao extends Dado {
-    public grauDeInstrucao: String;
-    public especialidade: String;
-    public conselhoDeClasseID: String;
-    public conselhoDeClasse: String;
+    public grauDeInstrucao: string;
+    public especialidade: string;
+    public conselhoDeClasseID: string;
+    public conselhoDeClasse: string;
 
     constructor(
         public pessoaFisicaID: number = 0,
-        public profissao: String,
+        public profissao: string,
         public status: number = 0,
     ) {
         super();

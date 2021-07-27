@@ -1,0 +1,3 @@
+class DadosBancarios extends Dado {
+
+}

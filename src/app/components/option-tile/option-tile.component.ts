@@ -7,7 +7,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./option-tile.component.scss'],
 })
 export class OptionTileComponent implements OnInit {
-  @Input('title') title: String;
+  @Input('title') title: string;
   @Input('link') link: string;
 
   constructor(public navCtrl: NavController) { }

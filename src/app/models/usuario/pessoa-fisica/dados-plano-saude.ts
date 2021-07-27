@@ -1,9 +1,9 @@
 class DadosDePlanoDeSaude extends Dado {
-    public contrato: String;
+    public contrato: string;
 
     constructor(
-        public nome: String,
-        public registro: String,
+        public nome: string,
+        public registro: string,
         public status: number = 0,
     ) {
         super();
