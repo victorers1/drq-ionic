@@ -2,10 +2,11 @@ export class DRQRoutes {
     LOGIN: string = 'login';
     PESSOA_FISICA: string = 'pessoa_fisica';
     PESSOA_JURIDICA: string = 'pessoa_juridica';
-    DADOS_CONTA: string = 'dados_conta';
-    DADOS_PROFISSIONAIS: string = 'dados_profissionais';
-    DADOS_BANCARIOS: string = 'dados_bancarios';
-    DADOS_PLANO_SAUDE: string = 'dados_planos_saude';
+    CONFIG_DADOS: string = 'config_dados';
+    EDIT_DADOS_CONTA: string = 'edit_dados_conta';
+    EDIT_DADOS_PROFISSIONAIS: string = 'edit_dados_profissionais';
+    EDIT_DADOS_BANCARIOS: string = 'edit_dados_bancarios';
+    EDIT_DADOS_PLANO_SAUDE: string = 'edit_dados_planos_saude';
 }
 
 export class URLs {

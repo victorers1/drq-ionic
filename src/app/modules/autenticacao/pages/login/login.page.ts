@@ -10,15 +10,12 @@ import { DRQRoutes } from 'src/app/constants';
 })
 export class LoginPage implements OnInit {
   routes = new DRQRoutes();
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+  });
 
-  loginForm: FormGroup;
-
-  constructor(protected navCtrl: NavController) {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-    });
-  }
+  constructor(protected navCtrl: NavController) { }
 
   ngOnInit() {
   }

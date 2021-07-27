@@ -6,6 +6,11 @@ const drqRoutes = new DRQRoutes();
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: drqRoutes.LOGIN,
+    pathMatch: 'full'
+  },
+  {
     path: drqRoutes.LOGIN,
     loadChildren: () => import('./modules/autenticacao/pages/login/login.module').then(m => m.LoginPageModule)
   },
@@ -17,28 +22,31 @@ const routes: Routes = [
         loadChildren: () => import('./modules/pessoa-fisica/root-page/pessoa-fisica.module').then(m => m.PessoaFisicaPageModule),
       },
       {
-        path: drqRoutes.DADOS_CONTA,
-        loadChildren: () => import('./modules/pessoa-fisica/dados-conta/dados-conta.module').then(m => m.DadosContaPageModule)
-      },
-      {
-        path: drqRoutes.DADOS_PROFISSIONAIS,
-        loadChildren: () => import('./modules/pessoa-fisica/dados-profissionais/dados-profissionais.module').then(m => m.DadosProfissionaisPageModule)
-      },
-      {
-        path: drqRoutes.DADOS_BANCARIOS,
-        loadChildren: () => import('./modules/pessoa-fisica/dados-bancarios/dados-bancarios.module').then(m => m.DadosBancariosPageModule)
-      },
-      {
-        path: drqRoutes.DADOS_PLANO_SAUDE,
-        loadChildren: () => import('./modules/pessoa-fisica/dados-plano-saude/dados-plano-saude.module').then(m => m.DadosPlanoSaudePageModule)
+        path: drqRoutes.CONFIG_DADOS,
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/pessoa-fisica/config-dados/config-dados.module').then(m => m.ConfigDadosPageModule),
+          },
+          {
+            path: drqRoutes.EDIT_DADOS_CONTA,
+            loadChildren: () => import('./modules/pessoa-fisica/dados-conta/dados-conta.module').then(m => m.DadosContaPageModule)
+          },
+          {
+            path: drqRoutes.EDIT_DADOS_PROFISSIONAIS,
+            loadChildren: () => import('./modules/pessoa-fisica/dados-profissionais/dados-profissionais.module').then(m => m.DadosProfissionaisPageModule)
+          },
+          {
+            path: drqRoutes.EDIT_DADOS_BANCARIOS,
+            loadChildren: () => import('./modules/pessoa-fisica/dados-bancarios/dados-bancarios.module').then(m => m.DadosBancariosPageModule)
+          },
+          {
+            path: drqRoutes.EDIT_DADOS_PLANO_SAUDE,
+            loadChildren: () => import('./modules/pessoa-fisica/dados-plano-saude/dados-plano-saude.module').then(m => m.DadosPlanoSaudePageModule)
+          },
+        ]
       },
     ],
-
-  },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
   },
 ];
 

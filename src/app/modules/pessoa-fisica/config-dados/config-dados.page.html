@@ -1,0 +1,76 @@
+<ion-header>
+  <drq-header title="Configurar Dados"></drq-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-divider>
+      <ion-icon slot="start" name="person"></ion-icon>
+      <ion-label>Dados da Conta</ion-label>
+    </ion-item-divider>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_CONTA}}">
+      <ion-label>
+        <h2>Username: {{usuarioCtrl.usuario.username}}</h2>
+        <h2>Documento: {{usuarioCtrl.usuario.docFiscal}}</h2>
+        <h2>Email: {{usuarioCtrl.usuario.email}}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-icon slot="start" name="construct"></ion-icon>
+      <ion-label>Dados Profissionais</ion-label>
+    </ion-item-divider>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}">
+      <ion-label>
+        <h2>Carajás</h2>
+        <h2>De Jun/2020 à Mai/2021</h2>
+        <p>público</p>
+      </ion-label>
+    </ion-item>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}">
+      <ion-label>
+        <h2>Assaí</h2>
+        <h2>De Abr/2021 até agora</h2>
+        <p>público</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-icon slot="start" name="card"></ion-icon>
+      <ion-label>Dados Bancários</ion-label>
+    </ion-item-divider>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}">
+      <ion-label>
+        <h2>Banco do Brasil</h2>
+        <h2>Conta Corrente</h2>
+        <p>privado</p>
+      </ion-label>
+    </ion-item>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}">
+      <ion-label>
+        <h2>Caixa Econômica Federal</h2>
+        <h2>Conta Poupança</h2>
+        <p>privado</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-icon slot="start" name="medkit"></ion-icon>
+      <ion-label>Dados de Plano de Saúde</ion-label>
+    </ion-item-divider>
+    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PLANO_SAUDE}}">
+      <ion-label>
+        <h2>Hapvida</h2>
+        <p>público</p>
+      </ion-label>
+    </ion-item>
+
+    <br />
+    <br />
+    <br />
+
+  </ion-list>
+
+</ion-content>
