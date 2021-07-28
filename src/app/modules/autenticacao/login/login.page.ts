@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { DRQRoutes } from 'src/app/constants';
 
@@ -10,12 +10,14 @@ import { DRQRoutes } from 'src/app/constants';
 })
 export class LoginPage implements OnInit {
   routes = new DRQRoutes();
+
   loginForm = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    isPessoaFisica: new FormControl(null),
   });
 
-  constructor(protected navCtrl: NavController) { }
+  constructor(protected navCtrl: NavController, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -23,6 +25,9 @@ export class LoginPage implements OnInit {
   doLogin() {
     console.log(`email: `, this.loginForm.get('email').value);
     console.log(`password: `, this.loginForm.get('password').value);
-    this.navCtrl.navigateForward(`/${this.routes.PESSOA_FISICA}`);
+
+    const rota = this.loginForm.get('isPessoaFisica').value ? this.routes.PESSOA_FISICA : this.routes.PESSOA_JURIDICA;
+
+    this.navCtrl.navigateForward(`/${rota}`);
   }
 }
