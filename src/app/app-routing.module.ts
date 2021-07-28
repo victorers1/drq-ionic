@@ -30,18 +30,27 @@ const routes: Routes = [
           },
           {
             path: drqRoutes.EDIT_DADOS_CONTA,
-            loadChildren: () => import('./modules/pessoa-fisica/dados-conta/dados-conta.module').then(m => m.DadosContaPageModule)
+            loadChildren: () => import('./modules/pessoa-fisica/dados-conta/dados-conta.module').then(m => m.DadosContaPageModule),
           },
           {
-            path: drqRoutes.EDIT_DADOS_PROFISSIONAIS,
-            loadChildren: () => import('./modules/pessoa-fisica/dados-profissionais/dados-profissionais.module').then(m => m.DadosProfissionaisPageModule)
+            path: drqRoutes.EDIT_DADOS_PROFISSIONAIS + '/:' + drqRoutes.PARAM_DADO_PROFISSAO,
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('./modules/pessoa-fisica/dados-profissionais/dados-profissionais.module').then(m => m.DadosProfissionaisPageModule)
+              },
+              {
+                path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_DADO_EXPEDIENTE,
+                loadChildren: () => import('./modules/pessoa-fisica/dados-expediente/dados-expediente.module').then(m => m.DadosExpedientePageModule)
+              },
+            ]
           },
           {
-            path: drqRoutes.EDIT_DADOS_BANCARIOS,
+            path: drqRoutes.EDIT_DADOS_BANCARIOS + '/:' + drqRoutes.PARAM_DADO_BANCARIO,
             loadChildren: () => import('./modules/pessoa-fisica/dados-bancarios/dados-bancarios.module').then(m => m.DadosBancariosPageModule)
           },
           {
-            path: drqRoutes.EDIT_DADOS_PLANO_SAUDE,
+            path: drqRoutes.EDIT_DADOS_PLANO_SAUDE + '/:' + drqRoutes.PARAM_DADO_PLANO_SAUDE,
             loadChildren: () => import('./modules/pessoa-fisica/dados-plano-saude/dados-plano-saude.module').then(m => m.DadosPlanoSaudePageModule)
           },
         ]

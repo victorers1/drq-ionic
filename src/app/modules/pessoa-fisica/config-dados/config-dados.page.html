@@ -28,7 +28,7 @@
     </ion-item-divider>
 
     <ion-item *ngFor="let dp of dadosProfissao; let i=index" button detail
-      routerLink="./{{routes.EDIT_DADOS_PROFISSIONAIS}}/{{i}}">
+      [routerLink]="['./' + routes.EDIT_DADOS_PROFISSIONAIS, i]">
       <ion-label>
         <h2>{{dp.profissao}}</h2>
         <h2>{{dp.grauDeInstrucao}}</h2>
@@ -42,7 +42,7 @@
     </ion-item-divider>
 
     <ion-item *ngFor="let db of dadosBancarios; let i=index" button detail
-      routerLink="./{{routes.EDIT_DADOS_BANCARIOS}}/{{i}}">
+      [routerLink]="['./' + routes.EDIT_DADOS_BANCARIOS, i]">
       <ion-label>
         <h2>{{db.nome}}</h2>
         <h2>{{db.codigoDeOperacao}}</h2>

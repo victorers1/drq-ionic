@@ -3,36 +3,45 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="dadosProfissionaisForm" (ngSubmit)="saveDadosProfissionais()">
+
+  <form *ngIf="dadosProfissaoForm" [formGroup]="dadosProfissaoForm" (ngSubmit)="saveDadosProfissionais()">
 
     <ion-item>
-      <ion-label position="floating">Empresa</ion-label>
-      <ion-input formControlName="nome" type="text"></ion-input>
+      <ion-label>Público</ion-label>
+      <ion-toggle></ion-toggle>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">E-Mail</ion-label>
-      <ion-input formControlName="email" type="text"></ion-input>
+      <ion-label position="floating">Profissao</ion-label>
+      <ion-input formControlName="profissao" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Documento</ion-label>
-      <ion-input formControlName="docFiscal" type="text"></ion-input>
+      <ion-label position="floating">Especialidade</ion-label>
+      <ion-input formControlName="especialidade" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Logradouro</ion-label>
-      <ion-input formControlName="endLogradouro" type="text"></ion-input>
+      <ion-label position="floating">Grau de Instrução</ion-label>
+      <ion-input formControlName="grauDeInstrucao" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Sexo</ion-label>
-      <ion-input formControlName="sexo" type="text"></ion-input>
+      <ion-label position="floating">Conselho de Classe</ion-label>
+      <ion-input formControlName="conselhoDeClasse" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">RG</ion-label>
-      <ion-input formControlName="rg" type="text"></ion-input>
+    <ion-item-divider>
+      <ion-label>Expedientes</ion-label>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let e of dadoProfissao.expedientes; let i=index" button detail
+      [routerLink]="['./' + routes.EDIT_DADOS_EXPEDIENTE, i]">
+      <ion-label>
+        <h2>{{e.diaDaSemanaNome}}</h2>
+        <h2>Por {{e.recorrencia}} dias</h2>
+        <p>{{e.inicio}} às {{e.termino}}</p>
+      </ion-label>
     </ion-item>
 
     <br />
@@ -40,5 +49,7 @@
     <ion-button expand="block" color="primary" type="submit">
       Salvar
     </ion-button>
+
   </form>
+
 </ion-content>
