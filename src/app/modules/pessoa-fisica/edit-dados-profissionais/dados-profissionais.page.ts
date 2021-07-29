@@ -1,9 +1,12 @@
+import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DRQRoutes } from 'src/app/constants';
 import { DadosDeProfissao } from 'src/app/models/usuario/pessoa-fisica/dados-profissao';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
+import { DateUtils } from 'src/app/utils/date-utils';
+import { StringUtils } from 'src/app/utils/string-utils';
 
 @Component({
   selector: 'app-dados-profissionais',
@@ -34,10 +37,16 @@ export class DadosProfissionaisPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
 
   saveDadosProfissionais() {
     console.log('saveDadosProfissionais()');
+  }
+
+
+  diaDaSemanaNome(dia: WeekDay): string {
+    const nome = DateUtils.diaDaSemanaNome(dia, { capitalize: true });
+    return StringUtils.capilatize(nome);
   }
 }

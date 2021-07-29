@@ -11,9 +11,4 @@ export class ExpedienteDePessoaFisica {
         public inicio: string,
         public termino: string,
     ) { }
-
-    get diaDaSemanaNome(): string {
-        const nome = DateUtils.diaDaSemanaNome(this.diaDaSemana);
-        return StringUtils.capilatize(nome);
-    }
 }

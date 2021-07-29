@@ -1,6 +1,10 @@
 import { Pessoa } from "../pessoa";
+import { ExpedienteDePessoaFisica } from "../pessoa-fisica/expediente-pessoa-fisica";
 
 export class PessoaJuridica extends Pessoa {
+    expedienteDePessoaFisica: ExpedienteDePessoaFisica[] = [];
+    expediente
+
     public status: number = 0;
 
     constructor(
@@ -33,4 +37,6 @@ export class PessoaJuridica extends Pessoa {
             endPais,
         );
     }
+
+
 }

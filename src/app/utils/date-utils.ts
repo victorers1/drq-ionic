@@ -1,29 +1,54 @@
 import { WeekDay } from "@angular/common";
+import { StringUtils } from "./string-utils";
 
+export interface diaDaSemanaOptions {
+    toUpperCase?: boolean,
+    capitalize?: boolean,
+    completo?: boolean
+}
 export class DateUtils {
-    static diaDaSemanaNome(dia: WeekDay): string {
+
+    static diaDaSemanaNome(dia: WeekDay, opcoes?: diaDaSemanaOptions): string {
+        let nome: string;
+
         switch (dia) {
             case WeekDay.Sunday:
-                return 'domingo';
+                nome = 'domingo';
+                break;
 
             case WeekDay.Monday:
-                return 'segunda';
+                nome = 'segunda' + (opcoes.completo ? '-feira' : '');
+                break;
 
             case WeekDay.Tuesday:
-                return 'terça';
+                nome = 'terça' + (opcoes.completo ? '-feira' : '');
+                break;
 
             case WeekDay.Wednesday:
-                return 'quarta';
+                nome = 'quarta' + (opcoes.completo ? '-feira' : '');
+                break;
 
             case WeekDay.Thursday:
-                return 'quinta';
+                nome = 'quinta' + (opcoes.completo ? '-feira' : '');
+                break;
 
             case WeekDay.Friday:
-                return 'sexta';
+                nome = 'sexta' + (opcoes.completo ? '-feira' : '');
+                break;
 
             case WeekDay.Saturday:
             default:
-                return 'sábado';
+                nome = 'sábado';
+                break;
         }
+
+        if (opcoes.capitalize) {
+            nome = StringUtils.capilatize(nome);
+        }
+        if (opcoes.toUpperCase) {
+            nome = nome.toUpperCase();
+        }
+
+        return nome;
     }
 }

@@ -16,10 +16,13 @@ export class DRQRoutes {
     PARAM_DADO_EXPEDIENTE: string = 'indexDadoExpediente';
     PARAM_DADO_BANCARIO: string = 'indexDadoBancario';
     PARAM_DADO_PLANO_SAUDE: string = 'indexDadoPlanoSaude';
-
 }
 
 export class URLs {
     BASE_URL_PROD: string = 'google.com';
     BASE_URL_DEV: string = 'google.com';
 }
+
+
+export enum STATUS_REQUISICAO { AUTORIZADO = 0, NAO_AUTORIZADO = 1 };
+export enum STATUS_DADOS { ATIVO = 0, INATIVO = 1 };

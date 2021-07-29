@@ -28,6 +28,6 @@ export class LoginPage implements OnInit {
 
     const rota = this.loginForm.get('isPessoaFisica').value ? this.routes.PESSOA_FISICA : this.routes.PESSOA_JURIDICA;
 
-    this.navCtrl.navigateForward(`/${rota}`);
+    this.navCtrl.navigateRoot(`/${rota}`);
   }
 }

@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './pessoa-juridica-routing.module';
 
 import { HomePage } from './pessoa-juridica.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { OptionTileComponent } from 'src/app/components/option-tile/option-tile.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, OptionTileComponent]
 })
 export class HomePageModule { }

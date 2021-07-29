@@ -13,8 +13,7 @@ export class PessoaFisicaPage implements OnInit {
 
   constructor(public navCtrl: NavController, private usuarioCtrl: PessoaFisicaService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   logOut(): void {
     console.log(`${this.usuarioCtrl.usuario.username} is loging out`);
