@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { DadosContaPageRoutingModule } from './dados-conta-routing.module';
 
 import { DadosContaPage } from './dados-conta.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     DadosContaPageRoutingModule
   ],
   declarations: [DadosContaPage]
 })
-export class DadosContaPageModule {}
+export class DadosContaPageModule { }

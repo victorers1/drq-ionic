@@ -1,9 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>dados-conta</ion-title>
-  </ion-toolbar>
+  <drq-header title="Dados da Conta"></drq-header>
 </ion-header>
 
 <ion-content>
+
+  <!-- username: string,
+        nome: string,
+        docFiscal: string,
+        email: string,
+        endLogradouro: string,
+        endNumero: string,
+        endBairro: string,
+        endCidade: string,
+        endEstado: string,
+        endPais: string,
+        public nomeFantasia: string,
+        public descricao: string,
+        public especialidades: string,
+        public drqEndpoint: string,
+        public tipo: number -->
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" value="Centro de Saúde Soledade II"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" value="CSSII"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input type="text" value="centro.saude@gmail.com"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CNPJ</ion-label>
+      <ion-input type="text" value="80744850000133"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Logradouro</ion-label>
+      <ion-input type="text" value="Rua Rio do Sul"></ion-input>
+    </ion-item>
+
+    <br />
+
+    <ion-button expand="block" color="primary" type="submit">
+      Salvar
+    </ion-button>
+
+  </ion-list>
 
 </ion-content>

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ListExpedientesPageRoutingModule } from './list-expedientes-routing.module';
 
 import { ListExpedientesPage } from './list-expedientes.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     ListExpedientesPageRoutingModule
   ],
   declarations: [ListExpedientesPage]
 })
-export class ListExpedientesPageModule {}
+export class ListExpedientesPageModule { }
