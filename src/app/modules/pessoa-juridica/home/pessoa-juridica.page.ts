@@ -10,10 +10,13 @@ import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica/pessoa-j
 })
 export class HomePage implements OnInit {
   routes = new DRQRoutes();
-  constructor(private navCtrl: NavController, private usuarioCtrl: PessoaJuridicaService) { }
 
-  ngOnInit() {
-  }
+  constructor(
+    private navCtrl: NavController,
+    private usuarioCtrl: PessoaJuridicaService,
+  ) { }
+
+  ngOnInit() { }
 
   logOut(): void {
     console.log(`${this.usuarioCtrl.usuario.username} is loging out`);

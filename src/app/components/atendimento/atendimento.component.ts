@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PessoaJuridica } from 'src/app/models/usuario/pessoa-juridica/pessoa-juridica';
 
 @Component({
   selector: 'atendimento',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./atendimento.component.scss'],
 })
 export class AtendimentoComponent implements OnInit {
+  @Input('pessoaJuridica') pessoaJuridica: PessoaJuridica;
 
   constructor() { }
 
