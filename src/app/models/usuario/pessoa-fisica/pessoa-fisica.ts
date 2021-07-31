@@ -1,3 +1,4 @@
+import { STATUS_OBJETO } from "src/app/constants";
 import { Pessoa } from "../pessoa";
 import { DadosBancarios } from "./dados-bancarios";
 import { DadosDePlanoDeSaude } from "./dados-plano-saude";
@@ -9,33 +10,28 @@ export class PessoaFisica extends Pessoa {
     public dadosPlanoSaude: DadosDePlanoDeSaude[];
 
     public rg: string;
+    public email: string;
+    public endCEP: string;
 
     constructor(
         username: string,
         nome: string,
         docFiscal: string,
-        email: string,
-        endLogradouro: string,
-        endNumero: string,
-        endBairro: string,
-        endCidade: string,
-        endEstado: string,
-        endPais: string,
+        public foneUm: string,
+        public endLogradouro: string,
+        public endNumero: string,
+        public endBairro: string,
+        public endCidade: string,
+        public endEstado: string,
+        public endPais: string = 'BRASIL',
         public dataDeNascimento: Date = new Date(),
         public sexo: string,
-        public status: number = 0,
+        public status: STATUS_OBJETO = STATUS_OBJETO.ATIVO,
     ) {
         super(
             username,
             nome,
             docFiscal,
-            email,
-            endLogradouro,
-            endNumero,
-            endBairro,
-            endCidade,
-            endEstado,
-            endPais,
         );
     }
 }

@@ -28,9 +28,9 @@ export class PessoaFisicaService {
   constructor() { }
 
   async getDadosProfissao(): Promise<void> {
-    const e1 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, '08:00', '12:00');
-    const e2 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, '14:00', '18:00');
-    const e3 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, '20:00', '00:00');
+    const e1 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, { hours: 8, minutes: 0 }, { hours: 12, minutes: 0 });
+    const e2 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, { hours: 14, minutes: 0 }, { hours: 18, minutes: 0 });
+    const e3 = new ExpedienteDePessoaFisica(0, 0, WeekDay.Monday, 5, { hours: 20, minutes: 0 }, { hours: 0, minutes: 0 });
 
     const d1 = new DadosDeProfissao(0, 'Dentista');
     d1.grauDeInstrucao = 'Ensino Superior';

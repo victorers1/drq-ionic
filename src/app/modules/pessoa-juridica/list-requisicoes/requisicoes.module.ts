@@ -8,6 +8,7 @@ import { RequisicoesPageRoutingModule } from './requisicoes-routing.module';
 
 import { RequisicoesPage } from './requisicoes.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { RequisicaoDadosComponent } from 'src/app/components/requisicao-dados/requisicao-dados.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule,
     RequisicoesPageRoutingModule
   ],
-  declarations: [RequisicoesPage]
+  declarations: [RequisicoesPage, RequisicaoDadosComponent]
 })
 export class RequisicoesPageModule { }

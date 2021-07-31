@@ -1,4 +1,4 @@
-import { WeekDay } from "@angular/common";
+import { Time, WeekDay } from "@angular/common";
 import { DateUtils } from "src/app/utils/date-utils";
 import { StringUtils } from "src/app/utils/string-utils";
 
@@ -7,7 +7,7 @@ export class ExpedienteDePessoaJuridica {
         public pessoaJuridicaID: number,
         public diaDaSemana: WeekDay,
         public recorrencia: number,
-        public inicio: string,
-        public termino: string,
+        public inicio: Time,
+        public termino: Time,
     ) { }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TIPO_PESSOA_JURIDICA } from 'src/app/constants';
 import { PessoaJuridica } from 'src/app/models/usuario/pessoa-juridica/pessoa-juridica';
 
 @Injectable({
@@ -9,21 +10,10 @@ export class PessoaJuridicaService {
     'victorers1',
     'Centro de Saúde Soledade II',
     '80744850000133',
-    'centrosoledade2@gmail.com',
-    'Rua Rio do Sul ',
-    '1170',
-    'Potengi',
-    'Natal',
-    'RN',
-    'BRASIL',
-    'Centro Soledade II',
-    'Melhor centro de saúde do Soledade II',
-    'Humanos',
+    'Centro de Sáude do Soledade II',
+    'Melhor Centro de Sáude do Soledade II',
     '',
-    0
+    TIPO_PESSOA_JURIDICA.MATRIZ
   );
-
   constructor() { }
-
-
 }
