@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PessoaFisica } from 'src/app/models/usuario/pessoa-fisica/pessoa-fisica';
+import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 
 @Component({

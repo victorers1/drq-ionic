@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DRQRoutes } from 'src/app/constants';
-import { DadosBancarios } from 'src/app/models/usuario/pessoa-fisica/dados-bancarios';
-import { DadosDeProfissao } from 'src/app/models/usuario/pessoa-fisica/dados-profissao';
+import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-bancarios';
+import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 
 @Component({

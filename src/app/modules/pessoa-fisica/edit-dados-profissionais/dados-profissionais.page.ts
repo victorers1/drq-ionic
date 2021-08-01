@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DRQRoutes } from 'src/app/constants';
-import { DadosDeProfissao } from 'src/app/models/usuario/pessoa-fisica/dados-profissao';
+import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { StringUtils } from 'src/app/utils/string-utils';
@@ -25,7 +25,7 @@ export class DadosProfissionaisPage implements OnInit {
     this.route.params.subscribe((params) => {
       console.log('DadosProfissionaisPage params: ', params);
 
-      this.indexDadoProfissao = params[this.routes.PARAM_DADO_PROFISSAO];
+      this.indexDadoProfissao = params[this.routes.PARAM_INDEX_DADO_PROFISSAO];
       this.dadoProfissao = this.usuarioService.usuario.dadosProfissao[this.indexDadoProfissao];
 
       this.dadosProfissaoForm = new FormGroup({

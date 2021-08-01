@@ -33,24 +33,24 @@ const routes: Routes = [
             loadChildren: () => import('./modules/pessoa-fisica/edit-dados-conta/dados-conta.module').then(m => m.DadosContaPageModule),
           },
           {
-            path: drqRoutes.EDIT_DADOS_PROFISSIONAIS + '/:' + drqRoutes.PARAM_DADO_PROFISSAO,
+            path: drqRoutes.EDIT_DADOS_PROFISSIONAIS + '/:' + drqRoutes.PARAM_INDEX_DADO_PROFISSAO,
             children: [
               {
                 path: '',
                 loadChildren: () => import('./modules/pessoa-fisica/edit-dados-profissionais/dados-profissionais.module').then(m => m.DadosProfissionaisPageModule)
               },
               {
-                path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_DADO_EXPEDIENTE,
+                path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_INDEX_DADO_EXPEDIENTE,
                 loadChildren: () => import('./modules/pessoa-fisica/edit-dados-expediente/dados-expediente.module').then(m => m.DadosExpedientePageModule)
               },
             ]
           },
           {
-            path: drqRoutes.EDIT_DADOS_BANCARIOS + '/:' + drqRoutes.PARAM_DADO_BANCARIO,
+            path: drqRoutes.EDIT_DADOS_BANCARIOS + '/:' + drqRoutes.PARAM_INDEX_DADO_BANCARIO,
             loadChildren: () => import('./modules/pessoa-fisica/edit-dados-bancarios/dados-bancarios.module').then(m => m.DadosBancariosPageModule)
           },
           {
-            path: drqRoutes.EDIT_DADOS_PLANO_SAUDE + '/:' + drqRoutes.PARAM_DADO_PLANO_SAUDE,
+            path: drqRoutes.EDIT_DADOS_PLANO_SAUDE + '/:' + drqRoutes.PARAM_INDEX_DADO_PLANO_SAUDE,
             loadChildren: () => import('./modules/pessoa-fisica/edit-dados-plano-saude/dados-plano-saude.module').then(m => m.DadosPlanoSaudePageModule)
           },
         ]
@@ -85,7 +85,7 @@ const routes: Routes = [
             loadChildren: () => import('./modules/pessoa-juridica/list-expedientes/list-expedientes.module').then(m => m.ListExpedientesPageModule)
           },
           {
-            path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_DADO_EXPEDIENTE,
+            path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_INDEX_DADO_EXPEDIENTE,
             loadChildren: () => import('./modules/pessoa-juridica/edit-dados-expediente/dados-expediente.module').then(m => m.DadosExpedientePageModule)
           },
         ]

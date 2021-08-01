@@ -1,4 +1,4 @@
-import { TIPO_PESSOA_JURIDICA } from "src/app/constants";
+import { TIPO_PESSOA_JURIDICA } from "../../../constants";
 import { Pessoa } from "../pessoa";
 import { ExpedienteDePessoaFisica } from "../pessoa-fisica/expediente-pessoa-fisica";
 import { ExpedienteDePessoaJuridica } from "./expediente-pessoa-juridica";

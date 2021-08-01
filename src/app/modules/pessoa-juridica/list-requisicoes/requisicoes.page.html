@@ -3,10 +3,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
+    placeholder="Pesquisar nome" showCancelButton="focus" type="search" (ionChange)="onSearchBarChange($event)">
+  </ion-searchbar>
 
   <ion-list>
-
-    <requisicao-dados></requisicao-dados>
 
     <ion-item-divider>
       <ion-icon slot="start" name="construct"></ion-icon>
@@ -16,24 +17,19 @@
       <ion-label>Dados Profissionais</ion-label>
     </ion-item-divider>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>CRM: 12345</h2>
-        <p>
-          público
-          <ion-icon slot="end" color="success" name="checkmark"></ion-icon>
-        </p>
-      </ion-label>
-    </ion-item>
+    <requisicao-dados *ngFor="let rdp of usuario.requisicoesDadosProfissao; let i=index" [requisicaoDados]="rdp"
+      [index]="i"></requisicao-dados>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dra. Fulana Campos</h2>
-        <h2>CRM: 54321</h2>
-        <p>privado</p>
-      </ion-label>
-    </ion-item>
+    <ion-item-divider>
+      <ion-icon slot="start" name="cash"></ion-icon>
+      <ion-button fill="clear" slot="end" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <ion-label>Dados Bancários</ion-label>
+    </ion-item-divider>
+
+    <requisicao-dados *ngFor="let rdb of usuario.requisicoesDadosBancarios; let i=index" [requisicaoDados]="rdb"
+      [index]="i"></requisicao-dados>
 
     <ion-item-divider>
       <ion-icon slot="start" name="medkit"></ion-icon>
@@ -43,24 +39,19 @@
       <ion-label>Dados de Plano de Saúde</ion-label>
     </ion-item-divider>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>Hapvida</h2>
-        <p>privado</p>
-      </ion-label>
-    </ion-item>
+    <requisicao-dados *ngFor="let rdps of usuario.requisicoesDadosPlanoSaude; let i=index" [requisicaoDados]="rdps"
+      [index]="i"></requisicao-dados>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dra. Fulana Campos</h2>
-        <h2>AMIL</h2>
-        <p>
-          público
-          <ion-icon slot="end" color="success" name="checkmark"></ion-icon>
-        </p>
-      </ion-label>
-    </ion-item>
+    <ion-item-divider>
+      <ion-icon slot="start" name="person"></ion-icon>
+      <ion-button fill="clear" slot="end" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <ion-label>Dados de Dependentes</ion-label>
+    </ion-item-divider>
+
+    <requisicao-dados *ngFor="let rdd of usuario.requisicoesDadosDependentes; let i=index" [requisicaoDados]="rdd"
+      [index]="i"></requisicao-dados>
 
   </ion-list>
 

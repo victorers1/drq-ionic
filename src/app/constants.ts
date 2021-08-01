@@ -16,10 +16,11 @@ export class DRQRoutes {
     LIST_REQUISICOES_DADOS: string = 'list_requisicoes';
     EDIT_REQUISICAO_DADOS: string = 'edit_requisicao';
 
-    PARAM_DADO_PROFISSAO: string = 'index_dado_profissao';
-    PARAM_DADO_EXPEDIENTE: string = 'index_dado_expediente';
-    PARAM_DADO_BANCARIO: string = 'index_dado_bancario';
-    PARAM_DADO_PLANO_SAUDE: string = 'index_dado_planoSaude';
+    PARAM_INDEX_DADO_PROFISSAO: string = 'index_dado_profissao';
+    PARAM_INDEX_DADO_EXPEDIENTE: string = 'index_dado_expediente';
+    PARAM_INDEX_DADO_BANCARIO: string = 'index_dado_bancario';
+    PARAM_INDEX_DADO_PLANO_SAUDE: string = 'index_dado_plano_saude';
+    PARAM_INDEX_REQUISICAO_DADO: string = 'index_requisicao_dado';
 }
 
 export class URLs {
@@ -27,7 +28,9 @@ export class URLs {
     BASE_URL_DEV: string = 'google.com';
 }
 
+
 export enum STATUS_REQUISICAO { AUTORIZADO = 0, NAO_AUTORIZADO = 1 };
 export enum STATUS_DADOS { ATIVO = 0, INATIVO = 1 };
 export enum STATUS_OBJETO { ATIVO = 0, INATIVO = 1 };
 export enum TIPO_PESSOA_JURIDICA { MATRIZ = 0, FILIAL = 1 };
+export enum TIPO_REQUISICAO_DADOS { PROFISSAO, BANCARIO, PLANO_SAUDE, DEPENDENTE };

@@ -8,6 +8,33 @@ export interface diaDaSemanaOptions {
 }
 export class DateUtils {
 
+    static getDataFormatada(data: Date, separador?: string) {
+        separador = separador ?? '/';
+        const dia = StringUtils.pad(data.getDate());
+        const mes = StringUtils.pad(data.getMonth());
+        return `${dia}${separador}${mes}${separador}${data.getFullYear()}`;
+    }
+
+    static getHoraFormatada(data: Date, separador?: string, incluiSegundo?: boolean) {
+        separador = separador ?? ':';
+        const hora = StringUtils.pad(data.getHours());
+        const minuto = StringUtils.pad(data.getMinutes());
+
+        let horaFormatada = `${hora}${separador}${minuto}`;
+
+        if (incluiSegundo) {
+            const segundo = StringUtils.pad(data.getSeconds());
+            horaFormatada += `${separador}${segundo}`;
+        }
+
+        return horaFormatada
+    }
+
+    static getDataHoraFormatada(data: Date, separadorData?: string, separadorHora?: string, incluiSegundo?: boolean) {
+        return `${this.getDataFormatada(data, separadorData)} ${this.getHoraFormatada(data, separadorHora, incluiSegundo)}`;
+    }
+
+
     static diaDaSemanaNome(dia: WeekDay, opcoes?: diaDaSemanaOptions): string {
         let nome: string;
 
