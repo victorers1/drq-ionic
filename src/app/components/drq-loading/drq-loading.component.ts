@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'drq-loading',
@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drq-loading.component.scss'],
 })
 export class DrqLoadingComponent implements OnInit {
-
+  @Input('titulo') titulo: string;
   constructor() { }
 
-  ngOnInit() { }
-
+  ngOnInit() {
+    console.log('DrqLoadingComponent:', { titulo: this.titulo });
+  }
 }

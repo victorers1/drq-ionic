@@ -75,6 +75,10 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('./modules/pessoa-juridica/list-requisicoes/requisicoes.module').then(m => m.RequisicoesPageModule)
           },
+          {
+            path: drqRoutes.EDIT_REQUISICAO_DADOS,
+            loadChildren: () => import('./modules/pessoa-juridica/list-requisicoes/requisicoes.module').then(m => m.RequisicoesPageModule) // TODO
+          }
         ]
       },
       {

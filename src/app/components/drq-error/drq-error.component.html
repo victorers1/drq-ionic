@@ -1,3 +1,19 @@
-<p>
-  drq-error works!
-</p>
+<ion-grid fixed class="ion-padding-top ion-padding-bottom">
+  <ion-row>
+    <ion-col size="6" offset="3" class="ion-text-center">
+      <ion-icon [name]="icone" size="large"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="8" offset="2">
+      <h2 class="ion-text-center ion-no-padding ion-no-margin">{{titulo}}</h2>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="8" offset="2">
+      <p class="ion-text-center ion-no-padding ion-no-margin">{{mensagem}}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>

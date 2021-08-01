@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'drq-error',
@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drq-error.component.scss'],
 })
 export class DrqErrorComponent implements OnInit {
-
+  @Input('icone') icone: string;
+  @Input('titulo') titulo: string;
+  @Input('mensagem') mensagem: string;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.icone = this.icone ?? 'sad-outline';
+    console.log(`DrqErrorComponent:`, { icone: this.icone, titulo: this.titulo, mensagem: this.mensagem });
+  }
 
 }
+
