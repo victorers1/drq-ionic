@@ -1,7 +1,10 @@
 import { STATUS_REQUISICAO } from "src/app/constants";
+import { PessoaFisica } from "../pessoa-fisica/pessoa-fisica";
 import { RequisicaoDados } from "./requisicao-dados";
 
 export class RequisicaoParaDadosDeDependente extends RequisicaoDados {
+    pessoaFisica: PessoaFisica;
+
     constructor(
         public dadosDeDependenteID: number,
         public pessoaJuridicaID: number,

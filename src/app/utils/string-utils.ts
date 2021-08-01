@@ -13,4 +13,8 @@ export class StringUtils {
             return this.pad(parseInt(n));
         }
     }
+
+    static search(str: string, subStr: string) {
+        return str.toLowerCase().includes(subStr.toLowerCase());
+    }
 }
