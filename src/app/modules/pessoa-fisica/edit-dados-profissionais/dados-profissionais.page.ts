@@ -39,11 +39,9 @@ export class DadosProfissionaisPage implements OnInit {
 
   ngOnInit() { }
 
-
   saveDadosProfissionais() {
     console.log('saveDadosProfissionais()');
   }
-
 
   diaDaSemanaNome(dia: WeekDay): string {
     const nome = DateUtils.diaDaSemanaNome(dia, { capitalize: true });

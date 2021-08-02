@@ -77,8 +77,8 @@ const routes: Routes = [
           },
           {
             path: drqRoutes.EDIT_REQUISICAO_DADOS,
-            loadChildren: () => import('./modules/pessoa-juridica/list-requisicoes/requisicoes.module').then(m => m.RequisicoesPageModule) // TODO
-          }
+            loadChildren: () => import('./modules/pessoa-juridica/edit-requisicao-dado/edit-requisicao-dado.module').then(m => m.EditRequisicaoDadoPageModule)
+          },
         ]
       },
       {
@@ -96,6 +96,7 @@ const routes: Routes = [
       },
     ]
   },
+
 ];
 
 @NgModule({

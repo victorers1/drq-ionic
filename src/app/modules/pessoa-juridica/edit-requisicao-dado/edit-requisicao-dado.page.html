@@ -1,0 +1,38 @@
+<ion-header>
+  <drq-header title="Editar Requisição"></drq-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-divider>
+      <ion-label>Pessoa Física</ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label>Nome: {{getDadosPessoaFisica()['nome']}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email: {{getDadosPessoaFisica()['email']}}</ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label>Status Requisição</ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label>Não autorizado</ion-label>
+    </ion-item>
+
+    <br />
+    <br />
+
+    <ion-button (click)="cancelar()" expand="block" fill="solid" color="danger">
+      Cancelar Requisição
+    </ion-button>
+
+  </ion-list>
+
+</ion-content>

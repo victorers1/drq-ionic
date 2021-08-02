@@ -1,4 +1,4 @@
-<ion-item button detail (click)="onClick($event)">
+<ion-item button detail (click)="onClick()">
 
   <ion-label>
 
@@ -6,9 +6,9 @@
 
     <h2>{{getDadosPessoa()['email']}}</h2>
 
-    <p>data: {{getDataFormatada()}}</p>
+    <p>criado em {{getDataFormatada()}}</p>
 
-    <p *ngIf="isAutorizado(); else naoAutorizado">público</p>
+    <p *ngIf="isAutorizado(); else naoAutorizado">autorizado</p>
     <ng-template #naoAutorizado>
       <p>privado</p>
     </ng-template>

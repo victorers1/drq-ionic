@@ -20,7 +20,7 @@ export class DRQRoutes {
     PARAM_INDEX_DADO_EXPEDIENTE: string = 'index_dado_expediente';
     PARAM_INDEX_DADO_BANCARIO: string = 'index_dado_bancario';
     PARAM_INDEX_DADO_PLANO_SAUDE: string = 'index_dado_plano_saude';
-    PARAM_INDEX_REQUISICAO_DADO: string = 'index_requisicao_dado';
+    PARAM_REQUISICAO_DADO: string = 'requisicao_dado';
 }
 
 export class URLs {

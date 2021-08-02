@@ -3,11 +3,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
-    placeholder="Pesquisar nome" showCancelButton="focus" type="search" (ionChange)="onSearchBarChange($event)">
-  </ion-searchbar>
 
   <ion-list>
+    <ion-list-header>
+      <ion-label>Filtrar</ion-label>
+    </ion-list-header>
+
+    <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
+      placeholder="Pesquisar por nome" showCancelButton="focus" type="search" (ionChange)="onSearchBarChange($event)">
+    </ion-searchbar>
+
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select interface="popover">
+        <ion-select-option value="true">Autorizado</ion-select-option>
+        <ion-select-option value="false">Não autorizado</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- TODO: ion-datetime -->
+
 
     <ion-item-divider>
       <ion-icon slot="start" name="construct"></ion-icon>
@@ -17,7 +32,7 @@
       <ion-label>Dados Profissionais</ion-label>
     </ion-item-divider>
 
-    <requisicao-dados *ngFor="let rdp of reqDadosProfissao; let i=index" [requisicaoDados]="rdp" [index]="i">
+    <requisicao-dados *ngFor="let rdp of reqDadosProfissao" [requisicaoDados]="rdp">
     </requisicao-dados>
 
     <ion-item-divider>
@@ -28,7 +43,7 @@
       <ion-label>Dados Bancários</ion-label>
     </ion-item-divider>
 
-    <requisicao-dados *ngFor="let rdb of reqDadosBancarios; let i=index" [requisicaoDados]="rdb" [index]="i">
+    <requisicao-dados *ngFor="let rdb of reqDadosBancarios" [requisicaoDados]="rdb">
     </requisicao-dados>
 
     <ion-item-divider>
@@ -39,9 +54,10 @@
       <ion-label>Dados de Plano de Saúde</ion-label>
     </ion-item-divider>
 
-    <requisicao-dados *ngFor="let rdps of reqDadosPlanoSaude; let i=index" [requisicaoDados]="rdps" [index]="i">
+    <requisicao-dados *ngFor="let rdps of reqDadosPlanoSaude" [requisicaoDados]="rdps">
     </requisicao-dados>
-    <!-- 
+
+    <!--
     <ion-item-divider>
       <ion-icon slot="start" name="person"></ion-icon>
       <ion-button fill="clear" slot="end" (click)="onClick()">
@@ -50,8 +66,8 @@
       <ion-label>Dados de Dependentes</ion-label>
     </ion-item-divider>
 
-    <requisicao-dados *ngFor="let rdd of usuario.requisicoesDadosDependentes; let i=index" [requisicaoDados]="rdd"
-      [index]="i"></requisicao-dados> -->
+    <requisicao-dados *ngFor="let rdd of usuario.requisicoesDadosDependentes" [requisicaoDados]="rdd"></requisicao-dados> 
+    -->
 
   </ion-list>
 

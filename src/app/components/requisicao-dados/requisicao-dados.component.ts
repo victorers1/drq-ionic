@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { DRQRoutes, STATUS_REQUISICAO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
 import { RequisicaoParaDadosBancarios } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-bancarios';
 import { RequisicaoParaDadosDeDependente } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-dependente';
@@ -12,44 +14,35 @@ import { DateUtils } from 'src/app/utils/date-utils';
 })
 export class RequisicaoDadosComponent implements OnInit {
   @Input('requisicaoDados') requisicaoDados: RequisicaoParaDadosDeProfissao | RequisicaoParaDadosBancarios | RequisicaoParaDadosDePlanoDeSaude | RequisicaoParaDadosDeDependente;
-  @Input('index') indexRequisicaoDados: number;
 
   routes = new DRQRoutes();
 
-  constructor() {
-    STATUS_REQUISICAO.AUTORIZADO
-  }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
-    console.log(`RequisicaoDadosComponent:`, { requisicao: this.requisicaoDados, index: this.indexRequisicaoDados });
+    console.log(`RequisicaoDadosComponent:`, { requisicao: this.requisicaoDados });
   }
 
-  onClick(event: CustomEvent) {
-    console.log(`event:`, event);
-
+  onClick() {
+    this.navCtrl.navigateForward([this.routes.PESSOA_JURIDICA, this.routes.LIST_REQUISICOES_DADOS, this.routes.EDIT_REQUISICAO_DADOS], { state: this.requisicaoDados });
   }
 
   getDadosPessoa() {
-    if (this.requisicaoDados.pessoaFisica)
+    const p = this.requisicaoDados.pessoaFisica;
+    if (p) {
       return {
-        nome: this.requisicaoDados.pessoaFisica.nome,
-        email: this.requisicaoDados.pessoaFisica.email
+        nome: p.nome,
+        email: p.email
       };
+    }
   }
 
   isAutorizado(): boolean {
-    return this.requisicaoDados.status == STATUS_REQUISICAO.AUTORIZADO;
+    return this.requisicaoDados.status === STATUS_REQUISICAO.AUTORIZADO;
   }
 
   getDataFormatada(): string {
     return DateUtils.getDataFormatada(this.requisicaoDados.data);
-  }
-
-  getTipoRequisicao(): TIPO_REQUISICAO_DADOS {
-    if (this.requisicaoDados instanceof RequisicaoParaDadosDeProfissao) return TIPO_REQUISICAO_DADOS.PROFISSAO;
-    if (this.requisicaoDados instanceof RequisicaoParaDadosBancarios) return TIPO_REQUISICAO_DADOS.BANCARIO;
-    if (this.requisicaoDados instanceof RequisicaoParaDadosDePlanoDeSaude) return TIPO_REQUISICAO_DADOS.PLANO_SAUDE;
-    if (this.requisicaoDados instanceof RequisicaoParaDadosDeDependente) return TIPO_REQUISICAO_DADOS.DEPENDENTE;
   }
 
 
