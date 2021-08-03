@@ -1,3 +1,4 @@
 <ion-item button detail (click)="onTap()">
+  <ion-icon *ngIf="icone" [name]="icone" slot="start"></ion-icon>
   <ion-label>{{title}}</ion-label>
 </ion-item>

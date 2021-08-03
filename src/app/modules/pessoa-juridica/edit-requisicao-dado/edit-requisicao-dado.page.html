@@ -23,7 +23,15 @@
     </ion-item-divider>
 
     <ion-item>
-      <ion-label>Não autorizado</ion-label>
+      <ion-label>Tipo: {{getNomeTipoRequisicao()}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Status: {{getStatus()}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Criado em: {{getDataFormatada()}}</ion-label>
     </ion-item>
 
     <br />

@@ -14,6 +14,7 @@
 
       <ion-label>
         <h2>{{usuarioCtrl.usuario.nome}}</h2>
+        <p>{{usuarioCtrl.usuario.username}}</p>
       </ion-label>
 
       <ion-button fill="clear" (click)="logOut()">
@@ -22,27 +23,42 @@
 
     </ion-item>
 
-    <option-tile title="Requisições de Dados" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_REQUISICOES_DADOS}}">
+    <option-tile icone="folder-open-outline" title="Requisições de Dados"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_REQUISICOES_DADOS}}">
     </option-tile>
 
-    <option-tile title="Expedientes de Pessoa Jurídica" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_EXPEDIENTES}}">
+    <!-- <option-tile icone="time-outline" title="Expedientes de Pessoa Jurídica"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_EXPEDIENTES}}">
+    </option-tile> -->
+
+    <option-tile icone="business-outline" title="Unidades" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_UNIDADES}}">
     </option-tile>
 
-    <option-tile title="Histórico de Atendimentos" link="/{{routes.PESSOA_JURIDICA}}/{{routes.CONFIG_DADOS}}">
+    <option-tile icone="calendar-outline" title="Histórico de Atendimentos"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.CONFIG_DADOS}}">
     </option-tile>
 
-    <option-tile title="Perfil" link="/{{routes.PESSOA_JURIDICA}}/{{routes.EDIT_DADOS_CONTA}}"></option-tile>
+    <option-tile icone="reader-outline" title="Perfil" link="/{{routes.PESSOA_JURIDICA}}/{{routes.EDIT_DADOS_CONTA}}">
+    </option-tile>
 
   </ion-list>
 
   <br />
   <br />
-  <br />
 
   <drq-loading titulo="Carregando dados..."></drq-loading>
 
+  <br />
+  <br />
+
   <drq-empty titulo="Nada aqui!" mensagem="Você ainda não tem agenda."></drq-empty>
 
+  <br />
+  <br />
+
   <drq-error titulo="Ops!" mensagem="O servidor não está respondendo. Tente novamente mais tarde."></drq-error>
+
+  <br />
+  <br />
 
 </ion-content>

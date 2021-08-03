@@ -1,31 +1,10 @@
 <ion-header>
-  <drq-header title="Dados da Conta"></drq-header>
+  <drq-header title="Perfil"></drq-header>
 </ion-header>
 
 <ion-content>
 
-  <!-- username: string,
-        nome: string,
-        docFiscal: string,
-        email: string,
-        endLogradouro: string,
-        endNumero: string,
-        endBairro: string,
-        endCidade: string,
-        endEstado: string,
-        endPais: string,
-        public nomeFantasia: string,
-        public descricao: string,
-        public especialidades: string,
-        public drqEndpoint: string,
-        public tipo: number -->
-
   <ion-list>
-
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" value="Centro de Saúde Soledade II"></ion-input>
-    </ion-item>
 
     <ion-item>
       <ion-label position="floating">Username</ion-label>
@@ -33,8 +12,13 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">E-Mail</ion-label>
-      <ion-input type="text" value="centro.saude@gmail.com"></ion-input>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" value="Centro de Saúde Soledade II"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nome fantasia</ion-label>
+      <ion-input type="text" value="C&SII"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -43,8 +27,16 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Logradouro</ion-label>
-      <ion-input type="text" value="Rua Rio do Sul"></ion-input>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input type="text" value="Melhor Centro de Saúde do Soledade II"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select value="matriz" multiple="false" placeholder="Tipo" interface="popover">
+        <ion-select-option value="matriz">Matriz</ion-select-option>
+        <ion-select-option value="filial">Filial</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <br />

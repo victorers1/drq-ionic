@@ -22,20 +22,23 @@
 
     </ion-item>
 
-    <option-tile title="Agenda" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}"></option-tile>
+    <option-tile icone="calendar-outline" title="Agenda" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
+    </option-tile>
 
-    <option-tile title="Prontuários" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_PRONTUARIOS}}"></option-tile>
+    <option-tile icone="clipboard-outline" title="Prontuários"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_PRONTUARIOS}}"></option-tile>
 
-    <option-tile title="Receitas" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_RECEITAS}}"></option-tile>
+    <option-tile icone="receipt-outline" title="Receitas" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_RECEITAS}}">
+    </option-tile>
 
-    <option-tile title="Atestados" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_ATESTADOS}}"></option-tile>
+    <option-tile icone="today-outline" title="Atestados" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_ATESTADOS}}">
+    </option-tile>
 
-    <option-tile title="Seu Perfil" link="/{{routes.PESSOA_FISICA}}/{{routes.CONFIG_DADOS}}"></option-tile>
+    <option-tile icone="person-circle-outline" title="Seu Perfil"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.CONFIG_DADOS}}"></option-tile>
+
+    <safe-area-bottom></safe-area-bottom>
 
   </ion-list>
 
-  <br />
-
 </ion-content>
-
-<!-- Agenda > Prontuário > Receitas > Atestados > Perfil -->

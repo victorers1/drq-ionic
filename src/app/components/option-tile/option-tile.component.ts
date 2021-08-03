@@ -9,11 +9,12 @@ import { NavController } from '@ionic/angular';
 export class OptionTileComponent implements OnInit {
   @Input('title') title: string;
   @Input('link') link: string;
+  @Input('icone') icone: string;
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
-    console.log('OptionTileComponent: ', { 'title': this.title, 'link': this.link });
+    console.log('OptionTileComponent: ', { title: this.title, link: this.link, icone: this.icone });
   }
 
   onTap() {

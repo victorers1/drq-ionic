@@ -1,0 +1,68 @@
+<ion-header>
+  <drq-header title="Editar Unidade"></drq-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-divider>
+      <ion-label>Perfil</ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" [value]="unidade.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Especialidade</ion-label>
+      <ion-input type="text" [value]="unidade.especialidades"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input type="text" [value]="unidade.foneUm"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Logradouro</ion-label>
+      <ion-input type="text" [value]="unidade.endLogradouro"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Número</ion-label>
+      <ion-input type="text" [value]="unidade.endNumero"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Complemento</ion-label>
+      <ion-input type="text" [value]="unidade.endComplemento"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Bairro</ion-label>
+      <ion-input type="text" [value]="unidade.endBairro"></ion-input>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label>Expedientes</ion-label>
+      <ion-button slot="end" fill="clear" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-item-divider>
+
+    <ion-item button detail *ngFor="let e of unidade.expedientes; let i=index" (click)="onClickExpediente(i)">
+      <ion-label>
+        <h2>Dia: {{getDiaSemanaNome(i)}}</h2>
+        <h2>Recorrência: {{e.recorrencia}}</h2>
+        <p>{{getTimeFormatado(e.inicio)}} - {{getTimeFormatado(e.termino)}}</p>
+      </ion-label>
+    </ion-item>
+
+    <br />
+    <br />
+
+  </ion-list>
+
+</ion-content>

@@ -1,4 +1,4 @@
-import { WeekDay } from "@angular/common";
+import { Time, WeekDay } from "@angular/common";
 import { StringUtils } from "./string-utils";
 
 export interface diaDaSemanaOptions {
@@ -34,9 +34,13 @@ export class DateUtils {
         return `${this.getDataFormatada(data, separadorData)} ${this.getHoraFormatada(data, separadorHora, incluiSegundo)}`;
     }
 
-
     static diaDaSemanaNome(dia: WeekDay, opcoes?: diaDaSemanaOptions): string {
         let nome: string;
+        opcoes = opcoes ?? {
+            toUpperCase: false,
+            capitalize: false,
+            completo: false,
+        };
 
         switch (dia) {
             case WeekDay.Sunday:
@@ -69,13 +73,17 @@ export class DateUtils {
                 break;
         }
 
-        if (opcoes.capitalize) {
-            nome = StringUtils.capilatize(nome);
-        }
         if (opcoes.toUpperCase) {
             nome = nome.toUpperCase();
+        } else if (opcoes.capitalize) {
+            nome = StringUtils.capilatize(nome);
         }
 
         return nome;
+    }
+
+    static getTimeFormatado(time: Time, separador?: string): string {
+        separador = separador ?? ':';
+        return `${StringUtils.pad(time.hours)}${separador}${StringUtils.pad(time.minutes)}`;
     }
 }

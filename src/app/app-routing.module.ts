@@ -73,7 +73,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('./modules/pessoa-juridica/list-requisicoes/requisicoes.module').then(m => m.RequisicoesPageModule)
+            loadChildren: () => import('./modules/pessoa-juridica/list-requisicoes-dado/requisicoes.module').then(m => m.RequisicoesPageModule)
           },
           {
             path: drqRoutes.EDIT_REQUISICAO_DADOS,
@@ -93,10 +93,30 @@ const routes: Routes = [
             loadChildren: () => import('./modules/pessoa-juridica/edit-dados-expediente/dados-expediente.module').then(m => m.DadosExpedientePageModule)
           },
         ]
+      }, {
+        path: drqRoutes.LIST_UNIDADES,
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/pessoa-juridica/list-unidades/list-unidades.module').then(m => m.ListUnidadesPageModule),
+          },
+          {
+            path: drqRoutes.EDIT_UNIDADE,
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('./modules/pessoa-juridica/edit-unidade/edit-unidade.module').then(m => m.EditUnidadePageModule)
+              },
+              {
+                path: drqRoutes.EDIT_EXPEDIENTE, // SHARED PAGE
+                loadChildren: () => import('./modules/shared/edit-expediente/edit-expediente.module').then(m => m.EditExpedientePageModule)
+              }
+            ]
+          }
+        ]
       },
     ]
   },
-
 ];
 
 @NgModule({

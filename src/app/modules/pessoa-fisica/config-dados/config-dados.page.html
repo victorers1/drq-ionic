@@ -39,6 +39,9 @@
     <ion-item-divider>
       <ion-icon slot="start" name="card"></ion-icon>
       <ion-label>Dados Bancários</ion-label>
+      <ion-button fill="clear" slot="end" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
     </ion-item-divider>
 
     <ion-item *ngFor="let db of dadosBancarios; let i=index" button detail
@@ -53,6 +56,9 @@
     <ion-item-divider>
       <ion-icon slot="start" name="medkit"></ion-icon>
       <ion-label>Planos de Saúde</ion-label>
+      <ion-button fill="clear" slot="end" (click)="onClick()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
     </ion-item-divider>
 
     <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PLANO_SAUDE}}">
@@ -62,9 +68,7 @@
       </ion-label>
     </ion-item>
 
-    <br />
-    <br />
-    <br />
+    <safe-area-bottom></safe-area-bottom>
 
   </ion-list>
 

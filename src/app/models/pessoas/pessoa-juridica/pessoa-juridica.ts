@@ -1,15 +1,15 @@
 import { TIPO_PESSOA_JURIDICA } from "../../../constants";
 import { Pessoa } from "../pessoa";
 import { ExpedienteDePessoaFisica } from "../pessoa-fisica/expediente-pessoa-fisica";
-import { ExpedienteDePessoaJuridica } from "./expediente-pessoa-juridica";
+import { Unidade } from "../unidade";
 import { RequisicaoParaDadosBancarios } from "./requisicao-dados-bancarios";
 import { RequisicaoParaDadosDeDependente } from "./requisicao-dados-dependente";
 import { RequisicaoParaDadosDePlanoDeSaude } from "./requisicao-dados-plano-saude";
 import { RequisicaoParaDadosDeProfissao } from "./requisicao-dados-profissao";
 
 export class PessoaJuridica extends Pessoa {
+    unidades: Unidade[] = [];
     expedienteDePessoaFisica: ExpedienteDePessoaFisica[] = [];
-    expedienteDePessoaJuridica: ExpedienteDePessoaJuridica[] = [];
 
     requisicoesDadosProfissao: RequisicaoParaDadosDeProfissao[] = [];
     requisicoesDadosPlanoSaude: RequisicaoParaDadosDePlanoDeSaude[] = [];

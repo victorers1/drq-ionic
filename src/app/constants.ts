@@ -9,12 +9,15 @@ export class DRQRoutes {
     EDIT_DADOS_BANCARIOS: string = 'edit_dados_bancarios';
     EDIT_DADOS_PLANO_SAUDE: string = 'edit_dados_planos_saude';
     EDIT_DADOS_EXPEDIENTE: string = 'edit_dados_expediente';
+    EDIT_REQUISICAO_DADOS: string = 'edit_requisicao';
+    EDIT_UNIDADE: string = 'edit_unidade';
+    EDIT_EXPEDIENTE: string = 'edit_expediente';
     LIST_EXPEDIENTES: string = 'list_dados_expediente';
     LIST_RECEITAS: string = 'list_receitas';
     LIST_ATESTADOS: string = 'list_atestados';
     LIST_PRONTUARIOS: string = 'list_prontuarios';
     LIST_REQUISICOES_DADOS: string = 'list_requisicoes';
-    EDIT_REQUISICAO_DADOS: string = 'edit_requisicao';
+    LIST_UNIDADES: string = 'list_unidades';
 
     PARAM_INDEX_DADO_PROFISSAO: string = 'index_dado_profissao';
     PARAM_INDEX_DADO_EXPEDIENTE: string = 'index_dado_expediente';
@@ -33,4 +36,4 @@ export enum STATUS_REQUISICAO { AUTORIZADO = 0, NAO_AUTORIZADO = 1 };
 export enum STATUS_DADOS { ATIVO = 0, INATIVO = 1 };
 export enum STATUS_OBJETO { ATIVO = 0, INATIVO = 1 };
 export enum TIPO_PESSOA_JURIDICA { MATRIZ = 0, FILIAL = 1 };
-export enum TIPO_REQUISICAO_DADOS { PROFISSAO, BANCARIO, PLANO_SAUDE, DEPENDENTE };
+export enum TIPO_REQUISICAO_DADOS { PROFISSAO = 'Dados de Profissão', BANCARIO = 'Dados Bancários', PLANO_SAUDE = 'Dados de Plano de Saúde', DEPENDENTE = 'Dados de Dependente' };

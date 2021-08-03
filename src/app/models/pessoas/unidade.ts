@@ -1,9 +1,12 @@
+import { ExpedienteDeUnidade } from "./pessoa-juridica/expediente-unidade";
 import { PessoaJuridica } from "./pessoa-juridica/pessoa-juridica";
 
 export class Unidade {
+
     public email: string;
-    public endPais: string = 'BRASIL';
     public endCEP: string;
+    public endPais: string = 'BRASIL';
+    public expedientes: ExpedienteDeUnidade[] = [];
 
     constructor(
         public pessoaJuridica: PessoaJuridica,
