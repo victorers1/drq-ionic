@@ -23,7 +23,16 @@ const routes: Routes = [
       },
       {
         path: drqRoutes.AGENDA,
-        loadChildren: () => import('./modules/pessoa-fisica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/pessoa-fisica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
+          },
+          {
+            path: drqRoutes.EDIT_ATENDIMENTO, // SHARED PAGE
+            loadChildren: () => import('./modules/shared/edit-atendimento/edit-atendimento.module').then(m => m.EditAtendimentoPageModule)
+          }
+        ]
       },
       {
         path: drqRoutes.CONFIG_DADOS,
@@ -70,9 +79,18 @@ const routes: Routes = [
       },
       {
         path: drqRoutes.AGENDA,
-        loadChildren: () => import('./modules/pessoa-juridica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
-      },
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/pessoa-juridica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
+          },
+          {
+            path: drqRoutes.EDIT_ATENDIMENTO, // SHARED PAGE
+            loadChildren: () => import('./modules/shared/edit-atendimento/edit-atendimento.module').then(m => m.EditAtendimentoPageModule)
+          }
+        ],
 
+      },
       {
         path: drqRoutes.EDIT_DADOS_CONTA,
         loadChildren: () => import('./modules/pessoa-juridica/edit-dados-conta/dados-conta.module').then(m => m.DadosContaPageModule)
@@ -126,7 +144,6 @@ const routes: Routes = [
       },
     ]
   },
-
 ];
 
 @NgModule({

@@ -23,8 +23,7 @@ export class LoginPage implements OnInit {
   }
 
   doLogin() {
-    console.log(`email: `, this.loginForm.get('email').value);
-    console.log(`password: `, this.loginForm.get('password').value);
+    console.log(`loginForm: `, { login: this.loginForm.get('email').value, password: this.loginForm.get('password').value });
 
     const rota = this.loginForm.get('isPessoaFisica').value ? this.routes.PESSOA_FISICA : this.routes.PESSOA_JURIDICA;
 

@@ -6,84 +6,90 @@
 
   <ion-list>
 
-    <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
-      placeholder="Pesquisar por nome" showCancelButton="focus" type="search" (ionChange)="onSearchBarChange($event)">
-    </ion-searchbar>
 
-    <ion-item>
-      <ion-label>Atendimentos passados</ion-label>
-      <ion-toggle>
-        <!-- [(ngModel)]="pepperoni" -->
-      </ion-toggle>
-    </ion-item>
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="segmentState" color="secondary">
 
-    <safe-area-bottom></safe-area-bottom>
+      <ion-segment-button value="a">
+        <ion-label>Agendado</ion-label>
+      </ion-segment-button>
 
-    <ion-item-divider>
-      <ion-label color="dark"><b>22 de Agosto, 2021</b></ion-label>
-    </ion-item-divider>
+      <ion-segment-button value="c">
+        <ion-label>Confirmado</ion-label>
+      </ion-segment-button>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>11:00</h2>
-      </ion-label>
-    </ion-item>
+      <ion-segment-button value="f">
+        <ion-label>Finalizado</ion-label>
+      </ion-segment-button>
 
+    </ion-segment>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>14:00</h2>
-      </ion-label>
-    </ion-item>
+    <safe-area-bottom [spacing]="1"></safe-area-bottom>
 
-    <ion-item-divider>
-      <ion-label color="dark"><b>24 de Agosto, 2021</b></ion-label>
-    </ion-item-divider>
+    <div *ngIf="segmentState=='f'">
+      <ion-item-divider>
+        <ion-label color="dark"><b>01 de Julho, 2021</b></ion-label>
+      </ion-item-divider>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulana Campos</h2>
-        <h2>09:00</h2>
-      </ion-label>
-    </ion-item>
+      <ion-item button detail>
+        <ion-label>
+          <h2>Dr. Fulano da Silva</h2>
+          <h2>Clínica Nova Flor</h2>
+          <h2>11:00</h2>
+        </ion-label>
+      </ion-item>
 
-    <ion-item-divider>
-      <ion-label color="dark"><b>07 de Setembro, 2021</b></ion-label>
-    </ion-item-divider>
+      <ion-item-divider>
+        <ion-label color="dark"><b>09 de Agosto, 2021</b></ion-label>
+      </ion-item-divider>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>14:00</h2>
-      </ion-label>
-    </ion-item>
+      <ion-item button detail>
+        <ion-label>
+          <h2>Dr. Fulano da Silva</h2>
+          <h2>Clínica do DNA</h2>
+          <h2>14:00</h2>
+        </ion-label>
+      </ion-item>
+    </div>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulana Campos</h2>
-        <h2>17:00</h2>
-      </ion-label>
-    </ion-item>
+    <div *ngIf="segmentState=='c'">
+      <ion-item-divider>
+        <ion-label color="dark"><b>07 de Setembro, 2021</b></ion-label>
+      </ion-item-divider>
 
-    <ion-item-divider>
-      <ion-label color="dark"><b>12 de Dezembro, 2021</b></ion-label>
-    </ion-item-divider>
+      <ion-item button detail (click)="onClickAtendimento(0)">
+        <ion-label>
+          <h2>Dr. Fulana Campos</h2>
+          <h2>Clínica Nova Flor</h2>
+          <h2>14:00</h2>
+        </ion-label>
+      </ion-item>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulano da Silva</h2>
-        <h2>14:00</h2>
-      </ion-label>
-    </ion-item>
+      <ion-item-divider>
+        <ion-label color="dark"><b>22 de Setembro, 2021</b></ion-label>
+      </ion-item-divider>
 
-    <ion-item button detail>
-      <ion-label>
-        <h2>Dr. Fulana Campos</h2>
-        <h2>17:00</h2>
-      </ion-label>
-    </ion-item>
+      <ion-item button detail>
+        <ion-label>
+          <h2>Dr. Fulano da Silva</h2>
+          <h2>Clínica Nova Flor</h2>
+          <h2>21:00</h2>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div *ngIf="segmentState=='a'">
+      <ion-item-divider>
+        <ion-label color="dark"><b>12 de Dezembro, 2021</b></ion-label>
+      </ion-item-divider>
+
+      <ion-item button detail>
+        <ion-label>
+          <h2>Dr. Fulana Campos</h2>
+          <h2>Clínica Oitava Rosado</h2>
+          <h2>17:00</h2>
+        </ion-label>
+      </ion-item>
+    </div>
 
   </ion-list>
 

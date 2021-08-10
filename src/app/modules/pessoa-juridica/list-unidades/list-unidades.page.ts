@@ -13,7 +13,11 @@ import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica/pessoa-j
 export class ListUnidadesPage implements OnInit {
   routes = new DRQRoutes();
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private usuarioCtrl: PessoaJuridicaService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private navCtrl: NavController,
+    private usuarioCtrl: PessoaJuridicaService
+  ) { }
 
   ngOnInit() { }
 

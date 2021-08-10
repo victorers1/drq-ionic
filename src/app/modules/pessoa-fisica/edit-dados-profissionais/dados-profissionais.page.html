@@ -38,9 +38,9 @@
     <ion-item *ngFor="let e of dadoProfissao.expedientes; let i=index" button detail
       [routerLink]="['./' + routes.EDIT_DADOS_EXPEDIENTE, i]">
       <ion-label>
-        <h2>{{diaDaSemanaNome(e.diaDaSemanaNome)}}</h2>
+        <h2>{{e.getDiaSemanaFormatado()}}</h2>
         <h2>Por {{e.recorrencia}} dias</h2>
-        <p>{{e.inicio}} às {{e.termino}}</p>
+        <p>{{e.getInicioFormatado()}} às {{e.getTerminoFormatado()}}</p>
       </ion-label>
     </ion-item>
 
@@ -51,5 +51,7 @@
     </ion-button>
 
   </form>
+
+  <safe-area-bottom></safe-area-bottom>
 
 </ion-content>

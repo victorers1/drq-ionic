@@ -17,14 +17,23 @@ export class RequisicaoDadosComponent implements OnInit {
 
   routes = new DRQRoutes();
 
-  constructor(private navCtrl: NavController) { }
+  constructor(
+    private navCtrl: NavController,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     console.log(`RequisicaoDadosComponent:`, { requisicao: this.requisicaoDados });
   }
 
   onClick() {
-    this.navCtrl.navigateForward([this.routes.PESSOA_JURIDICA, this.routes.LIST_REQUISICOES_DADOS, this.routes.EDIT_REQUISICAO_DADOS], { state: this.requisicaoDados });
+    this.navCtrl.navigateForward(
+      [this.routes.EDIT_REQUISICAO_DADOS],
+      {
+        state: this.requisicaoDados,
+        relativeTo: this.route
+      }
+    );
   }
 
   getDadosPessoa() {
@@ -37,13 +46,10 @@ export class RequisicaoDadosComponent implements OnInit {
     }
   }
 
-  isAutorizado(): boolean {
-    return this.requisicaoDados.status === STATUS_REQUISICAO.AUTORIZADO;
-  }
+  isAutorizado = (): boolean => this.requisicaoDados.status === STATUS_REQUISICAO.AUTORIZADO;
 
-  getDataFormatada(): string {
-    return DateUtils.getDataFormatada(this.requisicaoDados.data);
-  }
+  getDataFormatada = (): string => this.requisicaoDados.getDataFormatada();
+
 
 
 }
