@@ -1,0 +1,92 @@
+<ion-header>
+  <drq-header title="Agenda"></drq-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
+      placeholder="Pesquisar por nome" showCancelButton="focus" type="search" (ionChange)="onSearchBarChange($event)">
+    </ion-searchbar>
+
+    <ion-item>
+      <ion-label>Atendimentos passados</ion-label>
+      <ion-toggle>
+        <!-- [(ngModel)]="pepperoni" -->
+      </ion-toggle>
+    </ion-item>
+
+    <safe-area-bottom></safe-area-bottom>
+
+    <ion-item-divider>
+      <ion-label color="dark"><b>22 de Agosto, 2021</b></ion-label>
+    </ion-item-divider>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulano da Silva</h2>
+        <h2>11:00</h2>
+      </ion-label>
+    </ion-item>
+
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulano da Silva</h2>
+        <h2>14:00</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label color="dark"><b>24 de Agosto, 2021</b></ion-label>
+    </ion-item-divider>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulana Campos</h2>
+        <h2>09:00</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label color="dark"><b>07 de Setembro, 2021</b></ion-label>
+    </ion-item-divider>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulano da Silva</h2>
+        <h2>14:00</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulana Campos</h2>
+        <h2>17:00</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label color="dark"><b>12 de Dezembro, 2021</b></ion-label>
+    </ion-item-divider>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulano da Silva</h2>
+        <h2>14:00</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail>
+      <ion-label>
+        <h2>Dr. Fulana Campos</h2>
+        <h2>17:00</h2>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <safe-area-bottom></safe-area-bottom>
+
+</ion-content>

@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PessoaFisicaPageRoutingModule } from './pessoa-fisica-routing.module';
+import { ListAgendaPageRoutingModule } from './list-agenda-routing.module';
 
-import { PessoaFisicaPage } from './pessoa-fisica.page';
+import { ListAgendaPage } from './list-agenda.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { HomeComponentsModule } from 'src/app/components/home-components.module';
 
 @NgModule({
   imports: [
@@ -16,9 +15,8 @@ import { HomeComponentsModule } from 'src/app/components/home-components.module'
     FormsModule,
     IonicModule,
     ComponentsModule,
-    HomeComponentsModule,
-    PessoaFisicaPageRoutingModule,
+    ListAgendaPageRoutingModule
   ],
-  declarations: [PessoaFisicaPage]
+  declarations: [ListAgendaPage]
 })
-export class PessoaFisicaPageModule { }
+export class ListAgendaPageModule { }

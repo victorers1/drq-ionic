@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private usuarioCtrl: PessoaJuridicaService,
+    public usuarioCtrl: PessoaJuridicaService,
   ) { }
 
   ngOnInit() { }

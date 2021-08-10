@@ -1,5 +1,5 @@
 <ion-header>
-  <drq-header title=Home [showArrowBack]=false></drq-header>
+  <drq-header title="Pessoa Jurídica" [showArrowBack]=false></drq-header>
 </ion-header>
 
 <ion-content>
@@ -23,13 +23,12 @@
 
     </ion-item>
 
+    <option-tile icone="calendar-outline" title="Agenda" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDA}}">
+    </option-tile>
+
     <option-tile icone="folder-open-outline" title="Requisições de Dados"
       link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_REQUISICOES_DADOS}}">
     </option-tile>
-
-    <!-- <option-tile icone="time-outline" title="Expedientes de Pessoa Jurídica"
-      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_EXPEDIENTES}}">
-    </option-tile> -->
 
     <option-tile icone="business-outline" title="Unidades" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_UNIDADES}}">
     </option-tile>
@@ -43,22 +42,18 @@
 
   </ion-list>
 
-  <br />
-  <br />
+  <safe-area-bottom></safe-area-bottom>
 
   <drq-loading titulo="Carregando dados..."></drq-loading>
 
-  <br />
-  <br />
+  <safe-area-bottom></safe-area-bottom>
 
   <drq-empty titulo="Nada aqui!" mensagem="Você ainda não tem agenda."></drq-empty>
 
-  <br />
-  <br />
+  <safe-area-bottom></safe-area-bottom>
 
   <drq-error titulo="Ops!" mensagem="O servidor não está respondendo. Tente novamente mais tarde."></drq-error>
 
-  <br />
-  <br />
+  <safe-area-bottom></safe-area-bottom>
 
 </ion-content>

@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/pessoa-fisica/home/pessoa-fisica.module').then(m => m.PessoaFisicaPageModule),
       },
       {
+        path: drqRoutes.AGENDA,
+        loadChildren: () => import('./modules/pessoa-fisica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
+      },
+      {
         path: drqRoutes.CONFIG_DADOS,
         children: [
           {
@@ -64,6 +68,11 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./modules/pessoa-juridica/home/pessoa-juridica.module').then(m => m.HomePageModule)
       },
+      {
+        path: drqRoutes.AGENDA,
+        loadChildren: () => import('./modules/pessoa-juridica/list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule)
+      },
+
       {
         path: drqRoutes.EDIT_DADOS_CONTA,
         loadChildren: () => import('./modules/pessoa-juridica/edit-dados-conta/dados-conta.module').then(m => m.DadosContaPageModule)
@@ -117,6 +126,7 @@ const routes: Routes = [
       },
     ]
   },
+
 ];
 
 @NgModule({

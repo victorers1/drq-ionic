@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'safe-area-bottom',
@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./safe-area-bottom.component.scss'],
 })
 export class SafeAreaBottomComponent implements OnInit {
-
+  @Input('spacing') spacing: number = 4;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(`SafeAreaBottomComponent:`, { spacing: this.spacing });
+  }
 
 }

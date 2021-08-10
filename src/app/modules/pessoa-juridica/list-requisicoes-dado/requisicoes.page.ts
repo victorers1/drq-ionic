@@ -15,9 +15,9 @@ import { StringUtils } from 'src/app/utils/string-utils';
 export class RequisicoesPage implements OnInit {
   private usuario: PessoaJuridica;
 
-  private reqDadosProfissao: RequisicaoParaDadosDeProfissao[] = [];
-  private reqDadosBancarios: RequisicaoParaDadosBancarios[] = [];
-  private reqDadosPlanoSaude: RequisicaoParaDadosDePlanoDeSaude[] = [];
+  reqDadosProfissao: RequisicaoParaDadosDeProfissao[] = [];
+  reqDadosBancarios: RequisicaoParaDadosBancarios[] = [];
+  reqDadosPlanoSaude: RequisicaoParaDadosDePlanoDeSaude[] = [];
 
   constructor(private usuarioCtrl: PessoaJuridicaService) {
     this.usuario = this.usuarioCtrl.usuario;
@@ -30,6 +30,8 @@ export class RequisicoesPage implements OnInit {
   ngOnInit() {
     console.log('usuario:', this.usuario);
   }
+
+  onClick() { }
 
   onSearchBarChange(event: CustomEvent) {
     console.log(`onSearchBarChange:`, event);

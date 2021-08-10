@@ -7,6 +7,9 @@ import { DrqHeaderComponent } from "./drq-header/drq-header.component";
 import { DrqLoadingComponent } from "./drq-loading/drq-loading.component";
 import { SafeAreaBottomComponent } from "./safe-area-bottom/safe-area-bottom.component";
 
+/** 
+ * Components used in almost every page
+*/
 @NgModule({
     declarations: [
         DrqHeaderComponent,

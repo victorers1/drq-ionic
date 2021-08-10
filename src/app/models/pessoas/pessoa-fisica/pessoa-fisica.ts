@@ -9,6 +9,7 @@ export class PessoaFisica extends Pessoa {
     public dadosBancarios: DadosBancarios[];
     public dadosPlanoSaude: DadosDePlanoDeSaude[];
 
+
     public rg: string;
     public email: string;
     public endCEP: string;
