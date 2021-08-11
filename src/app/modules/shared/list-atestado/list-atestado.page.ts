@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-atestado.page.scss'],
 })
 export class ListAtestadoPage implements OnInit {
+  inicio: string;
+  fim: string;
+  mostrarVencidos: boolean = false;
+
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  onChange(event: Event) {
+    // filtrar
   }
 
+  onClickLimpar() {
+    this.inicio = null;
+    this.fim = null;
+    this.mostrarVencidos = false;
+  }
 }

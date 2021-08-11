@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-atestado.page.scss'],
 })
 export class EditAtestadoPage implements OnInit {
+  inicio: string;
+  fim: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChange(event: Event) {
+    console.log(`event:`, event);
+  }
+
+  onClickLimpar() {
+    this.inicio = null;
+    this.fim = null;
   }
 
 }
