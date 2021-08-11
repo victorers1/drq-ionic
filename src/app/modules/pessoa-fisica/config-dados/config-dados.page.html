@@ -1,5 +1,5 @@
 <ion-header>
-  <drq-header title="Configurar Dados"></drq-header>
+  <drq-header titulo="Configurar Dados"></drq-header>
 </ion-header>
 
 <ion-content>
@@ -21,7 +21,7 @@
 
     <ion-item-divider>
       <ion-icon slot="start" name="construct"></ion-icon>
-      <ion-button fill="clear" slot="end" (click)="onClick()">
+      <ion-button fill="clear" slot="end" (click)="createDadoProfissional()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
       <ion-label>Dados Profissionais</ion-label>
@@ -39,7 +39,7 @@
     <ion-item-divider>
       <ion-icon slot="start" name="card"></ion-icon>
       <ion-label>Dados Bancários</ion-label>
-      <ion-button fill="clear" slot="end" (click)="onClick()">
+      <ion-button fill="clear" slot="end" (click)="createDadoBancario()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-item-divider>
@@ -56,7 +56,7 @@
     <ion-item-divider>
       <ion-icon slot="start" name="medkit"></ion-icon>
       <ion-label>Planos de Saúde</ion-label>
-      <ion-button fill="clear" slot="end" (click)="onClick()">
+      <ion-button fill="clear" slot="end" (click)="createDadoPlanoSaude()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-item-divider>

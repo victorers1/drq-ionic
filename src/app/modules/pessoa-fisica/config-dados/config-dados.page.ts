@@ -24,4 +24,10 @@ export class ConfigDadosPage implements OnInit {
     this.dadosBancarios = this.usuarioCtrl.usuario.dadosBancarios;
     this.dadosProfissao = this.usuarioCtrl.usuario.dadosProfissao;
   }
+
+  createDadoProfissional() { }
+
+  createDadoBancario() { }
+
+  createDadoPlanoSaude() { }
 }

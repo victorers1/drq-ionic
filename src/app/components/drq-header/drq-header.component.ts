@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./drq-header.component.scss'],
 })
 export class DrqHeaderComponent implements OnInit {
-  @Input('title') title: string;
+  @Input('titulo') title: string;
   @Input('showArrowBack') showArrowBack: boolean = true;
 
   constructor() { }

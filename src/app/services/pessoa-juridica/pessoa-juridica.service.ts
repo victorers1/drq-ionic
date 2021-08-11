@@ -1,6 +1,6 @@
 import { Time, WeekDay } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { STATUS_REQUISICAO, TIPO_PESSOA_JURIDICA } from 'src/app/constants';
+import { STATUS_REQUISICAO_DADO, TIPO_PESSOA_JURIDICA } from 'src/app/constants';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { ExpedienteDeUnidade } from 'src/app/models/pessoas/pessoa-juridica/expediente-unidade';
 import { PessoaJuridica } from 'src/app/models/pessoas/pessoa-juridica/pessoa-juridica';
@@ -64,20 +64,20 @@ export class PessoaJuridicaService {
 
     const rdp1 = new RequisicaoParaDadosDeProfissao(0, 0);
     rdp1.pessoaFisica = p1;
-    const rdp2 = new RequisicaoParaDadosDeProfissao(1, 0, STATUS_REQUISICAO.AUTORIZADO);
+    const rdp2 = new RequisicaoParaDadosDeProfissao(1, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
     rdp2.pessoaFisica = p2;
 
     this.usuario.requisicoesDadosProfissao = [rdp1, rdp2];
 
     const rdb1 = new RequisicaoParaDadosBancarios(0, 0);
     rdb1.pessoaFisica = p1;
-    const rdb2 = new RequisicaoParaDadosBancarios(0, 0, STATUS_REQUISICAO.AUTORIZADO);
+    const rdb2 = new RequisicaoParaDadosBancarios(0, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
     rdb2.pessoaFisica = p2;
     this.usuario.requisicoesDadosBancarios = [rdb1, rdb2];
 
     const rdps1 = new RequisicaoParaDadosDePlanoDeSaude(0, 0);
     rdps1.pessoaFisica = p1;
-    const rdps2 = new RequisicaoParaDadosDePlanoDeSaude(0, 0, STATUS_REQUISICAO.AUTORIZADO);
+    const rdps2 = new RequisicaoParaDadosDePlanoDeSaude(0, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
     rdps2.pessoaFisica = p2;
     this.usuario.requisicoesDadosPlanoSaude = [rdps1, rdps2];
   }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { DRQRoutes, STATUS_REQUISICAO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
+import { DRQRoutes, STATUS_REQUISICAO_DADO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
 import { RequisicaoParaDadosBancarios } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-bancarios';
 import { RequisicaoParaDadosDeDependente } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-dependente';
 import { RequisicaoParaDadosDePlanoDeSaude } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-plano-saude';
@@ -46,7 +46,7 @@ export class RequisicaoDadosComponent implements OnInit {
     }
   }
 
-  isAutorizado = (): boolean => this.requisicaoDados.status === STATUS_REQUISICAO.AUTORIZADO;
+  isAutorizado = (): boolean => this.requisicaoDados.status === STATUS_REQUISICAO_DADO.AUTORIZADO;
 
   getDataFormatada = (): string => this.requisicaoDados.getDataFormatada();
 

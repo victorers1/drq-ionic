@@ -13,6 +13,9 @@ export class DRQRoutes {
     EDIT_REQUISICAO_DADOS: string = 'edit_requisicao';
     EDIT_UNIDADE: string = 'edit_unidade';
     EDIT_EXPEDIENTE: string = 'edit_expediente';
+    EDIT_RECEITA: string = 'edit_receita';
+    EDIT_ATESTADO: string = 'edit_atestado';
+    EDIT_PRONTUARIO: string = 'edit_prontuario';
     LIST_EXPEDIENTES: string = 'list_dados_expediente';
     LIST_RECEITAS: string = 'list_receitas';
     LIST_ATESTADOS: string = 'list_atestados';
@@ -32,10 +35,10 @@ export class URLs {
     BASE_URL_DEV: string = 'google.com';
 }
 
-export enum STATUS_REQUISICAO { AUTORIZADO = 0, NAO_AUTORIZADO = 1 };
+export enum STATUS_REQUISICAO_DADO { AUTORIZADO = 0, NAO_AUTORIZADO = 1 };
 export enum STATUS_DADOS { ATIVO = 0, INATIVO = 1 };
 export enum STATUS_OBJETO { ATIVO = 0, INATIVO = 1 };
 export enum STATUS_ATENDIMENTO { AGENDADO = 'a', CONFIRMADO = 'c', FINALIZADO = 'f' };
-export enum STATUS_HTTP_REQUEST { VAZIO, AGUARDANDO, CONCLUIDO, ERRO };
+export enum STATUS_REQUISICAO_HTTP { VAZIO, AGUARDANDO, CONCLUIDO, ERRO };
 export enum TIPO_PESSOA_JURIDICA { MATRIZ = 0, FILIAL = 1 };
 export enum TIPO_REQUISICAO_DADOS { PROFISSAO = 'Dados de Profissão', BANCARIO = 'Dados Bancários', PLANO_SAUDE = 'Dados de Plano de Saúde', DEPENDENTE = 'Dados de Dependente' };

@@ -68,6 +68,45 @@ const routes: Routes = [
           },
         ]
       },
+      {
+        path: drqRoutes.LIST_RECEITAS,
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/shared/list-receita/list-receita.module').then(m => m.ListReceitaPageModule),
+          },
+          {
+            path: drqRoutes.EDIT_RECEITA,
+            loadChildren: () => import('./modules/shared/edit-receita/edit-receita.module').then(m => m.EditReceitaPageModule)
+          },
+        ]
+      },
+      {
+        path: drqRoutes.LIST_ATESTADOS,
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/shared/list-atestado/list-atestado.module').then(m => m.ListAtestadoPageModule),
+          },
+          {
+            path: drqRoutes.EDIT_ATESTADO,
+            loadChildren: () => import('./modules/shared/edit-atestado/edit-atestado.module').then(m => m.EditAtestadoPageModule)
+          },
+        ]
+      },
+      {
+        path: drqRoutes.LIST_PRONTUARIOS,
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./modules/shared/list-prontuario/list-prontuario.module').then(m => m.ListProntuarioPageModule),
+          },
+          {
+            path: drqRoutes.EDIT_PRONTUARIO,
+            loadChildren: () => import('./modules/shared/edit-prontuario/edit-prontuario.module').then(m => m.EditProntuarioPageModule)
+          },
+        ]
+      },
     ],
   },
   {
@@ -144,6 +183,8 @@ const routes: Routes = [
       },
     ]
   },
+
+
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DRQRoutes, STATUS_REQUISICAO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
+import { DRQRoutes, STATUS_REQUISICAO_DADO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { RequisicaoDados } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados';
 import { RequisicaoParaDadosBancarios } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-bancarios';
@@ -45,7 +45,7 @@ export class EditRequisicaoDadoPage implements OnInit {
   }
 
   getStatus(): string {
-    return this.requisicaoDados.status == STATUS_REQUISICAO.AUTORIZADO ? 'Autorizado' : 'Não autorizado';
+    return this.requisicaoDados.status == STATUS_REQUISICAO_DADO.AUTORIZADO ? 'Autorizado' : 'Não autorizado';
   }
 
   getTipoRequisicao(): TIPO_REQUISICAO_DADOS {
