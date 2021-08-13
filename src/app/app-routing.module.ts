@@ -117,6 +117,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/pessoa-juridica/home/pessoa-juridica.module').then(m => m.HomePageModule)
       },
       {
+        path: drqRoutes.AGENDAR,
+        loadChildren: () => import('./modules/pessoa-juridica/agendar/agendar.module').then(m => m.AgendarPageModule)
+      },
+      {
         path: drqRoutes.AGENDA,
         children: [
           {
@@ -128,7 +132,6 @@ const routes: Routes = [
             loadChildren: () => import('./modules/shared/edit-atendimento/edit-atendimento.module').then(m => m.EditAtendimentoPageModule)
           }
         ],
-
       },
       {
         path: drqRoutes.EDIT_DADOS_CONTA,
@@ -183,7 +186,6 @@ const routes: Routes = [
       },
     ]
   },
-
 
 ];
 

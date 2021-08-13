@@ -3,6 +3,7 @@ export class DRQRoutes {
     PESSOA_FISICA: string = 'pessoa_fisica';
     PESSOA_JURIDICA: string = 'pessoa_juridica';
     AGENDA: string = 'agenda';
+    AGENDAR: string = 'agendar';
     CONFIG_DADOS: string = 'config_dados';
     EDIT_ATENDIMENTO: string = 'edit_atendimento';
     EDIT_DADOS_CONTA: string = 'edit_dados_conta';

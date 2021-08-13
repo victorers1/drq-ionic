@@ -7,7 +7,9 @@
   <ion-list>
 
     <ion-list-header>
-      <ion-label>Filtros</ion-label>
+      <ion-label>
+        <h2>Filtros</h2>
+      </ion-label>
       <ion-button (click)="onClickLimpar()">Limpar</ion-button>
     </ion-list-header>
 
@@ -18,7 +20,7 @@
         <ion-col size="6">
 
           <ion-item>
-            <ion-label position="floating">Início</ion-label>
+            <ion-label position="floating">Data Início</ion-label>
             <ion-datetime displayFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" [(ngModel)]="inicio"
               (ionChange)="onChange($event)">
             </ion-datetime>
@@ -29,7 +31,7 @@
         <ion-col size="6">
 
           <ion-item>
-            <ion-label position="floating">Fim</ion-label>
+            <ion-label position="floating">Data Fim</ion-label>
             <ion-datetime displayFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" [(ngModel)]="fim"
               (ionChange)="onChange($event)">
             </ion-datetime>
@@ -41,18 +43,15 @@
 
     </ion-grid>
 
-    <ion-item>
-      <ion-label>Mostrar vencidos</ion-label>
-      <ion-toggle slot="end" [(ngModel)]="mostrarVencidos" (ionChange)="onChange($event)"></ion-toggle>
-    </ion-item>
-
     <safe-area-bottom [spacing]="1"></safe-area-bottom>
 
     <ion-item-divider>
-      <ion-label>Resultado</ion-label>
+      <ion-label color="dark">
+        <h2>Resultado</h2>
+      </ion-label>
     </ion-item-divider>
 
-    <ion-item>
+    <ion-item button detail>
       <ion-label>
         <h2>Clínica Médica do Alecrim</h2>
         <h2>Dr. Fulano da Silva</h2>
@@ -60,7 +59,7 @@
       </ion-label>
     </ion-item>
 
-    <ion-item>
+    <ion-item button detail>
       <ion-label>
         <h2>Centro de Saúde</h2>
         <h2>Dr. Fulano da Silva</h2>
@@ -68,7 +67,7 @@
       </ion-label>
     </ion-item>
 
-    <ion-item>
+    <ion-item button detail>
       <ion-label>
         <h2>Clínica do Alecrim</h2>
         <h2>Dr. Fulano da Silva</h2>

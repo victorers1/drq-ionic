@@ -7,5 +7,7 @@ export class RequisicaoDados {
         public status = STATUS_REQUISICAO_DADO.NAO_AUTORIZADO,
     ) { }
 
-    getDataFormatada = (): string => DateUtils.getDataFormatada(this.data);
+    getDataFormatada(): string {
+        return DateUtils.getDataFormatada(this.data);
+    }
 }

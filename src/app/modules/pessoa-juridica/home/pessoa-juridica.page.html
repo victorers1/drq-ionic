@@ -23,7 +23,10 @@
 
     </ion-item>
 
-    <option-tile icone="calendar-outline" title="Agenda" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDA}}">
+    <option-tile icone="calendar-outline" title="Marcar Consulta" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDAR}}">
+    </option-tile>
+
+    <option-tile icone="calendar-number-outline" title="Agenda" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDA}}">
     </option-tile>
 
     <option-tile icone="folder-open-outline" title="Requisições de Dados"
@@ -33,16 +36,14 @@
     <option-tile icone="business-outline" title="Unidades" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_UNIDADES}}">
     </option-tile>
 
-    <option-tile icone="calendar-outline" title="Histórico de Atendimentos"
-      link="/{{routes.PESSOA_JURIDICA}}/{{routes.CONFIG_DADOS}}">
-    </option-tile>
+
 
     <option-tile icone="reader-outline" title="Perfil" link="/{{routes.PESSOA_JURIDICA}}/{{routes.EDIT_DADOS_CONTA}}">
     </option-tile>
 
   </ion-list>
 
-  <safe-area-bottom></safe-area-bottom>
+  <!-- <safe-area-bottom></safe-area-bottom>
 
   <drq-loading titulo="Carregando dados..."></drq-loading>
 
@@ -54,6 +55,6 @@
 
   <drq-error titulo="Ops!" mensagem="O servidor não está respondendo. Tente novamente mais tarde."></drq-error>
 
-  <safe-area-bottom></safe-area-bottom>
+  <safe-area-bottom></safe-area-bottom> -->
 
 </ion-content>

@@ -35,13 +35,12 @@ export class RequisicoesPage implements OnInit {
 
   onSearchBarChange(event: CustomEvent) {
     console.log(`onSearchBarChange:`, event);
-    let nome: string = event.detail['value'];
+    const nome: string = event.detail['value'];
 
     if (nome.length > 0) {
       this.reqDadosProfissao = this.usuario.requisicoesDadosProfissao.filter((dado) => { return StringUtils.search(dado.pessoaFisica.nome, nome); });
       this.reqDadosBancarios = this.usuario.requisicoesDadosBancarios.filter((dado) => { return StringUtils.search(dado.pessoaFisica.nome, nome); });
       this.reqDadosPlanoSaude = this.usuario.requisicoesDadosPlanoSaude.filter((dado) => { return StringUtils.search(dado.pessoaFisica.nome, nome); });
-
     } else {
       this.reqDadosProfissao = this.usuario.requisicoesDadosProfissao;
       this.reqDadosBancarios = this.usuario.requisicoesDadosBancarios;

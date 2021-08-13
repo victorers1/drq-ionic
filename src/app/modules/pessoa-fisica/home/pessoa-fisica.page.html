@@ -13,7 +13,7 @@
       </ion-avatar>
 
       <ion-label>
-        <h2>Olá, Dr. Fulano da Silva</h2>
+        <h2>Olá, Fulano da Silva</h2>
       </ion-label>
 
       <ion-button fill="clear" (click)="logOut()">
@@ -22,7 +22,10 @@
 
     </ion-item>
 
-    <option-tile icone="calendar-outline" title="Agenda" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
+    <option-tile icone="calendar-outline" title="Marcar Consulta" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
+    </option-tile>
+
+    <option-tile icone="calendar-number-outline" title="Agenda" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
     </option-tile>
 
     <option-tile icone="clipboard-outline" title="Prontuários"
