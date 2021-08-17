@@ -44,4 +44,6 @@ export class EditUnidadePage implements OnInit {
   getTimeFormatado(time: Time): string {
     return DateUtils.getTimeFormatado(time);
   }
+
+  addExpediente() { }
 }

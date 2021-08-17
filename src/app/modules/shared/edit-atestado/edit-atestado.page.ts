@@ -22,5 +22,4 @@ export class EditAtestadoPage implements OnInit {
     this.inicio = null;
     this.fim = null;
   }
-
 }

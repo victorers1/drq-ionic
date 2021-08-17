@@ -19,6 +19,9 @@ export class ListAtestadoPage implements OnInit {
     // filtrar
   }
 
+  escolherDataInicio() {
+  }
+
   onClickLimpar() {
     this.inicio = null;
     this.fim = null;

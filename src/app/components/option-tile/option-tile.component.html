@@ -1,4 +1,5 @@
 <ion-item button detail (click)="onTap()">
   <ion-icon *ngIf="icone" [name]="icone" slot="start"></ion-icon>
   <ion-label>{{title}}</ion-label>
+  <ion-badge *ngIf="badge && badge!=0" color="danger">{{badge}}</ion-badge>
 </ion-item>

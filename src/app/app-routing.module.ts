@@ -186,6 +186,10 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'select-plano-saude',
+    loadChildren: () => import('./modules/shared/select-plano-saude/select-plano-saude.module').then( m => m.SelectPlanoSaudePageModule)
+  },
 
 ];
 
