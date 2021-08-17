@@ -190,6 +190,14 @@ const routes: Routes = [
     path: 'select-plano-saude',
     loadChildren: () => import('./modules/shared/select-plano-saude/select-plano-saude.module').then( m => m.SelectPlanoSaudePageModule)
   },
+  {
+    path: 'select-profissional',
+    loadChildren: () => import('./modules/shared/select-profissional/select-profissional.module').then( m => m.SelectProfissionalPageModule)
+  },
+  {
+    path: 'select-horario',
+    loadChildren: () => import('./modules/shared/select-horario/select-horario.module').then( m => m.SelectHorarioPageModule)
+  },
 
 ];
 
