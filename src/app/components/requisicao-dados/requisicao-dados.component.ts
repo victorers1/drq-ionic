@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { DRQRoutes, STATUS_REQUISICAO_DADO, TIPO_REQUISICAO_DADOS } from 'src/app/constants';
+import {
+  DRQRoutes,
+  STATUS_REQUISICAO_DADO,
+  TIPO_REQUISICAO_DADOS,
+} from 'src/app/constants';
 import { RequisicaoParaDadosBancarios } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-bancarios';
 import { RequisicaoParaDadosDeDependente } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-dependente';
 import { RequisicaoParaDadosDePlanoDeSaude } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-plano-saude';
@@ -13,27 +17,27 @@ import { DateUtils } from 'src/app/utils/date-utils';
   styleUrls: ['./requisicao-dados.component.scss'],
 })
 export class RequisicaoDadosComponent implements OnInit {
-  @Input('requisicaoDados') requisicaoDados: RequisicaoParaDadosDeProfissao | RequisicaoParaDadosBancarios | RequisicaoParaDadosDePlanoDeSaude | RequisicaoParaDadosDeDependente;
+  @Input() requisicaoDados:
+    | RequisicaoParaDadosDeProfissao
+    | RequisicaoParaDadosBancarios
+    | RequisicaoParaDadosDePlanoDeSaude
+    | RequisicaoParaDadosDeDependente;
 
   routes = new DRQRoutes();
 
-  constructor(
-    private navCtrl: NavController,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log(`RequisicaoDadosComponent:`, { requisicao: this.requisicaoDados });
+    console.log(`RequisicaoDadosComponent:`, {
+      requisicao: this.requisicaoDados,
+    });
   }
 
   onClick() {
-    this.navCtrl.navigateForward(
-      [this.routes.EDIT_REQUISICAO_DADOS],
-      {
-        state: this.requisicaoDados,
-        relativeTo: this.route
-      }
-    );
+    this.navCtrl.navigateForward([this.routes.EDIT_REQUISICAO_DADOS], {
+      state: this.requisicaoDados,
+      relativeTo: this.route,
+    });
   }
 
   getDadosPessoa() {
@@ -41,15 +45,13 @@ export class RequisicaoDadosComponent implements OnInit {
     if (p) {
       return {
         nome: p.nome,
-        email: p.email
+        email: p.email,
       };
     }
   }
 
-  isAutorizado = (): boolean => this.requisicaoDados.status === STATUS_REQUISICAO_DADO.AUTORIZADO;
+  isAutorizado = (): boolean =>
+    this.requisicaoDados.status === STATUS_REQUISICAO_DADO.AUTORIZADO;
 
   getDataFormatada = (): string => this.requisicaoDados.getDataFormatada();
-
-
-
 }

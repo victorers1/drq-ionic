@@ -14,26 +14,23 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": ["Page", "Component"]
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
+        "@angular-eslint/component-class-suffix": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
             "prefix": "app",
             "style": "camelCase"
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          {
+            "selector": "default",
+            "format": ["camelCase"]
+          },
+          {
+            "selector": "variable",
+            "format": ["camelCase", "UPPER_CASE"]
           }
         ]
       }

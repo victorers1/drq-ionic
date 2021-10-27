@@ -1,15 +1,14 @@
 <ion-header>
-  <drq-header titulo="Paciente" [showArrowBack]=false></drq-header>
+  <drq-header titulo="Paciente" [showArrowBack]="false"></drq-header>
 </ion-header>
 
 <ion-content>
-
   <ion-list class="options-list">
-
     <ion-item>
-
       <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        />
       </ion-avatar>
 
       <ion-label>
@@ -19,29 +18,48 @@
       <ion-button fill="clear" (click)="logOut()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
-
     </ion-item>
 
-    <option-tile icone="calendar-outline" title="Marcar Consulta" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
+    <option-tile
+      icone="calendar-outline"
+      title="Marcar Consulta"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDAR}}"
+    >
     </option-tile>
 
-    <option-tile icone="calendar-number-outline" title="Agenda" link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}">
+    <option-tile
+      icone="calendar-number-outline"
+      title="Agenda"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.AGENDA}}"
+    >
     </option-tile>
 
-    <option-tile icone="clipboard-outline" title="Prontuários"
-      link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_PRONTUARIOS}}"></option-tile>
+    <option-tile
+      icone="clipboard-outline"
+      title="Prontuários"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_PRONTUARIOS}}"
+    ></option-tile>
 
-    <option-tile icone="receipt-outline" title="Receitas" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_RECEITAS}}">
+    <option-tile
+      icone="receipt-outline"
+      title="Receitas"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_RECEITAS}}"
+    >
     </option-tile>
 
-    <option-tile icone="today-outline" title="Atestados" link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_ATESTADOS}}">
+    <option-tile
+      icone="today-outline"
+      title="Atestados"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.LIST_ATESTADOS}}"
+    >
     </option-tile>
 
-    <option-tile icone="person-circle-outline" title="Seu Perfil"
-      link="/{{routes.PESSOA_FISICA}}/{{routes.CONFIG_DADOS}}"></option-tile>
+    <option-tile
+      icone="person-circle-outline"
+      title="Seu Perfil"
+      link="/{{routes.PESSOA_FISICA}}/{{routes.CONFIG_DADOS}}"
+    ></option-tile>
 
     <safe-area-bottom></safe-area-bottom>
-
   </ion-list>
-
 </ion-content>

@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonAccordionGroup, ModalController, NavController } from '@ionic/angular';
+import {
+  AlertController,
+  IonAccordionGroup,
+  ModalController,
+  NavController,
+} from '@ionic/angular';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -14,7 +19,8 @@ import { SelectProfissionalPage } from '../../shared/select-profissional/select-
   styleUrls: ['./agendar.page.scss'],
 })
 export class AgendarPage implements OnInit {
-  @ViewChild(IonAccordionGroup, { static: true }) accordionGroup: IonAccordionGroup;
+  @ViewChild(IonAccordionGroup, { static: true })
+  accordionGroup: IonAccordionGroup;
 
   accStates = ['Cliente', 'Profissional', 'Confirmação'];
   accordionState = this.accStates[0];
@@ -22,20 +28,22 @@ export class AgendarPage implements OnInit {
   constructor(
     public modal: ModalService,
     public loading: LoadingService,
-    public navCtrl: NavController,
-  ) { }
+    public navCtrl: NavController
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   setAccordionNextState() {
     const qtdStates = this.accStates.length;
-    const indexAccordionState = this.accStates.indexOf(this.getAccordionState());
+    const indexAccordionState = this.accStates.indexOf(
+      this.getAccordionState()
+    );
 
-    if (qtdStates == indexAccordionState + 1) {
-      console.log(`submit solicitação`);
+    if (qtdStates === indexAccordionState + 1) {
       this.onSubmitAgendar();
     } else {
-      this.accordionState = this.accStates[(indexAccordionState + 1) % qtdStates]
+      this.accordionState =
+        this.accStates[(indexAccordionState + 1) % qtdStates];
     }
   }
 
@@ -43,18 +51,19 @@ export class AgendarPage implements OnInit {
     // simula função assíncrona
     const load = await this.loading.carregando();
     load.present();
-
-    await TimeUtils.delay(4000);
-
+    await TimeUtils.delay(2000);
     load.dismiss();
-
     this.navCtrl.pop();
   }
 
   getAccordionState(): string {
-    return typeof this.accordionGroup.value == 'string' ?
-      this.accordionGroup.value :
-      this.accordionGroup.value[0];
+    return typeof this.accordionGroup.value == 'string'
+      ? this.accordionGroup.value
+      : this.accordionGroup.value[0];
   }
 
+  onAccordionChange(event: Event) {
+    this.accordionState = (event as CustomEvent).detail.value;
+    console.log('onAccordionChange: ', event);
+  }
 }

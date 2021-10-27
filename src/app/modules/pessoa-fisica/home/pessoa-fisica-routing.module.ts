@@ -8,27 +8,49 @@ const drqRoutes = new DRQRoutes();
 const routes: Routes = [
   {
     path: '',
-    component: PessoaFisicaPage
+    component: PessoaFisicaPage,
+  },
+  {
+    path: drqRoutes.AGENDAR,
+    loadChildren: () =>
+      import('../../shared/agendar/agendar.module').then(
+        (m) => m.AgendarPageModule
+      ),
   },
   {
     path: drqRoutes.AGENDA,
-    loadChildren: () => import('../list-agenda/list-agenda.module').then(m => m.ListAgendaPageModule),
+    loadChildren: () =>
+      import('../list-agenda/list-agenda.module').then(
+        (m) => m.ListAgendaPageModule
+      ),
   },
   {
     path: drqRoutes.CONFIG_DADOS,
-    loadChildren: () => import('../config-dados/config-dados.module').then(m => m.ConfigDadosPageModule),
+    loadChildren: () =>
+      import('../config-dados/config-dados.module').then(
+        (m) => m.ConfigDadosPageModule
+      ),
   },
   {
     path: drqRoutes.LIST_RECEITAS,
-    loadChildren: () => import('../../shared/list-receita/list-receita.module').then(m => m.ListReceitaPageModule),
+    loadChildren: () =>
+      import('../../shared/list-receita/list-receita.module').then(
+        (m) => m.ListReceitaPageModule
+      ),
   },
   {
     path: drqRoutes.LIST_ATESTADOS,
-    loadChildren: () => import('../../shared/list-atestado/list-atestado.module').then(m => m.ListAtestadoPageModule),
+    loadChildren: () =>
+      import('../../shared/list-atestado/list-atestado.module').then(
+        (m) => m.ListAtestadoPageModule
+      ),
   },
   {
     path: drqRoutes.LIST_PRONTUARIOS,
-    loadChildren: () => import('../../shared/list-prontuario/list-prontuario.module').then(m => m.ListProntuarioPageModule),
+    loadChildren: () =>
+      import('../../shared/list-prontuario/list-prontuario.module').then(
+        (m) => m.ListProntuarioPageModule
+      ),
   },
 ];
 
@@ -36,4 +58,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PessoaFisicaPageRoutingModule { }
+export class PessoaFisicaPageRoutingModule {}

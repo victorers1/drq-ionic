@@ -3,17 +3,16 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-accordion-group [value]="accordionState">
-
+  <ion-accordion-group
+    [value]="accordionState"
+    (ionChange)="onAccordionChange($event)"
+  >
     <ion-accordion [value]="accStates[0]">
-
       <ion-item color="secondary" slot="header">
         <ion-label>Passo 1: {{accStates[0]}}</ion-label>
       </ion-item>
 
       <ion-list slot="content">
-
         <ion-item>
           <ion-label position="floating">CPF do cliente</ion-label>
           <ion-input type="text"></ion-input>
@@ -27,22 +26,22 @@
           <ion-label>Escolher Procedimento</ion-label>
         </ion-item>
 
-        <ion-button expand="block" color="success" (click)="setAccordionNextState()">
+        <ion-button
+          expand="block"
+          color="success"
+          (click)="setAccordionNextState()"
+        >
           Avançar
         </ion-button>
-
       </ion-list>
-
     </ion-accordion>
 
     <ion-accordion [value]="accStates[1]">
-
       <ion-item color="secondary" slot="header">
         <ion-label>Passo 2: {{accStates[1]}}</ion-label>
       </ion-item>
 
       <ion-list slot="content">
-
         <ion-item button detail (click)="modal.selecionarHorario()">
           <ion-label>20 horários disponíveis</ion-label>
           <ion-icon slot="start" name="time"></ion-icon>
@@ -53,25 +52,26 @@
           <ion-icon slot="start" name="people-outline"></ion-icon>
         </ion-item>
 
-        <ion-button expand="block" color="success" (click)="setAccordionNextState()">
+        <ion-button
+          expand="block"
+          color="success"
+          (click)="setAccordionNextState()"
+        >
           Avançar
         </ion-button>
-
       </ion-list>
-
     </ion-accordion>
 
     <ion-accordion [value]="accStates[2]">
-
       <ion-item color="secondary" slot="header">
         <ion-label>Passo 3: {{accStates[2]}}</ion-label>
       </ion-item>
 
       <ion-list slot="content">
-
         <ion-item>
-          <ion-label class="ion-text-wrap">Consulta marcada por Fulano da Silva
-            <br /> CPF 083.983.284-28
+          <ion-label class="ion-text-wrap"
+            >Consulta marcada por Fulano da Silva <br />
+            CPF 083.983.284-28
           </ion-label>
         </ion-item>
 
@@ -88,24 +88,26 @@
         </ion-item>
 
         <ion-item>
-          <ion-label class="ion-text-wrap">Local: Centro de Saúde Soledade II</ion-label>
+          <ion-label class="ion-text-wrap"
+            >Local: Centro de Saúde Soledade II</ion-label
+          >
         </ion-item>
 
-        <ion-button expand="block" color="success" (click)="setAccordionNextState()">
+        <ion-button
+          expand="block"
+          color="success"
+          (click)="setAccordionNextState()"
+        >
           Avançar
         </ion-button>
-
       </ion-list>
-
     </ion-accordion>
-
   </ion-accordion-group>
 
   <safe-area-bottom></safe-area-bottom>
-
 </ion-content>
 
-<!-- 
+<!--
   - Cpf do paciente
   - Plano de saúde do paciente
   - Procedimento que o paciente quer

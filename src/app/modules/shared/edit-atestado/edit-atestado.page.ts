@@ -9,10 +9,9 @@ export class EditAtestadoPage implements OnInit {
   inicio: string;
   fim: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onChange(event: Event) {
     console.log(`event:`, event);
@@ -21,5 +20,9 @@ export class EditAtestadoPage implements OnInit {
   onClickLimpar() {
     this.inicio = null;
     this.fim = null;
+  }
+
+  onDownloadButton() {
+    console.log('baixando atestado...');
   }
 }
