@@ -9,6 +9,10 @@ export class EditAtestadoPage implements OnInit {
   inicio: string;
   fim: string;
 
+  isEditing = false;
+  descricao =
+    'Atesto que o paciente Victor Emanuel está apto para o cargo de Analista de Sistemas Sênior';
+
   constructor() {}
 
   ngOnInit() {}
@@ -25,4 +29,13 @@ export class EditAtestadoPage implements OnInit {
   onDownloadButton() {
     console.log('baixando atestado...');
   }
+
+  onEditButton() {
+    if (this.isEditing) {
+      console.log('saved!');
+    }
+    this.isEditing = !this.isEditing;
+  }
+
+  onCancelEdition = () => (this.isEditing = false);
 }

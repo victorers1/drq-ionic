@@ -3,9 +3,71 @@
 </ion-header>
 
 <ion-content class="ion-padding-top">
+  <ion-item>
+    <ion-label>Dia da semana</ion-label>
+    <ion-select
+      [value]="getNomeDiaSemana(expediente.diaDaSemana)"
+      interface="popover"
+      placeholder="Dia da semana"
+      (ionChange)="onSelectChange($event)"
+    >
+      <ion-select-option
+        *ngFor="let ds of diasSemana"
+        [value]="getNomeDiaSemana(ds)"
+      >
+        {{getNomeDiaSemana(ds) | capitalize}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-  <div class="ion-padding-top ion-margin-top">
-    <drq-empty titulo="Tela em construção" mensagem="Volte mais tarde"></drq-empty>
-  </div>
+  <ion-item>
+    <ion-label>Recorrência</ion-label>
+    <ion-input
+      type="number"
+      placeholder="Recorrência"
+      [(ngModel)]="expediente.recorrencia"
+    ></ion-input>
+  </ion-item>
 
+  <ion-item>
+    <ion-label>Hora início</ion-label>
+    <ion-datetime
+      [(ngModel)]="horaInicio"
+      display-format="HH:mm"
+      presentation="time"
+      locale="pt-BR"
+      hourCycle="h23"
+      cancelText="Cancelar"
+      doneText="OK"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Hora fim</ion-label>
+    <ion-datetime
+      [(ngModel)]="horaFim"
+      display-format="HH:mm"
+      presentation="time"
+      locale="pt-BR"
+      hourCycle="h23"
+      cancelText="Cancelar"
+      doneText="OK"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-button
+    (click)="onSave()"
+    size="block"
+    class="ion-margin-top ion-margin-bottom"
+  >
+    <ion-icon slot="end" name="save"></ion-icon>
+    Salvar
+  </ion-button>
+
+  <ion-button (click)="onCancel()" color="danger" size="block">
+    <ion-icon slot="end" name="close"></ion-icon>
+    Cancelar
+  </ion-button>
+
+  <safe-area-bottom></safe-area-bottom>
 </ion-content>

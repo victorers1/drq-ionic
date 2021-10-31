@@ -6,7 +6,7 @@
   <ion-list>
     <ion-item-divider>
       <ion-icon slot="start" name="person"></ion-icon>
-      <ion-label>Dados do Profissional</ion-label>
+      <ion-label>Profissional</ion-label>
     </ion-item-divider>
 
     <ion-item>
@@ -35,21 +35,43 @@
       <ion-label>Vigência: 12/09/2020</ion-label>
     </ion-item>
 
-    <ion-item>
-      <ion-label class="ion-text-wrap">
+    <ion-item [ngClass]="{'disabled-input': !isEditing}">
+      <ion-label>
         <h2>Descrição:</h2>
-        <p>
-          Atesto que o paciente Victor Emanuel está apto para o cargo de
-          Analista de Sistemas
-        </p>
+        <ion-textarea
+          type="text"
+          placeholder="Atestado"
+          [(ngModel)]="descricao"
+        ></ion-textarea>
       </ion-label>
     </ion-item>
 
     <safe-area-bottom [spacing]="2"></safe-area-bottom>
 
-    <ion-button (click)="onDownloadButton()" size="block">
+    <ion-button
+      (click)="onDownloadButton()"
+      size="block"
+      color="dark"
+      *ngIf="!isEditing"
+    >
       <ion-icon slot="start" name="download"></ion-icon>
       Baixar
+    </ion-button>
+
+    <ion-button
+      *ngIf="isEditing"
+      (click)="onCancelEdition()"
+      color="danger"
+      size="block"
+    >
+      <ion-icon slot="start" name="close"></ion-icon>
+      Cancelar edição
+    </ion-button>
+
+    <ion-button (click)="onEditButton()" size="block">
+      <ion-icon slot="start" name="edit"></ion-icon>
+      <span *ngIf="!isEditing">Editar</span>
+      <span *ngIf="isEditing">Salvar</span>
     </ion-button>
   </ion-list>
 

@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    EditAtestadoPageRoutingModule
+    EditAtestadoPageRoutingModule,
   ],
-  declarations: [EditAtestadoPage]
+  declarations: [EditAtestadoPage],
 })
-export class EditAtestadoPageModule { }
+export class EditAtestadoPageModule {}

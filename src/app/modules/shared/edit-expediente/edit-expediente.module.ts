@@ -8,6 +8,7 @@ import { EditExpedientePageRoutingModule } from './edit-expediente-routing.modul
 
 import { EditExpedientePage } from './edit-expediente.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { CapitalizePipe } from 'src/app/pipes/capitalize/capitalize.pipe';
 
 @NgModule({
   imports: [
@@ -15,8 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    EditExpedientePageRoutingModule
+    EditExpedientePageRoutingModule,
   ],
-  declarations: [EditExpedientePage]
+  declarations: [EditExpedientePage, CapitalizePipe],
 })
-export class EditExpedientePageModule { }
+export class EditExpedientePageModule {}

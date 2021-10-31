@@ -15,9 +15,14 @@ export class EditUnidadePage implements OnInit {
   routes = new DRQRoutes();
   unidade: Unidade;
 
-  constructor(private router: Router, private route: ActivatedRoute, private navCtrl: NavController) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
+    // recupera params
     const params = this.router.getCurrentNavigation().extras.state;
     console.log(`params:`, params);
 
@@ -28,22 +33,25 @@ export class EditUnidadePage implements OnInit {
 
   onClickExpediente(indexExpediente: number) {
     console.log(`onClickExpediente(${indexExpediente})`);
-    this.navCtrl.navigateForward(
-      [this.routes.EDIT_EXPEDIENTE],
-      {
-        state: this.unidade.expedientes[indexExpediente],
-        relativeTo: this.route,
-      }
-    );
+    this.navCtrl.navigateForward([this.routes.EDIT_EXPEDIENTE], {
+      state: this.unidade.expedientes[indexExpediente],
+      relativeTo: this.route,
+    });
   }
 
   getDiaSemanaNome(indexExpediente: number): string {
-    return DateUtils.diaDaSemanaNome(this.unidade.expedientes[indexExpediente].diaDaSemana);
+    return DateUtils.diaDaSemanaNome(
+      this.unidade.expedientes[indexExpediente].diaDaSemana
+    );
   }
 
   getTimeFormatado(time: Time): string {
     return DateUtils.getTimeFormatado(time);
   }
 
-  addExpediente() { }
+  addExpediente() {
+    this.navCtrl.navigateForward([this.routes.EDIT_EXPEDIENTE], {
+      relativeTo: this.route,
+    });
+  }
 }

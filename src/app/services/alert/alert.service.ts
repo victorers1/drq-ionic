@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { AlertButton, AlertController, AlertInput } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-
-  constructor(public alertCtrl: AlertController) { }
+  constructor(public alertCtrl: AlertController) {}
 
   async alert(
     header?: string,
@@ -25,6 +24,4 @@ export class AlertService {
       inputs: inputs,
     });
   }
-
-
 }
