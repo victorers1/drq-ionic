@@ -13,42 +13,42 @@ const routes: Routes = [
   {
     path: drqRoutes.AGENDAR,
     loadChildren: () =>
-      import('../../shared/agendar/agendar.module').then(
+      import('../../../shared/agendar/agendar.module').then(
         (m) => m.AgendarPageModule
       ),
   },
   {
     path: drqRoutes.AGENDA,
     loadChildren: () =>
-      import('../list-agenda/list-agenda.module').then(
+      import('../../shared/list-agenda/list-agenda.module').then(
         (m) => m.ListAgendaPageModule
       ),
   },
   {
     path: drqRoutes.CONFIG_DADOS,
     loadChildren: () =>
-      import('../config-dados/config-dados.module').then(
+      import('../../shared/config-dados/config-dados.module').then(
         (m) => m.ConfigDadosPageModule
       ),
   },
   {
     path: drqRoutes.LIST_RECEITAS,
     loadChildren: () =>
-      import('../../shared/list-receita/list-receita.module').then(
+      import('../../../shared/list-receita/list-receita.module').then(
         (m) => m.ListReceitaPageModule
       ),
   },
   {
     path: drqRoutes.LIST_ATESTADOS,
     loadChildren: () =>
-      import('../../shared/list-atestado/list-atestado.module').then(
+      import('../../../shared/list-atestado/list-atestado.module').then(
         (m) => m.ListAtestadoPageModule
       ),
   },
   {
     path: drqRoutes.LIST_PRONTUARIOS,
     loadChildren: () =>
-      import('../../shared/list-prontuario/list-prontuario.module').then(
+      import('../../../shared/list-prontuario/list-prontuario.module').then(
         (m) => m.ListProntuarioPageModule
       ),
   },

@@ -1,0 +1,44 @@
+<ion-header>
+  <drq-header titulo="Atestado"></drq-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2>Dr. Fulano de Tal</h2>
+        <p>CRM: 1010</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Clínica Bem Estar</h2>
+        <p>Av. Deodoro da Fonseca</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vigência: 12/09/2020</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        <h2><b>{{descricao}}</b></h2>
+      </ion-label>
+    </ion-item>
+
+    <safe-area-bottom [spacing]="2"></safe-area-bottom>
+
+    <ion-button (click)="onDownloadButton()" size="block" color="dark">
+      <ion-icon slot="start" name="download"></ion-icon>
+      Baixar
+    </ion-button>
+  </ion-list>
+
+  <safe-area-bottom></safe-area-bottom>
+</ion-content>

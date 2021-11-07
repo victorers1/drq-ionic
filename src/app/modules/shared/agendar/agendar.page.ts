@@ -1,17 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  AlertController,
-  IonAccordionGroup,
-  ModalController,
-  NavController,
-} from '@ionic/angular';
-import { AlertService } from 'src/app/services/alert/alert.service';
+import { IonAccordionGroup, NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { TimeUtils } from 'src/app/utils/time-utils';
-import { SelectHorarioPage } from '../../shared/select-horario/select-horario.page';
-import { SelectPlanoSaudePage } from '../../shared/select-plano-saude/select-plano-saude.page';
-import { SelectProfissionalPage } from '../../shared/select-profissional/select-profissional.page';
 
 @Component({
   selector: 'app-agendar',

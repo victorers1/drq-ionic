@@ -57,22 +57,6 @@
       <ion-icon slot="start" name="download"></ion-icon>
       Baixar
     </ion-button>
-
-    <ion-button
-      *ngIf="isEditing"
-      (click)="onCancelEdition()"
-      color="danger"
-      size="block"
-    >
-      <ion-icon slot="start" name="close"></ion-icon>
-      Cancelar edição
-    </ion-button>
-
-    <ion-button (click)="onEditButton()" size="block">
-      <ion-icon slot="start" name="edit"></ion-icon>
-      <span *ngIf="!isEditing">Editar</span>
-      <span *ngIf="isEditing">Salvar</span>
-    </ion-button>
   </ion-list>
 
   <safe-area-bottom></safe-area-bottom>

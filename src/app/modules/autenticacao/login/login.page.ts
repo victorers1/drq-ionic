@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { DRQRoutes } from 'src/app/constants';
 
@@ -12,21 +18,33 @@ export class LoginPage implements OnInit {
   routes = new DRQRoutes();
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    email: new FormControl(
+      '',
+      Validators.compose([Validators.required, Validators.email])
+    ),
+    password: new FormControl(
+      '',
+      Validators.compose([Validators.required, Validators.minLength(5)])
+    ),
     isPessoaFisica: new FormControl(null),
   });
 
-  constructor(protected navCtrl: NavController, private formBuilder: FormBuilder) { }
+  constructor(
+    protected navCtrl: NavController,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   doLogin() {
-    console.log(`loginForm: `, { login: this.loginForm.get('email').value, password: this.loginForm.get('password').value });
+    console.log(`loginForm: `, {
+      login: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value,
+    });
 
-    const rota = this.loginForm.get('isPessoaFisica').value ? this.routes.PESSOA_FISICA : this.routes.PESSOA_JURIDICA;
-
-    this.navCtrl.navigateRoot(`/${rota}`);
+    this.navCtrl.navigateForward([this.routes.SELECT_TIPO_USUARIO], {
+      relativeTo: this.route,
+    });
   }
 }

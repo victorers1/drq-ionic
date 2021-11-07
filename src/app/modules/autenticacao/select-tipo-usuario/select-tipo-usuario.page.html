@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escolha uma conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      button
+      (click)="selectUserType(drqRoutes.PESSOA_FISICA_PROFISSIONAL)"
+    >
+      <ion-icon name="medical-outline" slot="start"></ion-icon>
+      <ion-label>
+        <h2>Profissional</h2>
+        <p>CRM: 11111</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button (click)="selectUserType(drqRoutes.PESSOA_FISICA_PACIENTE)">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-label>Paciente</ion-label>
+    </ion-item>
+
+    <ion-item button (click)="selectUserType(drqRoutes.PESSOA_JURIDICA)">
+      <ion-icon name="business-outline" slot="start"></ion-icon>
+      <ion-label>
+        <h2>Instituição</h2>
+        <p>Centro de Saúde Soledade II</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

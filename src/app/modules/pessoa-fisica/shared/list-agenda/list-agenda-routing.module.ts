@@ -13,12 +13,15 @@ const routes: Routes = [
   },
   {
     path: drqRoutes.EDIT_ATENDIMENTO, // SHARED PAGE
-    loadChildren: () => import('../../shared/edit-atendimento/edit-atendimento.module').then(m => m.EditAtendimentoPageModule)
-  }
+    loadChildren: () =>
+      import('../../../shared/edit-atendimento/edit-atendimento.module').then(
+        (m) => m.EditAtendimentoPageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ListAgendaPageRoutingModule { }
+export class ListAgendaPageRoutingModule {}

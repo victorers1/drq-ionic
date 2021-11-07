@@ -1,11 +1,40 @@
 <ion-header>
-  <drq-header titulo="Receitas"></drq-header>
+  <drq-header titulo="Suas Receitas"></drq-header>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item button detail (click)="openReceita()">
+      <ion-label>
+        <h2>Título</h2>
+        <p>- Emissor</p>
+        <p>- Descrição pertinente</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail (click)="openReceita()">
+      <ion-label>
+        <h2>Receita dor de cabeça</h2>
+        <p>- Dr. Floriano dos Santos</p>
+        <p>- Budesonida 400</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail (click)="openReceita()">
+      <ion-label>
+        <h2>Nova Receita</h2>
+        <p>- Dipirona e mais 2 medicamentos</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail (click)="openReceita()">
+      <ion-label>
+        <h2>Hipotireoidismo</h2>
+        <p>- Dr. Floriano dos Santos</p>
+        <p>- Linhaça e mais 2 medicamentos</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
   <safe-area-bottom></safe-area-bottom>
-
-  <drq-empty titulo="Aonde vai?" mensagem="Tela em construção"></drq-empty>
-
 </ion-content>

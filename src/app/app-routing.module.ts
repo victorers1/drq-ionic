@@ -18,28 +18,25 @@ const routes: Routes = [
       ),
   },
   {
-    path: drqRoutes.PESSOA_FISICA,
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./modules/pessoa-fisica/home/pessoa-fisica.module').then(
-            (m) => m.PessoaFisicaPageModule
-          ),
-      },
-    ],
+    path: drqRoutes.PESSOA_FISICA_PACIENTE,
+    loadChildren: () =>
+      import('./modules/pessoa-fisica/paciente/home/pessoa-fisica.module').then(
+        (m) => m.PessoaFisicaPageModule
+      ),
+  },
+  {
+    path: drqRoutes.PESSOA_FISICA_PROFISSIONAL,
+    loadChildren: () =>
+      import(
+        './modules/pessoa-fisica/profissional/home/pessoa-fisica.module'
+      ).then((m) => m.PessoaFisicaPageModule),
   },
   {
     path: drqRoutes.PESSOA_JURIDICA,
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./modules/pessoa-juridica/home/pessoa-juridica.module').then(
-            (m) => m.HomePageModule
-          ),
-      },
-    ],
+    loadChildren: () =>
+      import('./modules/pessoa-juridica/home/pessoa-juridica.module').then(
+        (m) => m.HomePageModule
+      ),
   },
   {
     path: 'select-plano-saude',

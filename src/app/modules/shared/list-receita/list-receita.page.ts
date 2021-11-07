@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { DRQRoutes } from 'src/app/constants';
 
 @Component({
   selector: 'app-list-receita',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-receita.page.scss'],
 })
 export class ListReceitaPage implements OnInit {
+  drqRoutes = new DRQRoutes();
 
-  constructor() { }
+  constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  openReceita() {
+    this.navCtrl.navigateForward([this.drqRoutes.EDIT_RECEITA], {
+      relativeTo: this.route,
+    });
   }
-
 }

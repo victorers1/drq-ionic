@@ -9,11 +9,14 @@ const drqRoutes = new DRQRoutes();
 const routes: Routes = [
   {
     path: '',
-    component: ListAtestadoPage
+    component: ListAtestadoPage,
   },
   {
     path: drqRoutes.EDIT_ATESTADO,
-    loadChildren: () => import('../edit-atestado/edit-atestado.module').then(m => m.EditAtestadoPageModule)
+    loadChildren: () =>
+      import(
+        '../../pessoa-fisica/paciente/edit-atestado/edit-atestado.module'
+      ).then((m) => m.EditAtestadoPageModule),
   },
 ];
 
@@ -21,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ListAtestadoPageRoutingModule { }
+export class ListAtestadoPageRoutingModule {}
