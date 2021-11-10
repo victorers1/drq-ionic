@@ -11,13 +11,6 @@ const routes: Routes = [
     component: PessoaFisicaPage,
   },
   {
-    path: drqRoutes.AGENDAR,
-    loadChildren: () =>
-      import('../../../shared/agendar/agendar.module').then(
-        (m) => m.AgendarPageModule
-      ),
-  },
-  {
     path: drqRoutes.AGENDA,
     loadChildren: () =>
       import('../../shared/list-agenda/list-agenda.module').then(

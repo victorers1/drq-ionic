@@ -13,9 +13,7 @@ const routes: Routes = [
   {
     path: drqRoutes.AGENDAR,
     loadChildren: () =>
-      import('../../../shared/agendar/agendar.module').then(
-        (m) => m.AgendarPageModule
-      ),
+      import('../agendar/agendar.module').then((m) => m.AgendarPageModule),
   },
   {
     path: drqRoutes.AGENDA,

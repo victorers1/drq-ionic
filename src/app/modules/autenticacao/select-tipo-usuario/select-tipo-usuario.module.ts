@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SelectTipoUsuarioPageRoutingModule } from './select-tipo-usuario-routing.module';
 
 import { SelectTipoUsuarioPage } from './select-tipo-usuario.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SelectTipoUsuarioPageRoutingModule
+    ComponentsModule,
+    SelectTipoUsuarioPageRoutingModule,
   ],
-  declarations: [SelectTipoUsuarioPage]
+  declarations: [SelectTipoUsuarioPage],
 })
 export class SelectTipoUsuarioPageModule {}

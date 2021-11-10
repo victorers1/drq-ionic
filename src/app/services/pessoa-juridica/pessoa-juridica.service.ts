@@ -1,16 +1,18 @@
 import { Time, WeekDay } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { STATUS_REQUISICAO_DADO, TIPO_PESSOA_JURIDICA } from 'src/app/constants';
-import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
+import {
+  STATUS_REQUISICAO_DADO,
+  TIPO_PESSOA_JURIDICA,
+} from 'src/app/constants';
 import { ExpedienteDeUnidade } from 'src/app/models/pessoas/pessoa-juridica/expediente-unidade';
 import { PessoaJuridica } from 'src/app/models/pessoas/pessoa-juridica/pessoa-juridica';
 import { RequisicaoParaDadosBancarios } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-bancarios';
 import { RequisicaoParaDadosDePlanoDeSaude } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-plano-saude';
 import { RequisicaoParaDadosDeProfissao } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-profissao';
 import { Unidade } from 'src/app/models/pessoas/unidade';
-
+import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PessoaJuridicaService {
   usuario = new PessoaJuridica(
@@ -23,15 +25,13 @@ export class PessoaJuridicaService {
     TIPO_PESSOA_JURIDICA.MATRIZ
   );
 
-
-
   constructor() {
     this.getRequisicoes();
     this.getUnidades();
   }
 
   async getRequisicoes(): Promise<void> {
-    const p1 = new PessoaFisica(
+    const p1 = new Profissional(
       'victorers2',
       'Victor Emanuel Ribeiro Silva',
       '32132132',
@@ -46,7 +46,7 @@ export class PessoaJuridicaService {
       'M',
       0
     );
-    const p2 = new PessoaFisica(
+    const p2 = new Profissional(
       'fulanoers',
       'Fulano da Silva',
       '12312312',
@@ -64,20 +64,32 @@ export class PessoaJuridicaService {
 
     const rdp1 = new RequisicaoParaDadosDeProfissao(0, 0);
     rdp1.pessoaFisica = p1;
-    const rdp2 = new RequisicaoParaDadosDeProfissao(1, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
+    const rdp2 = new RequisicaoParaDadosDeProfissao(
+      1,
+      0,
+      STATUS_REQUISICAO_DADO.AUTORIZADO
+    );
     rdp2.pessoaFisica = p2;
 
     this.usuario.requisicoesDadosProfissao = [rdp1, rdp2];
 
     const rdb1 = new RequisicaoParaDadosBancarios(0, 0);
     rdb1.pessoaFisica = p1;
-    const rdb2 = new RequisicaoParaDadosBancarios(0, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
+    const rdb2 = new RequisicaoParaDadosBancarios(
+      0,
+      0,
+      STATUS_REQUISICAO_DADO.AUTORIZADO
+    );
     rdb2.pessoaFisica = p2;
     this.usuario.requisicoesDadosBancarios = [rdb1, rdb2];
 
     const rdps1 = new RequisicaoParaDadosDePlanoDeSaude(0, 0);
     rdps1.pessoaFisica = p1;
-    const rdps2 = new RequisicaoParaDadosDePlanoDeSaude(0, 0, STATUS_REQUISICAO_DADO.AUTORIZADO);
+    const rdps2 = new RequisicaoParaDadosDePlanoDeSaude(
+      0,
+      0,
+      STATUS_REQUISICAO_DADO.AUTORIZADO
+    );
     rdps2.pessoaFisica = p2;
     this.usuario.requisicoesDadosPlanoSaude = [rdps1, rdps2];
   }
@@ -88,7 +100,7 @@ export class PessoaJuridicaService {
       WeekDay.Monday,
       5,
       { hours: 8, minutes: 0 },
-      { hours: 12, minutes: 0 },
+      { hours: 12, minutes: 0 }
     );
 
     const eu2 = new ExpedienteDeUnidade(
@@ -96,9 +108,8 @@ export class PessoaJuridicaService {
       WeekDay.Monday,
       5,
       { hours: 14, minutes: 0 },
-      { hours: 18, minutes: 0 },
+      { hours: 18, minutes: 0 }
     );
-
 
     const u1 = new Unidade(
       this.usuario,

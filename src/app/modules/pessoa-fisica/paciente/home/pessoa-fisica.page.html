@@ -7,17 +7,14 @@
     <ion-item>
       <ion-avatar slot="start">
         <img
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+          src="https://ef564920920608e03abb-7d34ef097b6ab6c586dfc84157128505.ssl.cf1.rackcdn.com/PostImagem/36734/foto-de-perfil-profissional_o1eh30s23km6j1lmm1k5r8cvinuj.JPG"
         />
       </ion-avatar>
 
       <ion-label>
         <h2>Olá, Fulano da Silva</h2>
+        <p>username@gmail.com</p>
       </ion-label>
-
-      <ion-button fill="clear" (click)="logOut()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
     </ion-item>
 
     <option-tile
@@ -59,6 +56,11 @@
       title="Seu Perfil"
       link="/{{routes.PESSOA_FISICA_PACIENTE}}/{{routes.CONFIG_DADOS}}"
     ></option-tile>
+
+    <ion-item button detail (click)="logOut()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      <ion-label>Sair da conta</ion-label>
+    </ion-item>
 
     <safe-area-bottom></safe-area-bottom>
   </ion-list>

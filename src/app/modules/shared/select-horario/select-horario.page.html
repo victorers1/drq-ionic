@@ -1,21 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Selecionar Horário</ion-title>
 
-    <ion-button (click)="buttonSair()" slot="end" fill="clear">
+    <ion-button (click)="buttonSair()" slot="end" fill="clear" color="light">
       Sair
     </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-
     <ion-item button *ngFor="let h of horarios">
       <ion-label>{{h}}</ion-label>
     </ion-item>
-
   </ion-list>
-
 </ion-content>

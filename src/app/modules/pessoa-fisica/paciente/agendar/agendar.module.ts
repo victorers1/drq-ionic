@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SelectPlanoSaudePageRoutingModule } from './select-plano-saude-routing.module';
+import { AgendarPageRoutingModule } from './agendar-routing.module';
 
-import { SelectPlanoSaudePage } from './select-plano-saude.page';
+import { AgendarPage } from './agendar.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    SelectPlanoSaudePageRoutingModule,
+    AgendarPageRoutingModule
   ],
-  declarations: [SelectPlanoSaudePage],
+  declarations: [AgendarPage]
 })
-export class SelectPlanoSaudePageModule {}
+export class AgendarPageModule { }

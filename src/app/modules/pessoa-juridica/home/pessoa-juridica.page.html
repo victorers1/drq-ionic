@@ -1,15 +1,14 @@
 <ion-header>
-  <drq-header titulo="Pessoa Jurídica" [showArrowBack]=false></drq-header>
+  <drq-header titulo="Pessoa Jurídica" [showArrowBack]="false"></drq-header>
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-
     <ion-item>
-
       <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <img
+          src="https://s3.amazonaws.com/enlizt-resources-prod/companies/a5e86080-7167-11e8-9d23-173efa58bae3_256_avatar?nocache=1529757496082"
+        />
       </ion-avatar>
 
       <ion-label>
@@ -20,31 +19,50 @@
       <ion-button fill="clear" (click)="logOut()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
-
     </ion-item>
 
-    <option-tile icone="calendar-outline" title="Marcar Consulta" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDAR}}">
+    <option-tile
+      icone="calendar-outline"
+      title="Marcar Consulta"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDAR}}"
+    >
     </option-tile>
 
-    <option-tile icone="alert-circle-outline" [badge]="10" title="Solicitações pendentes"
-      link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDAR}}">
+    <option-tile
+      icone="alert-circle-outline"
+      [badge]="10"
+      title="Solicitações pendentes"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDAR}}"
+    >
     </option-tile>
 
-    <option-tile icone="calendar-number-outline" title="Agenda" link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDA}}">
+    <option-tile
+      icone="calendar-number-outline"
+      title="Agenda"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.AGENDA}}"
+    >
     </option-tile>
 
-    <option-tile icone="folder-open-outline" title="Requisições de Dados"
-      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_REQUISICOES_DADOS}}">
+    <option-tile
+      icone="folder-open-outline"
+      title="Requisições de Dados"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_REQUISICOES_DADOS}}"
+    >
     </option-tile>
 
-    <option-tile icone="business-outline" title="Unidades" link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_UNIDADES}}">
+    <option-tile
+      icone="business-outline"
+      title="Unidades"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.LIST_UNIDADES}}"
+    >
     </option-tile>
 
-
-
-    <option-tile icone="reader-outline" title="Perfil" link="/{{routes.PESSOA_JURIDICA}}/{{routes.EDIT_DADOS_CONTA}}">
+    <option-tile
+      icone="reader-outline"
+      title="Perfil"
+      link="/{{routes.PESSOA_JURIDICA}}/{{routes.EDIT_DADOS_CONTA}}"
+    >
     </option-tile>
-
   </ion-list>
 
   <!-- <safe-area-bottom></safe-area-bottom>
@@ -60,5 +78,4 @@
   <drq-error titulo="Ops!" mensagem="O servidor não está respondendo. Tente novamente mais tarde."></drq-error>
 
   <safe-area-bottom></safe-area-bottom> -->
-
 </ion-content>

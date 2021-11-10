@@ -1,24 +1,29 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Selecionar Plano de Saúde</ion-title>
 
-    <ion-button (click)="buttonSair()" slot="end" fill="clear">
+    <ion-button (click)="buttonSair()" slot="end" fill="clear" color="light">
       Sair
     </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <ion-searchbar animated cancelButtonText="cancelar" enterkeyhint="search" inputmode="text"
-    placeholder="Pesquisar plano de saúde" showCancelButton="focus" type="search"
-    (ionChange)="onSearchBarChange($event)">
+  <ion-searchbar
+    animated
+    cancelButtonText="cancelar"
+    enterkeyhint="search"
+    inputmode="text"
+    placeholder="Pesquisar plano de saúde"
+    showCancelButton="focus"
+    type="search"
+    (ionChange)="onSearchBarChange($event)"
+  >
   </ion-searchbar>
 
   <ion-list>
-
     <ion-item button>
-      <ion-label>NENHUM</ion-label>
+      <ion-label>PARTICULAR</ion-label>
     </ion-item>
 
     <ion-item button>
@@ -32,7 +37,5 @@
     <ion-item button>
       <ion-label>HAPVIDA</ion-label>
     </ion-item>
-
   </ion-list>
-
 </ion-content>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DRQRoutes } from 'src/app/constants';
+import { Dado } from 'src/app/models/pessoas/dado';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { DateUtils } from 'src/app/utils/date-utils';
@@ -17,27 +18,39 @@ export class DadosProfissionaisPage implements OnInit {
   routes = new DRQRoutes();
 
   indexDadoProfissao: number;
-  dadoProfissao: DadosDeProfissao;
+  dadoProfissao: Dado;
   dadosProfissaoForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private usuarioService: PessoaFisicaService) {
-
+  constructor(
+    private route: ActivatedRoute,
+    private usuarioService: PessoaFisicaService
+  ) {
     this.route.params.subscribe((params) => {
       console.log('DadosProfissionaisPage params: ', params);
 
       this.indexDadoProfissao = params[this.routes.PARAM_INDEX_DADO_PROFISSAO];
-      this.dadoProfissao = this.usuarioService.usuario.dadosProfissao[this.indexDadoProfissao];
+      this.dadoProfissao =
+        this.usuarioService.usuario.dadosProfissao[this.indexDadoProfissao];
 
       this.dadosProfissaoForm = new FormGroup({
-        profissao: new FormControl(this.dadoProfissao.profissao, Validators.required),
-        especialidade: new FormControl(this.dadoProfissao.especialidade),
-        conselhoDeClasse: new FormControl(this.dadoProfissao.conselhoDeClasse),
-        grauDeInstrucao: new FormControl(this.dadoProfissao.grauDeInstrucao),
+        profissao: new FormControl(
+          (this.dadoProfissao as DadosDeProfissao).profissao,
+          Validators.required
+        ),
+        especialidade: new FormControl(
+          (this.dadoProfissao as DadosDeProfissao).especialidade
+        ),
+        conselhoDeClasse: new FormControl(
+          (this.dadoProfissao as DadosDeProfissao).conselhoDeClasse
+        ),
+        grauDeInstrucao: new FormControl(
+          (this.dadoProfissao as DadosDeProfissao).grauDeInstrucao
+        ),
       });
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   saveDadosProfissionais() {
     console.log('saveDadosProfissionais()');

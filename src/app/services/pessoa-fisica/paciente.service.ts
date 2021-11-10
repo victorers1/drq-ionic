@@ -8,7 +8,7 @@ import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 @Injectable({
   providedIn: 'root',
 })
-export class PessoaFisicaService {
+export class PacienteService {
   public usuario = new Paciente(
     'victorers2',
     'Victor Emanuel Ribeiro Silva',
