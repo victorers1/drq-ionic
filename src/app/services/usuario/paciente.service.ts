@@ -4,11 +4,12 @@ import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-banca
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PessoaFisicaService {
+export class PacienteService {
   public usuario = new Paciente(
     'victorers2',
     'Victor Emanuel Ribeiro Silva',

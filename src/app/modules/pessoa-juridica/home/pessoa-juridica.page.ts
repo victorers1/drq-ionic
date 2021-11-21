@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DRQRoutes } from 'src/app/constants';
-import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica/pessoa-juridica.service';
+import { PessoaJuridicaService } from 'src/app/services/usuario/pessoa-juridica.service';
 
 @Component({
   selector: 'pessoa-juridica',
@@ -13,14 +13,13 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    public usuarioCtrl: PessoaJuridicaService,
-  ) { }
+    public usuarioCtrl: PessoaJuridicaService
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   logOut(): void {
     console.log(`${this.usuarioCtrl.usuario.username} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
-
 }

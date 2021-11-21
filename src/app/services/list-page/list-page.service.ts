@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TIPOS_USUARIOS } from 'src/app/constants';
+import { TIPO_USUARIO } from 'src/app/constants';
 
 /**
  * Service responsável por decidir se uma página de listagem
@@ -12,12 +12,12 @@ import { TIPOS_USUARIOS } from 'src/app/constants';
 export class ListPageService {
   constructor() {}
 
-  canCreate = (tipoUsuario: TIPOS_USUARIOS): boolean =>
-    tipoUsuario == TIPOS_USUARIOS.PACIENTE;
+  canCreate = (tipoUsuario: TIPO_USUARIO): boolean =>
+    tipoUsuario == TIPO_USUARIO.PACIENTE;
 
-  showPaciente = (tipoUsuario: TIPOS_USUARIOS): boolean =>
-    tipoUsuario != TIPOS_USUARIOS.PACIENTE;
+  showPaciente = (tipoUsuario: TIPO_USUARIO): boolean =>
+    tipoUsuario != TIPO_USUARIO.PACIENTE;
 
-  showProfissional = (tipoUsuario: TIPOS_USUARIOS): boolean =>
-    tipoUsuario != TIPOS_USUARIOS.PROFISSIONAL;
+  showProfissional = (tipoUsuario: TIPO_USUARIO): boolean =>
+    tipoUsuario != TIPO_USUARIO.PROFISSIONAL;
 }

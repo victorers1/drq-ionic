@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TIPO_USUARIO } from 'src/app/constants';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-edit-atestado',

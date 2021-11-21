@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { DRQRoutes } from 'src/app/constants';
 import { Unidade } from 'src/app/models/pessoas/unidade';
-import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica/pessoa-juridica.service';
+import { PessoaJuridicaService } from 'src/app/services/usuario/pessoa-juridica.service';
 
 @Component({
   selector: 'app-list-unidades',
@@ -17,21 +17,18 @@ export class ListUnidadesPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private usuarioCtrl: PessoaJuridicaService
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   getUnidades(): Unidade[] {
     return this.usuarioCtrl.usuario.unidades;
   }
 
   onClick(unidadeIndex: number) {
-    this.navCtrl.navigateForward(
-      [this.routes.EDIT_UNIDADE],
-      {
-        state: this.getUnidades()[unidadeIndex],
-        relativeTo: this.route
-      }
-    );
+    this.navCtrl.navigateForward([this.routes.EDIT_UNIDADE], {
+      state: this.getUnidades()[unidadeIndex],
+      relativeTo: this.route,
+    });
   }
 }

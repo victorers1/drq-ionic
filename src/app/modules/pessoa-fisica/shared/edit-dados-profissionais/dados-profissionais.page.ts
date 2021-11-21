@@ -5,7 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { DRQRoutes } from 'src/app/constants';
 import { Dado } from 'src/app/models/pessoas/dado';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
-import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
+import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
+import { PacienteService } from 'src/app/services/usuario/paciente.service';
+import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { StringUtils } from 'src/app/utils/string-utils';
 
@@ -23,14 +26,15 @@ export class DadosProfissionaisPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private usuarioService: PessoaFisicaService
+    private usuarioService: UsuarioService
   ) {
     this.route.params.subscribe((params) => {
       console.log('DadosProfissionaisPage params: ', params);
 
       this.indexDadoProfissao = params[this.routes.PARAM_INDEX_DADO_PROFISSAO];
-      this.dadoProfissao =
-        this.usuarioService.usuario.dadosProfissao[this.indexDadoProfissao];
+      this.dadoProfissao = (
+        this.usuarioService.usuario as PessoaFisica
+      ).dadosProfissao[this.indexDadoProfissao];
 
       this.dadosProfissaoForm = new FormGroup({
         profissao: new FormControl(

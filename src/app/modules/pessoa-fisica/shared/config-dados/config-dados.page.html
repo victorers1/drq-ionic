@@ -3,9 +3,7 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-
     <ion-item-divider>
       <ion-icon slot="start" name="person"></ion-icon>
       <ion-label>Dados da Conta</ion-label>
@@ -13,9 +11,9 @@
 
     <ion-item button detail routerLink="./{{routes.EDIT_DADOS_CONTA}}">
       <ion-label>
-        <h2>Username: {{usuarioCtrl.usuario.username}}</h2>
-        <h2>Documento: {{usuarioCtrl.usuario.docFiscal}}</h2>
-        <h2>Email: {{usuarioCtrl.usuario.email}}</h2>
+        <h2>Username: {{pessoaFisica.username}}</h2>
+        <h2>Documento: {{pessoaFisica.docFiscal}}</h2>
+        <h2>Email: {{pessoaFisica.email}}</h2>
       </ion-label>
     </ion-item>
 
@@ -27,8 +25,12 @@
       <ion-label>Dados Profissionais</ion-label>
     </ion-item-divider>
 
-    <ion-item *ngFor="let dp of dadosProfissao; let i=index" button detail
-      [routerLink]="['./' + routes.EDIT_DADOS_PROFISSIONAIS, i]">
+    <ion-item
+      *ngFor="let dp of dadosProfissao; let i=index"
+      button
+      detail
+      [routerLink]="['./' + routes.EDIT_DADOS_PROFISSIONAIS, i]"
+    >
       <ion-label>
         <h2>{{dp.profissao}}</h2>
         <h2>{{dp.grauDeInstrucao}}</h2>
@@ -44,8 +46,12 @@
       </ion-button>
     </ion-item-divider>
 
-    <ion-item *ngFor="let db of dadosBancarios; let i=index" button detail
-      [routerLink]="['./' + routes.EDIT_DADOS_BANCARIOS, i]">
+    <ion-item
+      *ngFor="let db of dadosBancarios; let i=index"
+      button
+      detail
+      [routerLink]="['./' + routes.EDIT_DADOS_BANCARIOS, i]"
+    >
       <ion-label>
         <h2>{{db.nome}}</h2>
         <h2>{{db.codigoDeOperacao}}</h2>
@@ -69,7 +75,5 @@
     </ion-item>
 
     <safe-area-bottom></safe-area-bottom>
-
   </ion-list>
-
 </ion-content>

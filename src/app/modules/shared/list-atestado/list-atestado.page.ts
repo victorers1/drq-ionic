@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { DRQRoutes } from 'src/app/constants';
+import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-list-atestado',
@@ -9,11 +10,15 @@ import { DRQRoutes } from 'src/app/constants';
   styleUrls: ['./list-atestado.page.scss'],
 })
 export class ListAtestadoPage implements OnInit {
+  routes = new DRQRoutes();
   dataInicio: string;
   dataFim: string;
-  routes = new DRQRoutes();
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
+  constructor(
+    public usuario: UsuarioService,
+    private navCtrl: NavController,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {}
 

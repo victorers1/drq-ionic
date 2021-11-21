@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TIPOS_USUARIOS, TIPO_PESSOA_JURIDICA } from 'src/app/constants';
+import { TIPO_USUARIO, TIPO_PESSOA_JURIDICA } from 'src/app/constants';
 import { ListPageService } from '../../../services/list-page/list-page.service';
 @Component({
   selector: 'app-list-prontuario',
@@ -10,7 +10,7 @@ export class ListProntuarioPage implements OnInit {
   dataInicio: string;
   dataFim: string;
 
-  tipoUsuario: TIPOS_USUARIOS;
+  tipoUsuario: TIPO_USUARIO;
 
   constructor(public listPageService: ListPageService) {}
 

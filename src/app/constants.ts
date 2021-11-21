@@ -71,8 +71,9 @@ export enum TIPO_REQUISICAO_DADOS {
   PLANO_SAUDE = 'Dados de Plano de Saúde',
   DEPENDENTE = 'Dados de Dependente',
 }
-export enum TIPOS_USUARIOS {
+export enum TIPO_USUARIO {
   PACIENTE = 0,
   PROFISSIONAL = 1,
   PESSOA_JURIDICA = 2,
+  INVALIDO = 3,
 }
