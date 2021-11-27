@@ -1,6 +1,7 @@
 import { Time, WeekDay } from '@angular/common';
 import { Injectable } from '@angular/core';
 import {
+  SEXO,
   STATUS_REQUISICAO_DADO,
   TIPO_PESSOA_JURIDICA,
 } from 'src/app/constants';
@@ -43,8 +44,7 @@ export class PessoaJuridicaService {
       'RN',
       'BRASIL',
       new Date(1996, 6, 13),
-      'M',
-      0
+      SEXO.MASCULINO
     );
     const p2 = new Profissional(
       'fulanoers',
@@ -58,8 +58,7 @@ export class PessoaJuridicaService {
       'RN',
       'BRASIL',
       new Date(1996, 6, 13),
-      'M',
-      0
+      SEXO.MASCULINO
     );
 
     const rdp1 = new RequisicaoParaDadosDeProfissao(0, 0);

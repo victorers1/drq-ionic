@@ -32,8 +32,8 @@ export class ConfigDadosPage implements OnInit {
       | ProfissionalService;
     this.pessoaFisica = this.pessoaFisicaService.usuario as Paciente;
 
-    await this.pessoaFisicaService.getDadosBancarios();
-    await this.pessoaFisicaService.getDadosProfissao();
+    await this.pessoaFisicaService.getDadosBancarios(0);
+    await this.pessoaFisicaService.getDadosProfissao(0);
 
     this.dadosBancarios = this.pessoaFisica.dadosBancarios as DadosBancarios[];
     this.dadosProfissao = this.pessoaFisica

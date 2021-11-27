@@ -1,4 +1,4 @@
-import { STATUS_OBJETO } from 'src/app/constants';
+import { SEXO, STATUS_OBJETO } from 'src/app/constants';
 import { Pessoa } from '../pessoa';
 import { Dado } from '../dado';
 
@@ -23,7 +23,7 @@ export abstract class PessoaFisica extends Pessoa {
     public endEstado: string,
     public endPais: string = 'BRASIL',
     public dataDeNascimento: Date = new Date(),
-    public sexo: string,
+    public sexo: SEXO,
     public status: STATUS_OBJETO = STATUS_OBJETO.ATIVO
   ) {
     super(username, nome, docFiscal);

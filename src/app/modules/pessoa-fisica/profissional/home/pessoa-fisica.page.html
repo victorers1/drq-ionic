@@ -4,7 +4,10 @@
 
 <ion-content>
   <ion-list class="options-list">
-    <profissional-item></profissional-item>
+    <profissional-item
+      *ngIf="profissional!=null"
+      [profissional]="profissional"
+    ></profissional-item>
 
     <!-- <option-tile
       icone="calendar-outline"

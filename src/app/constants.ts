@@ -77,3 +77,10 @@ export enum TIPO_USUARIO {
   PESSOA_JURIDICA = 2,
   INVALIDO = 3,
 }
+
+export enum SEXO {
+  MASCULINO = 1,
+  FEMININO = 2,
+  OUTRO = 3,
+  PREFERE_NAO_DIZER = 4,
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import {
   DRQRoutes,
+  SEXO,
   TIPO_PESSOA_JURIDICA,
   TIPO_USUARIO,
 } from 'src/app/constants';
@@ -69,8 +70,7 @@ export class SelectTipoUsuarioPage implements OnInit {
           'RN',
           'BRASIL',
           new Date(1996, 6, 13),
-          'M',
-          0
+          SEXO.MASCULINO
         );
         break;
 
@@ -87,8 +87,7 @@ export class SelectTipoUsuarioPage implements OnInit {
           'RN',
           'BRASIL',
           new Date(1996, 6, 13),
-          'M',
-          0
+          SEXO.MASCULINO
         );
 
         break;

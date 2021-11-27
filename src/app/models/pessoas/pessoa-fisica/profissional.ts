@@ -1,4 +1,4 @@
-import { STATUS_OBJETO } from 'src/app/constants';
+import { SEXO, STATUS_OBJETO } from 'src/app/constants';
 import { PessoaFisica } from './pessoa-fisica';
 
 export class Profissional extends PessoaFisica {
@@ -14,7 +14,7 @@ export class Profissional extends PessoaFisica {
     endEstado: string,
     endPais: string = 'BRASIL',
     dataDeNascimento: Date = new Date(),
-    sexo: string,
+    sexo: SEXO,
     status: STATUS_OBJETO = STATUS_OBJETO.ATIVO
   ) {
     super(

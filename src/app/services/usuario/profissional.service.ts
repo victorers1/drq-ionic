@@ -3,31 +3,29 @@ import { Injectable } from '@angular/core';
 import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-bancarios';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
-import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
+import { PROFISSIONAL_HOME_QUERY } from 'src/app/query-constants';
+import { Apollo } from 'apollo-angular';
+import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
+import { SEXO } from 'src/app/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfissionalService {
-  public usuario = new Paciente(
-    'victorers2',
-    'Victor Emanuel Ribeiro Silva',
-    '0898328428',
-    'victorers2@gmail.com',
-    'Rua Hiroshi Ienaga',
-    '1170',
-    'Pajuçara',
-    'Natal',
-    'RN',
-    'BRASIL',
-    new Date(1996, 6, 13),
-    'M',
-    0
-  );
+  usuario: Profissional;
 
-  constructor() {}
+  constructor(private apollo: Apollo) {}
 
-  async getDadosProfissao(): Promise<void> {
+  getProfissional(idProfissional: number) {
+    return this.apollo.watchQuery({
+      query: PROFISSIONAL_HOME_QUERY,
+      variables: {
+        id: idProfissional,
+      },
+    });
+  }
+
+  async getDadosProfissao(idProfissional: number): Promise<void> {
     const e1 = new ExpedienteDePessoaFisica(
       0,
       0,
@@ -66,7 +64,7 @@ export class ProfissionalService {
     this.usuario.dadosProfissao = [d1, d2];
   }
 
-  async getDadosBancarios(): Promise<void> {
+  async getDadosBancarios(idProfissional: number): Promise<void> {
     const b1 = new DadosBancarios(0);
     b1.nome = 'Banco do Brasil';
     b1.codigoDeOperacao = 'CC';
