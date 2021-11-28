@@ -25,7 +25,8 @@ export class PessoaFisicaPage implements OnInit {
     // ! tipo usuário deve ser setado antes de carregar usuário
     this.usuarioService.tipoUsuario = TIPO_USUARIO.PROFISSIONAL;
     this.profissionalService = this.usuarioService.get() as ProfissionalService;
-    this.profissional = await this.profissionalService.getProfissionalById(5);
+    this.profissional =
+      await this.profissionalService.setAndGetProfissionalById(5);
   }
 
   logOut(): void {

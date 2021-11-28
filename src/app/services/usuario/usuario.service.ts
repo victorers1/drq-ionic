@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { SEXO, TIPO_USUARIO } from 'src/app/constants';
+import { Dado } from 'src/app/models/pessoas/dado';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 import { PessoaJuridica } from 'src/app/models/pessoas/pessoa-juridica/pessoa-juridica';
@@ -36,6 +37,13 @@ export class UsuarioService {
       default:
     }
   }
+
+  async getDadosProfissao(idPessoa: number): Promise<void> {
+    // Array<Dado> dados =  await this.apollo.watchQuery({
+    // }).valueChanges.toPromise();
+  }
+
+  async getDadosBancarios(idPessoa: number): Promise<void> {}
 
   // Usuario Utils Functions
   isProfissional = (): boolean => this.tipoUsuario == TIPO_USUARIO.PROFISSIONAL;

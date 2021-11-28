@@ -7,6 +7,7 @@ import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 
 import { Apollo, gql } from 'apollo-angular';
 import { SEXO } from 'src/app/constants';
+import { Profissao } from 'src/app/models/geral/profissao';
 
 @Injectable({
   providedIn: 'root',
@@ -51,12 +52,12 @@ export class PacienteService {
       { hours: 0, minutes: 0 }
     );
 
-    const d1 = new DadosDeProfissao(0, 'Dentista');
+    const d1 = new DadosDeProfissao(0, new Profissao(0, 'Dentista'));
     d1.grauDeInstrucao = 'Ensino Superior';
     d1.expedientes = [e1, e2];
     d1.isPublico = true;
 
-    const d2 = new DadosDeProfissao(0, 'Mecânico');
+    const d2 = new DadosDeProfissao(0, new Profissao(1, 'Mecânico'));
     d2.grauDeInstrucao = 'Ensino Superior';
     d2.expedientes = [e2, e3];
     d2.isPublico = false;

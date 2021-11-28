@@ -1,13 +1,13 @@
 import { gql } from 'apollo-angular';
 
 /// PROFISSIONAL HOME
-export interface IProfissionalHome {
+export interface IPessoaFisicaHome {
   username: string;
   nome: string;
   docFiscal: string;
 }
-export interface IResponse {
-  PessoaFisica: IProfissionalHome[];
+export interface IResponseProfissionalHome {
+  PessoaFisica: IPessoaFisicaHome[];
 }
 export const PROFISSIONAL_HOME_QUERY = gql`
   query MyQuery($id: bigint!) {
@@ -18,3 +18,10 @@ export const PROFISSIONAL_HOME_QUERY = gql`
     }
   }
 `;
+
+// CONFIG DADOS CONTA
+export interface IConfigDados {
+  pessoaFisica: IPessoaFisicaHome;
+}
+
+export interface IDadosProfissao {}

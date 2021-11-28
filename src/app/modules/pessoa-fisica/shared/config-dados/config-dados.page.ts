@@ -40,12 +40,8 @@ export class ConfigDadosPage implements OnInit {
 
     this.pessoaFisica = this.pessoaFisicaService.usuario;
 
-    await this.pessoaFisicaService.getDadosBancarios(0);
-    await this.pessoaFisicaService.getDadosProfissao(0);
-
-    this.dadosBancarios = this.pessoaFisica.dadosBancarios as DadosBancarios[];
-    this.dadosProfissao = this.pessoaFisica
-      .dadosProfissao as DadosDeProfissao[];
+    // await this.pessoaFisicaService.getDadosBancarios(0);
+    // await this.pessoaFisicaService.getDadosProfissao(0);
   }
 
   createDadoProfissional() {}
