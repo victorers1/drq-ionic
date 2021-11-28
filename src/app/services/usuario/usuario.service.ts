@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
 import { SEXO, TIPO_USUARIO } from 'src/app/constants';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
@@ -6,21 +8,21 @@ import { PessoaJuridica } from 'src/app/models/pessoas/pessoa-juridica/pessoa-ju
 import { PacienteService } from './paciente.service';
 import { PessoaJuridicaService } from './pessoa-juridica.service';
 import { ProfissionalService } from './profissional.service';
-import { Apollo } from 'apollo-angular';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-  usuario: Paciente | Profissional | PessoaJuridica;
   tipoUsuario: TIPO_USUARIO;
 
   constructor(
     private pacienteService: PacienteService,
     private profissionalService: ProfissionalService,
-    private pessoaJuridicaService: PessoaJuridicaService
-  ) {}
+    private pessoaJuridicaService: PessoaJuridicaService,
+    private apollo: Apollo
+  ) {
+    // ! Setar tipousuario
+  }
 
   get() {
     console.log(`UsuarioService.get(${this.tipoUsuario})`);
@@ -30,8 +32,8 @@ export class UsuarioService {
       case TIPO_USUARIO.PESSOA_JURIDICA:
         return this.pessoaJuridicaService;
       case TIPO_USUARIO.PACIENTE:
-      default:
         return this.pacienteService;
+      default:
     }
   }
 

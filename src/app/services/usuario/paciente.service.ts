@@ -13,19 +13,10 @@ import { SEXO } from 'src/app/constants';
 })
 export class PacienteService {
   public usuario = new Paciente(
+    0,
     'victorers2',
     'Victor Emanuel Ribeiro Silva',
-    '0898328428',
-    'victorers2@gmail.com',
-    'Rua Hiroshi Ienaga',
-    '1170',
-    'Pajuçara',
-    'Natal',
-    'RN',
-    'BRASIL',
-    new Date(1996, 6, 13),
-    SEXO.MASCULINO,
-    0
+    '0898328428'
   );
 
   rates: any[];

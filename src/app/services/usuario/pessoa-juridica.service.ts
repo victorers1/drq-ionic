@@ -17,6 +17,7 @@ import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional'
 })
 export class PessoaJuridicaService {
   usuario = new PessoaJuridica(
+    0,
     'victorers1',
     'Centro de Saúde Soledade II',
     '80744850000133',
@@ -33,33 +34,12 @@ export class PessoaJuridicaService {
 
   async getRequisicoes(): Promise<void> {
     const p1 = new Profissional(
+      0,
       'victorers2',
       'Victor Emanuel Ribeiro Silva',
-      '32132132',
-      'victorers2@gmail.com',
-      'Rua Hiroshi Ienaga',
-      '1170',
-      'Pajuçara',
-      'Natal',
-      'RN',
-      'BRASIL',
-      new Date(1996, 6, 13),
-      SEXO.MASCULINO
+      '32132132'
     );
-    const p2 = new Profissional(
-      'fulanoers',
-      'Fulano da Silva',
-      '12312312',
-      'maisa_761@gmail.com',
-      'Rua Hiroshi Ienaga',
-      '1170',
-      'Pajuçara',
-      'Natal',
-      'RN',
-      'BRASIL',
-      new Date(1996, 6, 13),
-      SEXO.MASCULINO
-    );
+    const p2 = new Profissional(0, 'fulano', 'Fulano da Silva', '12312312');
 
     const rdp1 = new RequisicaoParaDadosDeProfissao(0, 0);
     rdp1.pessoaFisica = p1;

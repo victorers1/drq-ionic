@@ -13,7 +13,7 @@ export class DadosContaPage implements OnInit {
   dadosContaForm: FormGroup;
 
   constructor(public usuarioService: UsuarioService) {
-    let u = this.usuarioService.usuario as PessoaFisica;
+    let u = this.usuarioService.get().usuario as PessoaFisica;
 
     this.dadosContaForm = new FormGroup({
       nome: new FormControl(u.nome, Validators.required),
@@ -32,7 +32,7 @@ export class DadosContaPage implements OnInit {
 
   saveDadosConta() {
     if (this.dadosContaForm.valid) {
-      console.log(`Save dados de ${this.usuarioService.usuario.nome}`);
+      console.log(`Save dados de ${this.usuarioService.get().usuario.nome}`);
     } else {
       console.log('Formulário inválido');
     }

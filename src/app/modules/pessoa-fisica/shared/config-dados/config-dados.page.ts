@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DRQRoutes } from 'src/app/constants';
-import { Dado } from 'src/app/models/pessoas/dado';
+import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-bancarios';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
@@ -26,11 +25,20 @@ export class ConfigDadosPage implements OnInit {
   constructor(public usuarioService: UsuarioService) {}
 
   async ngOnInit() {
-    // TODO: carregar todos os dados da API
-    this.pessoaFisicaService = this.usuarioService.get() as
-      | PacienteService
-      | ProfissionalService;
-    this.pessoaFisica = this.pessoaFisicaService.usuario as Paciente;
+    switch (this.usuarioService.tipoUsuario) {
+      case TIPO_USUARIO.PROFISSIONAL:
+        this.pessoaFisicaService =
+          this.usuarioService.get() as ProfissionalService;
+        break;
+
+      case TIPO_USUARIO.PACIENTE:
+        this.pessoaFisicaService = this.usuarioService.get() as PacienteService;
+        break;
+      default:
+        break;
+    }
+
+    this.pessoaFisica = this.pessoaFisicaService.usuario;
 
     await this.pessoaFisicaService.getDadosBancarios(0);
     await this.pessoaFisicaService.getDadosProfissao(0);

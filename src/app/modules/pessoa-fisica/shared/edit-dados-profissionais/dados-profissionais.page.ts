@@ -33,7 +33,7 @@ export class DadosProfissionaisPage implements OnInit {
 
       this.indexDadoProfissao = params[this.routes.PARAM_INDEX_DADO_PROFISSAO];
       this.dadoProfissao = (
-        this.usuarioService.usuario as PessoaFisica
+        this.usuarioService.get().usuario as PessoaFisica
       ).dadosProfissao[this.indexDadoProfissao];
 
       this.dadosProfissaoForm = new FormGroup({

@@ -21,56 +21,15 @@ export class PessoaFisicaPage implements OnInit {
     private usuarioService: UsuarioService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // ! tipo usuário deve ser setado antes de carregar usuário
     this.usuarioService.tipoUsuario = TIPO_USUARIO.PROFISSIONAL;
     this.profissionalService = this.usuarioService.get() as ProfissionalService;
-    this.profissionalService
-      .getProfissional(5)
-      .valueChanges.subscribe(({ data }) => {
-        const {
-          username,
-          nome,
-          docFiscal,
-          email,
-          sexo,
-          rg,
-          foneUm,
-          endLogradouro,
-          endNumero,
-          endBairro,
-          endCidade,
-          endEstado,
-          endPais,
-          endCEP,
-          dataDeNascimento,
-        } = data['PessoaFisica'][0];
-
-        this.profissionalService.usuario = new Profissional(
-          username,
-          nome,
-          docFiscal,
-          email,
-          endLogradouro,
-          endNumero,
-          endBairro,
-          endCidade,
-          endEstado,
-          endPais,
-          dataDeNascimento,
-          sexo
-        );
-        this.profissionalService.usuario.rg = rg;
-        this.profissionalService.usuario.endCEP = endCEP;
-        this.profissionalService.usuario.foneUm = foneUm;
-
-        this.profissional = this.profissionalService.usuario;
-        console.log('profissional: ', this.profissional);
-      });
+    this.profissional = await this.profissionalService.getProfissionalById(5);
   }
 
   logOut(): void {
-    console.log(`${this.usuarioService.usuario.username} is loging out`);
+    console.log(`${this.profissional.username} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
 }

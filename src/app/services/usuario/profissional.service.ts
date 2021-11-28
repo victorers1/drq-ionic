@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-bancarios';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
-import { PROFISSIONAL_HOME_QUERY } from 'src/app/query-constants';
+import { IResponse, PROFISSIONAL_HOME_QUERY } from 'src/app/query-constants';
 import { Apollo } from 'apollo-angular';
+import { first } from 'rxjs/operators';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
-import { SEXO } from 'src/app/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +16,27 @@ export class ProfissionalService {
 
   constructor(private apollo: Apollo) {}
 
-  getProfissional(idProfissional: number) {
-    return this.apollo.watchQuery({
-      query: PROFISSIONAL_HOME_QUERY,
-      variables: {
-        id: idProfissional,
-      },
-    });
+  async getProfissionalById(idProfissional: number): Promise<Profissional> {
+    let result = await this.apollo
+      .watchQuery<IResponse>({
+        query: PROFISSIONAL_HOME_QUERY,
+        variables: {
+          id: idProfissional,
+        },
+      })
+      .valueChanges.pipe(first())
+      .toPromise();
+
+    console.log('result: ', result);
+
+    this.usuario = new Profissional(
+      idProfissional,
+      result.data.PessoaFisica[0].username,
+      result.data.PessoaFisica[0].nome,
+      result.data.PessoaFisica[0].docFiscal
+    );
+
+    return this.usuario;
   }
 
   async getDadosProfissao(idProfissional: number): Promise<void> {
