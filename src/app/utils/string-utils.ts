@@ -7,6 +7,7 @@ export class StringUtils {
   }
 
   static pad(n: number | string): string {
+    //TODO: pipe para essa função
     if (typeof n == 'number') {
       const str = n.toString();
       return n < 10 ? '0' + str : str;

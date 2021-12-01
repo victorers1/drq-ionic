@@ -2,6 +2,9 @@
  * Classe mãe de DadosDeProfissao, DadosBancarios... Ou seja, DadosDeAlgumaCoisa em geral.
  */
 
+import { STATUS_ENTIDADE } from 'src/app/constants';
+
 export abstract class Dado {
-    public isPublico: boolean = false;
+  public isPublico: boolean = false;
+  public status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO;
 }

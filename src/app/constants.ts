@@ -42,11 +42,7 @@ export enum STATUS_REQUISICAO_DADO {
   AUTORIZADO = 0,
   NAO_AUTORIZADO = 1,
 }
-export enum STATUS_DADOS {
-  ATIVO = 0,
-  INATIVO = 1,
-}
-export enum STATUS_OBJETO {
+export enum STATUS_ENTIDADE {
   ATIVO = 0,
   INATIVO = 1,
 }

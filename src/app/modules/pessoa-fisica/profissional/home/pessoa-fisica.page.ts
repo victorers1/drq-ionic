@@ -26,7 +26,7 @@ export class PessoaFisicaPage implements OnInit {
     this.usuarioService.tipoUsuario = TIPO_USUARIO.PROFISSIONAL;
     this.profissionalService = this.usuarioService.get() as ProfissionalService;
     this.profissional =
-      await this.profissionalService.setAndGetProfissionalById(5);
+      await this.profissionalService.getAndSetProfissionalById(5);
   }
 
   logOut(): void {

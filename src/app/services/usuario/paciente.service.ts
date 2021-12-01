@@ -5,8 +5,6 @@ import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-pro
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 
-import { Apollo, gql } from 'apollo-angular';
-import { SEXO } from 'src/app/constants';
 import { Profissao } from 'src/app/models/geral/profissao';
 
 @Injectable({
@@ -24,7 +22,7 @@ export class PacienteService {
   loading = true;
   error: any;
 
-  constructor(private apollo: Apollo) {}
+  constructor() {}
 
   async getDadosProfissao(): Promise<void> {
     const e1 = new ExpedienteDePessoaFisica(
@@ -77,26 +75,5 @@ export class PacienteService {
     b2.isPublico = false;
 
     this.usuario.dadosBancarios = [b1, b2];
-  }
-
-  getPaciente() {
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            rates(currency: "USD") {
-              currency
-              rate
-            }
-          }
-        `,
-      })
-      .valueChanges.subscribe((result) => {
-        console.log(result);
-
-        // this.rates = (result?.data as any)?.rates;
-        // this.loading = result.loading;
-        // this.error = result.error;
-      });
   }
 }

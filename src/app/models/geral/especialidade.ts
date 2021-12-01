@@ -1,3 +1,3 @@
 export class Especialidade {
-  constructor(public id: number, public nume: string) {}
+  constructor(public id: number, public nome: string) {}
 }

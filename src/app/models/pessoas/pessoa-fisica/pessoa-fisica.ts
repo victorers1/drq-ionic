@@ -1,4 +1,4 @@
-import { SEXO, STATUS_OBJETO } from 'src/app/constants';
+import { SEXO, STATUS_ENTIDADE } from 'src/app/constants';
 import { Pessoa } from '../pessoa';
 import { Dado } from '../dado';
 
@@ -6,6 +6,7 @@ export abstract class PessoaFisica extends Pessoa {
   public dadosProfissao: Dado[];
   public dadosBancarios: Dado[];
   public dadosPlanoSaude: Dado[];
+  public dadosDeDependente: Dado[];
 
   public rg: string;
   public email: string;
@@ -25,7 +26,7 @@ export abstract class PessoaFisica extends Pessoa {
     username: string,
     nome: string,
     docFiscal: string,
-    status?: STATUS_OBJETO
+    status?: STATUS_ENTIDADE
   ) {
     super(id, username, nome, docFiscal, status);
   }

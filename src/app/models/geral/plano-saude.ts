@@ -1,9 +1,9 @@
-import { STATUS_OBJETO } from 'src/app/constants';
+import { STATUS_ENTIDADE } from 'src/app/constants';
 
 export class PlanoDeSaude {
   constructor(
     public id: number,
     public nome: string,
-    public status: STATUS_OBJETO = STATUS_OBJETO.ATIVO
+    public status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO
   ) {}
 }

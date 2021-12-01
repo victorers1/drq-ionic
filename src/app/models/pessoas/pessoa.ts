@@ -1,4 +1,4 @@
-import { STATUS_OBJETO } from 'src/app/constants';
+import { STATUS_ENTIDADE } from 'src/app/constants';
 
 export abstract class Pessoa {
   public docFiscalResponsavel: string;
@@ -9,6 +9,6 @@ export abstract class Pessoa {
     public username: string,
     public nome: string,
     public docFiscal: string,
-    public status: STATUS_OBJETO = STATUS_OBJETO.ATIVO
+    public status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO
   ) {}
 }

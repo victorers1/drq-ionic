@@ -1,4 +1,4 @@
-import { STATUS_DADOS } from 'src/app/constants';
+import { STATUS_ENTIDADE } from 'src/app/constants';
 import { ConselhoDeClasse } from '../../geral/conselho_de_classe';
 import { Especialidade } from '../../geral/especialidade';
 import { Profissao } from '../../geral/profissao';
@@ -12,11 +12,7 @@ export class DadosDeProfissao extends Dado {
   public especialidade: Especialidade;
   public conselhoDeClasse: ConselhoDeClasse;
 
-  constructor(
-    public pessoaFisicaID: number = 0,
-    public profissao: Profissao,
-    public status: STATUS_DADOS = STATUS_DADOS.ATIVO
-  ) {
+  constructor(public pessoaFisicaID: number = 0, public profissao: Profissao) {
     super();
   }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ApolloQueryResult } from '@apollo/client/core/types';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { SEXO, TIPO_USUARIO } from 'src/app/constants';
-import { Dado } from 'src/app/models/pessoas/dado';
-import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
-import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
-import { PessoaJuridica } from 'src/app/models/pessoas/pessoa-juridica/pessoa-juridica';
+import { TIPO_USUARIO } from 'src/app/constants';
+import { ConselhoDeClasse } from 'src/app/models/geral/conselho_de_classe';
+import { Especialidade } from 'src/app/models/geral/especialidade';
+import { Profissao } from 'src/app/models/geral/profissao';
+import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
+import { IConfigDados } from 'src/app/query-constants';
 import { PacienteService } from './paciente.service';
 import { PessoaJuridicaService } from './pessoa-juridica.service';
 import { ProfissionalService } from './profissional.service';
@@ -38,30 +39,37 @@ export class UsuarioService {
     }
   }
 
-  async getDadosProfissao(idPessoa: number): Promise<void> {
-    // Array<Dado> dados =  await this.apollo.watchQuery({
-    // }).valueChanges.toPromise();
+  // Usuario Utils Functions
+  getDadosDeProfissaoFromResult(
+    result: ApolloQueryResult<IConfigDados>,
+    idPessoa: number
+  ) {
+    return result.data.DadosDeProfissao.map<DadosDeProfissao>((dado) => {
+      let dadoDeProfissao = new DadosDeProfissao(
+        idPessoa,
+        new Profissao(dado.profissao.id, dado.profissao.nome)
+      );
+      dadoDeProfissao.conselhoDeClasse =
+        dado.conselhoDeClasse != null
+          ? new ConselhoDeClasse(
+              dado.conselhoDeClasse.id,
+              dado.conselhoDeClasse.sigla,
+              dado.conselhoDeClasse.nome
+            )
+          : null;
+
+      dadoDeProfissao.especialidade =
+        dado.especialidade != null
+          ? new Especialidade(dado.especialidade.id, dado.especialidade.nome)
+          : null;
+      dadoDeProfissao.grauDeInstrucao = dado.grauDeInstrucao;
+
+      return dadoDeProfissao;
+    });
   }
 
-  async getDadosBancarios(idPessoa: number): Promise<void> {}
-
-  // Usuario Utils Functions
   isProfissional = (): boolean => this.tipoUsuario == TIPO_USUARIO.PROFISSIONAL;
   isPaciente = (): boolean => this.tipoUsuario == TIPO_USUARIO.PACIENTE;
   isPessoaJuridica = (): boolean =>
     this.tipoUsuario == TIPO_USUARIO.PESSOA_JURIDICA;
-
-  getSexoByCod(id: number): SEXO {
-    switch (id) {
-      case SEXO.MASCULINO.valueOf():
-        return SEXO.MASCULINO;
-      case SEXO.FEMININO.valueOf():
-        return SEXO.FEMININO;
-      case SEXO.OUTRO.valueOf():
-        return SEXO.OUTRO;
-      case SEXO.PREFERE_NAO_DIZER.valueOf():
-      default:
-        return SEXO.PREFERE_NAO_DIZER;
-    }
-  }
 }

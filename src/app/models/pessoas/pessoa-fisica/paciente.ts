@@ -1,4 +1,4 @@
-import { STATUS_OBJETO } from 'src/app/constants';
+import { STATUS_ENTIDADE } from 'src/app/constants';
 import { PessoaFisica } from './pessoa-fisica';
 
 export class Paciente extends PessoaFisica {
@@ -7,7 +7,7 @@ export class Paciente extends PessoaFisica {
     username: string,
     nome: string,
     docFiscal: string,
-    status?: STATUS_OBJETO
+    status?: STATUS_ENTIDADE
   ) {
     super(id, username, nome, docFiscal, status);
   }

@@ -108,4 +108,18 @@ export class DateUtils {
       time.minutes
     )}`;
   }
+
+  static getTimeFromString(time: string): Time {
+    const horaMinuto = time.split(':');
+    if (horaMinuto.length == 2) {
+      return {
+        hours: parseInt(horaMinuto[0]),
+        minutes: parseInt(horaMinuto[1]),
+      };
+    }
+
+    throw new Error(
+      `Formato da hora inválido. Experado era hh:mm, string passada: ${time}`
+    );
+  }
 }

@@ -10,6 +10,7 @@ import {
 import { Apollo } from 'apollo-angular';
 import { first } from 'rxjs/operators';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
+import { UsuarioUtils } from 'src/app/utils/usuario-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class ProfissionalService {
 
   constructor(private apollo: Apollo) {}
 
-  async setAndGetProfissionalById(
+  async getAndSetProfissionalById(
     idProfissional: number
   ): Promise<Profissional> {
     let result = await this.apollo
@@ -34,9 +35,25 @@ export class ProfissionalService {
 
     this.usuario = new Profissional(
       idProfissional,
-      result.data.PessoaFisica[0].username,
-      result.data.PessoaFisica[0].nome,
-      result.data.PessoaFisica[0].docFiscal
+      result.data.PessoaFisica_by_pk.username,
+      result.data.PessoaFisica_by_pk.nome,
+      result.data.PessoaFisica_by_pk.docFiscal
+    );
+
+    this.usuario.rg = result.data.PessoaFisica_by_pk.rg;
+    this.usuario.email = result.data.PessoaFisica_by_pk.email;
+    this.usuario.foneUm = result.data.PessoaFisica_by_pk.foneUm;
+    this.usuario.endCEP = result.data.PessoaFisica_by_pk.endCEP;
+    this.usuario.endLogradouro = result.data.PessoaFisica_by_pk.endLogradouro;
+    this.usuario.endNumero = result.data.PessoaFisica_by_pk.endNumero;
+    this.usuario.endBairro = result.data.PessoaFisica_by_pk.endBairro;
+    this.usuario.endCidade = result.data.PessoaFisica_by_pk.endCidade;
+    this.usuario.endEstado = result.data.PessoaFisica_by_pk.endEstado;
+    this.usuario.endPais = result.data.PessoaFisica_by_pk.endPais;
+    // this.usuario.dataDeNascimento =
+    // result.data.PessoaFisica_by_pk.dataDeNascimento;
+    this.usuario.sexo = UsuarioUtils.getSexoByCod(
+      result.data.PessoaFisica_by_pk.sexo
     );
 
     return this.usuario;
