@@ -24,9 +24,6 @@ export class ConfigDadosPage implements OnInit {
   pessoaFisicaService: PacienteService | ProfissionalService;
   pessoaFisica: PessoaFisica;
 
-  dadosProfissao: DadosDeProfissao[] = [];
-  dadosBancarios: DadosBancarios[] = [];
-
   constructor(public usuarioService: UsuarioService, private apollo: Apollo) {}
 
   async ngOnInit() {
@@ -45,9 +42,6 @@ export class ConfigDadosPage implements OnInit {
     }
 
     await this.getConfigDados(this.pessoaFisica.id);
-    console.log({
-      pessoFisica: this.pessoaFisica,
-    });
   }
 
   async getConfigDados(idPessoa: number) {
@@ -61,7 +55,7 @@ export class ConfigDadosPage implements OnInit {
       .valueChanges.pipe(first())
       .toPromise();
 
-    console.log({ result });
+    console.log({ dadosConfig: result });
 
     this.pessoaFisica.dadosProfissao =
       this.usuarioService.getDadosDeProfissaoFromResult(result, idPessoa);

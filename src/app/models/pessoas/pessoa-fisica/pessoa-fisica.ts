@@ -1,12 +1,16 @@
 import { SEXO, STATUS_ENTIDADE } from 'src/app/constants';
 import { Pessoa } from '../pessoa';
 import { Dado } from '../dado';
+import { DadosDeProfissao } from './dados-profissao';
+import { DadosBancarios } from './dados-bancarios';
+import { DadosDePlanoDeSaude } from './dados-plano-saude';
+import { DadosDeDependente } from './dados-dependente';
 
 export abstract class PessoaFisica extends Pessoa {
-  public dadosProfissao: Dado[];
-  public dadosBancarios: Dado[];
-  public dadosPlanoSaude: Dado[];
-  public dadosDeDependente: Dado[];
+  public dadosProfissao: DadosDeProfissao[];
+  public dadosBancarios: DadosBancarios[];
+  public dadosPlanoSaude: DadosDePlanoDeSaude[];
+  public dadosDeDependente: DadosDeDependente[];
 
   public rg: string;
   public email: string;

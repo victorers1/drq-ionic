@@ -59,9 +59,9 @@ export interface IEspecialidade {
 }
 export interface IDadosDeProfissao {
   id: number;
-  profissao: IProfissao;
+  Profissao: IProfissao;
   grauDeInstrucao: string;
-  especialidade: IEspecialidade;
+  Especialidade: IEspecialidade;
   conselhoDeClasse: IConselhoDeClasse;
 }
 

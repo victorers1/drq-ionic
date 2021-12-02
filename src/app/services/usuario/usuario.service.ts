@@ -47,7 +47,7 @@ export class UsuarioService {
     return result.data.DadosDeProfissao.map<DadosDeProfissao>((dado) => {
       let dadoDeProfissao = new DadosDeProfissao(
         idPessoa,
-        new Profissao(dado.profissao.id, dado.profissao.nome)
+        new Profissao(dado.Profissao.id, dado.Profissao.nome)
       );
       dadoDeProfissao.conselhoDeClasse =
         dado.conselhoDeClasse != null
@@ -59,8 +59,8 @@ export class UsuarioService {
           : null;
 
       dadoDeProfissao.especialidade =
-        dado.especialidade != null
-          ? new Especialidade(dado.especialidade.id, dado.especialidade.nome)
+        dado.Especialidade != null
+          ? new Especialidade(dado.Especialidade.id, dado.Especialidade.nome)
           : null;
       dadoDeProfissao.grauDeInstrucao = dado.grauDeInstrucao;
 

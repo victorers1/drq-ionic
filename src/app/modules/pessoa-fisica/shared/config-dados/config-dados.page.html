@@ -26,14 +26,15 @@
     </ion-item-divider>
 
     <ion-item
-      *ngFor="let dp of dadosProfissao; let i=index"
+      *ngFor="let dp of pessoaFisica.dadosProfissao; let i=index"
       button
       detail
       [routerLink]="['./' + routes.EDIT_DADOS_PROFISSIONAIS, i]"
     >
       <ion-label>
-        <h2>{{dp.profissao}}</h2>
-        <h2>{{dp.grauDeInstrucao}}</h2>
+        <h2>{{dp.profissao.nome}}</h2>
+        <p>{{dp.especialidade}}</p>
+        <p>{{dp.grauDeInstrucao}}</p>
         <p>{{dp.isPublico ? 'público': 'privado'}}</p>
       </ion-label>
     </ion-item>
@@ -47,14 +48,14 @@
     </ion-item-divider>
 
     <ion-item
-      *ngFor="let db of dadosBancarios; let i=index"
+      *ngFor="let db of pessoaFisica.dadosBancarios; let i=index"
       button
       detail
       [routerLink]="['./' + routes.EDIT_DADOS_BANCARIOS, i]"
     >
       <ion-label>
         <h2>{{db.nome}}</h2>
-        <h2>{{db.codigoDeOperacao}}</h2>
+        <p>{{db.codigoDaConta}}</p>
         <p>{{db.isPublico ? 'público': 'privado'}}</p>
       </ion-label>
     </ion-item>
@@ -67,12 +68,20 @@
       </ion-button>
     </ion-item-divider>
 
-    <ion-item button detail routerLink="./{{routes.EDIT_DADOS_PLANO_SAUDE}}">
+    <ion-item
+      *ngFor="let dps of pessoaFisica.dadosPlanoSaude; let i=index"
+      button
+      detail
+      [routerLink]="['./' + routes.EDIT_DADOS_PLANO_SAUDE, i]"
+    >
       <ion-label>
-        <h2>Hapvida</h2>
-        <p>público</p>
+        <h2>{{dps.nome}}</h2>
+        <p>{{dps.registro}}</p>
+        <p>{{dps.isPublico ? 'público': 'privado'}}</p>
       </ion-label>
     </ion-item>
+
+    <!-- Dados de dependentes -->
 
     <safe-area-bottom></safe-area-bottom>
   </ion-list>
