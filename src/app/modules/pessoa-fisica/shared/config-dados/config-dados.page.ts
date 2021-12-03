@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApolloQueryResult } from '@apollo/client/core/types';
+import { NavController } from '@ionic/angular';
 import { Apollo } from 'apollo-angular';
 import { first } from 'rxjs/operators';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
-import { DadosBancarios } from 'src/app/models/pessoas/pessoa-fisica/dados-bancarios';
-import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
@@ -24,7 +24,12 @@ export class ConfigDadosPage implements OnInit {
   pessoaFisicaService: PacienteService | ProfissionalService;
   pessoaFisica: PessoaFisica;
 
-  constructor(public usuarioService: UsuarioService, private apollo: Apollo) {}
+  constructor(
+    public usuarioService: UsuarioService,
+    private apollo: Apollo,
+    private navCtrl: NavController,
+    private route: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
     switch (this.usuarioService.tipoUsuario) {
@@ -64,9 +69,21 @@ export class ConfigDadosPage implements OnInit {
     this.pessoaFisica.dadosDeDependente = [];
   }
 
-  createDadoProfissional() {}
+  createDadoProfissional() {
+    this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PROFISSIONAIS], {
+      relativeTo: this.route,
+    });
+  }
 
-  createDadoBancario() {}
+  createDadoBancario() {
+    this.navCtrl.navigateForward([this.routes.EDIT_DADOS_BANCARIOS], {
+      relativeTo: this.route,
+    });
+  }
 
-  createDadoPlanoSaude() {}
+  createDadoPlanoSaude() {
+    this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PLANO_SAUDE], {
+      relativeTo: this.route,
+    });
+  }
 }

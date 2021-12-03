@@ -19,10 +19,7 @@ const routes: Routes = [
       ),
   },
   {
-    path:
-      drqRoutes.EDIT_DADOS_PROFISSIONAIS +
-      '/:' +
-      drqRoutes.PARAM_INDEX_DADO_PROFISSAO,
+    path: drqRoutes.EDIT_DADOS_PROFISSIONAIS,
     children: [
       {
         path: '',
@@ -32,10 +29,7 @@ const routes: Routes = [
           ),
       },
       {
-        path:
-          drqRoutes.EDIT_DADOS_EXPEDIENTE +
-          '/:' +
-          drqRoutes.PARAM_INDEX_DADO_EXPEDIENTE,
+        path: drqRoutes.EDIT_DADOS_EXPEDIENTE,
         loadChildren: () =>
           import('../edit-dados-expediente/dados-expediente.module').then(
             (m) => m.DadosExpedientePageModule
@@ -44,20 +38,14 @@ const routes: Routes = [
     ],
   },
   {
-    path:
-      drqRoutes.EDIT_DADOS_BANCARIOS +
-      '/:' +
-      drqRoutes.PARAM_INDEX_DADO_BANCARIO,
+    path: drqRoutes.EDIT_DADOS_BANCARIOS,
     loadChildren: () =>
       import('../edit-dados-bancarios/dados-bancarios.module').then(
         (m) => m.DadosBancariosPageModule
       ),
   },
   {
-    path:
-      drqRoutes.EDIT_DADOS_PLANO_SAUDE +
-      '/:' +
-      drqRoutes.PARAM_INDEX_DADO_PLANO_SAUDE,
+    path: drqRoutes.EDIT_DADOS_PLANO_SAUDE,
     loadChildren: () =>
       import('../edit-dados-plano-saude/dados-plano-saude.module').then(
         (m) => m.DadosPlanoSaudePageModule

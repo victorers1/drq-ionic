@@ -3,55 +3,59 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Público</ion-label>
+    <ion-toggle></ion-toggle>
+  </ion-item>
 
-  <form *ngIf="dadosProfissaoForm" [formGroup]="dadosProfissaoForm" (ngSubmit)="saveDadosProfissionais()">
+  <ion-item button detail>
+    <ion-label>Profissão: {{nomeProfissao}}</ion-label>
+  </ion-item>
 
-    <ion-item>
-      <ion-label>Público</ion-label>
-      <ion-toggle></ion-toggle>
-    </ion-item>
-
-    <ion-item>
+  <!-- <ion-item button detail>
       <ion-label position="floating">Profissao</ion-label>
       <ion-input formControlName="profissao" type="text"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item>
+  <ion-item button detail>
+    <ion-label>Especialidade: {{nomeEspecialidade}}</ion-label>
+  </ion-item>
+
+  <!-- <ion-item>
       <ion-label position="floating">Especialidade</ion-label>
       <ion-input formControlName="especialidade" type="text"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item>
-      <ion-label position="floating">Grau de Instrução</ion-label>
-      <ion-input formControlName="grauDeInstrucao" type="text"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label position="floating">Grau de Instrução</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Conselho de Classe</ion-label>
-      <ion-input formControlName="conselhoDeClasse" type="text"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label position="floating">Conselho de Classe</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
 
-    <ion-item-divider>
-      <ion-label>Expedientes</ion-label>
-    </ion-item-divider>
+  <ion-item-divider>
+    <ion-label>Expedientes</ion-label>
+  </ion-item-divider>
 
-    <ion-item *ngFor="let e of dadoProfissao.expedientes; let i=index" button detail
-      [routerLink]="['./' + routes.EDIT_DADOS_EXPEDIENTE, i]">
-      <ion-label>
-        <h2>{{e.getDiaSemanaFormatado()}}</h2>
-        <h2>Por {{e.recorrencia}} dias</h2>
-        <p>{{e.getInicioFormatado()}} às {{e.getTerminoFormatado()}}</p>
-      </ion-label>
-    </ion-item>
+  <ion-item
+    *ngFor="let e of []; let i=index"
+    button
+    detail
+    [routerLink]="['./' + routes.EDIT_DADOS_EXPEDIENTE, i]"
+  >
+    <ion-label>
+      <h2>{{e.getDiaSemanaFormatado()}}</h2>
+      <h2>Por {{e.recorrencia}} dias</h2>
+      <p>{{e.getInicioFormatado()}} às {{e.getTerminoFormatado()}}</p>
+    </ion-label>
+  </ion-item>
 
-    <br />
+  <br />
 
-    <ion-button expand="block" color="primary" type="submit">
-      Salvar
-    </ion-button>
-
-  </form>
+  <ion-button expand="block" color="primary"> Salvar </ion-button>
 
   <safe-area-bottom></safe-area-bottom>
-
 </ion-content>

@@ -59,6 +59,13 @@ const routes: Routes = [
         (m) => m.SelectHorarioPageModule
       ),
   },
+  {
+    path: 'select-profissao',
+    loadChildren: () =>
+      import('./modules/shared/select-profissao/select-profissao.module').then(
+        (m) => m.SelectProfissaoPageModule
+      ),
+  },
 ];
 
 @NgModule({

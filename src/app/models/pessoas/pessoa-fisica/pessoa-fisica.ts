@@ -1,6 +1,5 @@
 import { SEXO, STATUS_ENTIDADE } from 'src/app/constants';
 import { Pessoa } from '../pessoa';
-import { Dado } from '../dado';
 import { DadosDeProfissao } from './dados-profissao';
 import { DadosBancarios } from './dados-bancarios';
 import { DadosDePlanoDeSaude } from './dados-plano-saude';

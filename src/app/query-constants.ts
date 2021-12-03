@@ -160,3 +160,16 @@ export const CONFIG_DADOS_QUERY = gql`
     }
   }
 `;
+
+export interface IListaProfissao {
+  dadosGeral_Profissao: IProfissao[];
+}
+
+export const LISTA_PROFISSOES = gql`
+  query MyQuery {
+    dadosGeral_Profissao {
+      id
+      nome
+    }
+  }
+`;

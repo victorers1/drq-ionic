@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ModalOptions } from '@ionic/angular';
 import { SelectHorarioPage } from 'src/app/modules/shared/select-horario/select-horario.page';
 import { SelectPlanoSaudePage } from 'src/app/modules/shared/select-plano-saude/select-plano-saude.page';
+import { SelectProfissaoPage } from 'src/app/modules/shared/select-profissao/select-profissao.page';
 import { SelectProfissionalPage } from 'src/app/modules/shared/select-profissional/select-profissional.page';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalService {
+  constructor(public modalCtrl: ModalController) {}
 
-  constructor(public modalCtrl: ModalController) { }
-
-  async selecionarPlanoSaude(componentProps?: any) {
+  async selecionarPlanoSaude(componentProps?: ModalOptions) {
     const modal = await this.modalCtrl.create({
       component: SelectPlanoSaudePage,
       showBackdrop: true,
@@ -22,7 +22,7 @@ export class ModalService {
     return await modal.present();
   }
 
-  async selecionarHorario(componentProps?: any) {
+  async selecionarHorario(componentProps?: ModalOptions) {
     const modal = await this.modalCtrl.create({
       component: SelectHorarioPage,
       showBackdrop: true,
@@ -33,7 +33,7 @@ export class ModalService {
     return await modal.present();
   }
 
-  async selecionarProfissional(componentProps?: any) {
+  async selecionarProfissional(componentProps?: ModalOptions) {
     const modal = await this.modalCtrl.create({
       component: SelectProfissionalPage,
       showBackdrop: true,
@@ -42,5 +42,16 @@ export class ModalService {
       componentProps: componentProps,
     });
     return await modal.present();
+  }
+
+  async selecionarProfissao(componentProps?: ModalOptions) {
+    const modal = await this.modalCtrl.create({
+      component: SelectProfissaoPage,
+      showBackdrop: true,
+      backdropDismiss: true,
+      swipeToClose: true,
+      componentProps: componentProps,
+    });
+    return modal;
   }
 }
