@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { LoadingController, LoadingOptions } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
-
-  constructor(public loadingCtrl: LoadingController) { }
+  constructor(private loadingCtrl: LoadingController) {}
 
   /**
    * Para apresentar o componente: `await loading.present();`
    * Para fechá-lo: `load.dismiss();`
-   * 
+   *
    * Ao ser fechado, podemos ver o resultado:
    * ```
    * const { role, data } = await loading.onDidDismiss();

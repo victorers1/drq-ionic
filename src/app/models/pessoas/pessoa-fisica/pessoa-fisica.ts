@@ -29,7 +29,7 @@ export abstract class PessoaFisica extends Pessoa {
     username: string,
     nome: string,
     docFiscal: string,
-    status?: STATUS_ENTIDADE
+    status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO
   ) {
     super(id, username, nome, docFiscal, status);
   }

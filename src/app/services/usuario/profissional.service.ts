@@ -3,10 +3,10 @@ import {
   IResponseProfissionalHome,
   PROFISSIONAL_HOME_QUERY,
 } from 'src/app/query-constants';
-import { Apollo } from 'apollo-angular';
-import { first } from 'rxjs/operators';
+
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 import { UsuarioUtils } from 'src/app/utils/usuario-utils';
+import { ApolloService } from '../apollo-service/apollo-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,21 +14,27 @@ import { UsuarioUtils } from 'src/app/utils/usuario-utils';
 export class ProfissionalService {
   usuario: Profissional;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apolloService: ApolloService) {}
 
   async getAndSetProfissionalById(
     idProfissional: number
   ): Promise<Profissional> {
-    let result = await this.apollo
-      .watchQuery<IResponseProfissionalHome>({
-        query: PROFISSIONAL_HOME_QUERY,
-        variables: {
-          id: idProfissional,
-        },
-      })
-      .valueChanges.pipe(first())
-      .toPromise();
+    let result = await this.apolloService.query<IResponseProfissionalHome>({
+      query: PROFISSIONAL_HOME_QUERY,
+      variables: {
+        id: idProfissional,
+      },
+    });
 
+    /**
+     * NOTA: pode-se usar o FACTORY METHOD para construir Profissionais e Pacientes sem duplicação de código
+     * Fábrica Abstrata = Fábrica de Pessoas
+     * Fábricas concretas = [Fábrica de profissionais, Fábrica de pacientes]
+     * Operação em comum: carregar dados nos atributos de pessoa física
+     *
+     * Bibliografia:
+     * * https://refactoring.guru/pt-br/design-patterns/factory-method/typescript/example
+     */
     this.usuario = new Profissional(
       idProfissional,
       result.data.PessoaFisica_by_pk.username,

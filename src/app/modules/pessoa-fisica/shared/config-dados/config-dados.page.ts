@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApolloQueryResult } from '@apollo/client/core/types';
 import { NavController } from '@ionic/angular';
-import { Apollo } from 'apollo-angular';
-import { first } from 'rxjs/operators';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 import { CONFIG_DADOS_QUERY, IConfigDados } from 'src/app/query-constants';
+import { ApolloService } from 'src/app/services/apollo-service/apollo-service.service';
 import { PacienteService } from 'src/app/services/usuario/paciente.service';
 import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -26,9 +25,9 @@ export class ConfigDadosPage implements OnInit {
 
   constructor(
     public usuarioService: UsuarioService,
-    private apollo: Apollo,
     private navCtrl: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private apolloService: ApolloService
   ) {}
 
   async ngOnInit() {
@@ -50,15 +49,13 @@ export class ConfigDadosPage implements OnInit {
   }
 
   async getConfigDados(idPessoa: number) {
-    let result: ApolloQueryResult<IConfigDados> = await this.apollo
-      .watchQuery<IConfigDados>({
+    const result: ApolloQueryResult<IConfigDados> =
+      await this.apolloService.query<IConfigDados>({
         query: CONFIG_DADOS_QUERY,
         variables: {
           id: idPessoa,
         },
-      })
-      .valueChanges.pipe(first())
-      .toPromise();
+      });
 
     console.log({ dadosConfig: result });
 
