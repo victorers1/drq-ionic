@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { Profissao } from 'src/app/models/geral/profissao';
-import { IListaProfissao, LISTA_PROFISSOES } from 'src/app/query-constants';
-import { ApolloService } from 'src/app/services/apollo-service/apollo-service.service';
+import { IListaProfissao, LISTA_PROFISSOES } from 'src/app/apollo-constants';
+import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 
 @Component({
   selector: 'app-select-profissao',

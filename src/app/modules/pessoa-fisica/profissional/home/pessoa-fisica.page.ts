@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
@@ -17,7 +16,7 @@ export class PessoaFisicaPage implements OnInit {
   profissional: Profissional;
 
   constructor(
-    public navCtrl: NavController,
+    private navCtrl: NavController,
     private usuarioService: UsuarioService
   ) {}
 
@@ -26,7 +25,7 @@ export class PessoaFisicaPage implements OnInit {
     this.usuarioService.tipoUsuario = TIPO_USUARIO.PROFISSIONAL;
     this.profissionalService = this.usuarioService.get() as ProfissionalService;
     this.profissional =
-      await this.profissionalService.getAndSetProfissionalById(5);
+      await this.profissionalService.setAndGetProfissionalById(5);
   }
 
   logOut(): void {

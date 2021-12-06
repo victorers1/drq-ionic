@@ -12,6 +12,7 @@ import { RequisicaoParaDadosDePlanoDeSaude } from 'src/app/models/pessoas/pessoa
 import { RequisicaoParaDadosDeProfissao } from 'src/app/models/pessoas/pessoa-juridica/requisicao-dados-profissao';
 import { Unidade } from 'src/app/models/pessoas/unidade';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
+import { UsuarioService } from './usuario.service';
 @Injectable({
   providedIn: 'root',
 })

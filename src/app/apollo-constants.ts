@@ -10,6 +10,7 @@ export interface IPessoaFisicaHome {
   foneUm: string;
   endCEP: string;
   endLogradouro: string;
+  endComplemento: string;
   endNumero: string;
   endBairro: string;
   endCidade: string;
@@ -24,21 +25,22 @@ export interface IResponseProfissionalHome {
 export const PROFISSIONAL_HOME_QUERY = gql`
   query MyQuery($id: bigint = "") {
     PessoaFisica_by_pk(id: $id) {
-      username
       nome
+      username
+      email
       docFiscal
       rg
-      email
-      foneUm
-      endCEP
+      sexo
       endLogradouro
       endNumero
+      endComplemento
+      endCEP
       endBairro
       endCidade
       endEstado
       endPais
+      foneUm
       dataDeNascimento
-      sexo
     }
   }
 `;
@@ -64,7 +66,6 @@ export interface IDadosDeProfissao {
   Especialidade: IEspecialidade;
   conselhoDeClasse: IConselhoDeClasse;
 }
-
 export interface IDadosBancarios {
   id: number;
   nome: string;
@@ -73,35 +74,30 @@ export interface IDadosBancarios {
   codigoDeOperacao: string;
   codigoDaAgencia: string;
 }
-
 export interface IDadosDePlanoDeSaude {
   id: number;
   nome: string;
   contrato: string;
   registro: string;
 }
-
 export interface IDadosDeDependente {
   id: number;
   nome: string;
   docFiscal: string;
   dataDeNascimento: number;
 }
-
 export interface IConfigDados {
   DadosDeProfissao: IDadosDeProfissao[];
   DadosBancarios: IDadosBancarios[];
   DadosDePlanoDeSaude: IDadosDePlanoDeSaude[];
   DadosDeDependente: IDadosDeDependente[];
 }
-
 export interface IExpedienteDePessoaFisica {
   diaDaSemana: WeekDay;
   recorrencia: number;
   inicio: Time;
   termino: Time;
 }
-
 export interface IDadosProfissao {
   profissao: IProfissao;
 }
@@ -164,12 +160,73 @@ export const CONFIG_DADOS_QUERY = gql`
 export interface IListaProfissao {
   dadosGeral_Profissao: IProfissao[];
 }
-
 export const LISTA_PROFISSOES = gql`
   query MyQuery {
     dadosGeral_Profissao {
       id
       nome
+    }
+  }
+`;
+
+export interface IUpdatePessoaFisica {
+  update_PessoaFisica_by_pk: IPessoaFisicaHome;
+}
+export const EDIT_DADOS_PESSOAIS_MUTATION = gql`
+  mutation MyMutation(
+    $id: bigint = ""
+    $nome: String = ""
+    $username: String = ""
+    $email: String = ""
+    $docFiscal: String = ""
+    $rg: String = ""
+    $sexo: Int = ""
+    $endLogradouro: String = ""
+    $endNumero: String = ""
+    $endComplemento: String = ""
+    $endCEP: String = ""
+    $endBairro: String = ""
+    $endCidade: String = ""
+    $endEstado: String = ""
+    $foneUm: String = ""
+    $dataDeNascimento: bigint = ""
+  ) {
+    update_PessoaFisica_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        dataDeNascimento: $dataDeNascimento
+        docFiscal: $docFiscal
+        email: $email
+        endBairro: $endBairro
+        endCEP: $endCEP
+        endCidade: $endCidade
+        endComplemento: $endComplemento
+        endEstado: $endEstado
+        endLogradouro: $endLogradouro
+        endNumero: $endNumero
+        foneUm: $foneUm
+        nome: $nome
+        rg: $rg
+        sexo: $sexo
+        username: $username
+      }
+    ) {
+      nome
+      username
+      email
+      docFiscal
+      rg
+      sexo
+      endLogradouro
+      endNumero
+      endComplemento
+      endCEP
+      endBairro
+      endCidade
+      endEstado
+      endPais
+      foneUm
+      dataDeNascimento
     }
   }
 `;

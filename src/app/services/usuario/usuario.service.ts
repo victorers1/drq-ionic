@@ -6,7 +6,7 @@ import { ConselhoDeClasse } from 'src/app/models/geral/conselho_de_classe';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
-import { IConfigDados } from 'src/app/query-constants';
+import { IConfigDados } from 'src/app/apollo-constants';
 import { PacienteService } from './paciente.service';
 import { PessoaJuridicaService } from './pessoa-juridica.service';
 import { ProfissionalService } from './profissional.service';
@@ -20,10 +20,9 @@ export class UsuarioService {
   constructor(
     private pacienteService: PacienteService,
     private profissionalService: ProfissionalService,
-    private pessoaJuridicaService: PessoaJuridicaService,
-    private apollo: Apollo
+    private pessoaJuridicaService: PessoaJuridicaService
   ) {
-    // ! Setar tipousuario
+    // ! Setar tipoUsuario
   }
 
   get() {

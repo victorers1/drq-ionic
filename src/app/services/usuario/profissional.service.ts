@@ -2,21 +2,23 @@ import { Injectable } from '@angular/core';
 import {
   IResponseProfissionalHome,
   PROFISSIONAL_HOME_QUERY,
-} from 'src/app/query-constants';
+} from 'src/app/apollo-constants';
+import { ProfissionalFactory } from 'src/app/models/factories/pessoa-fisica/profissional-factory';
 
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
 import { UsuarioUtils } from 'src/app/utils/usuario-utils';
-import { ApolloService } from '../apollo-service/apollo-service.service';
+import { ApolloService } from '../apollo/apollo-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfissionalService {
   usuario: Profissional;
+  profissionalFactory = new ProfissionalFactory();
 
   constructor(private apolloService: ApolloService) {}
 
-  async getAndSetProfissionalById(
+  async setAndGetProfissionalById(
     idProfissional: number
   ): Promise<Profissional> {
     let result = await this.apolloService.query<IResponseProfissionalHome>({
@@ -26,36 +28,30 @@ export class ProfissionalService {
       },
     });
 
-    /**
-     * NOTA: pode-se usar o FACTORY METHOD para construir Profissionais e Pacientes sem duplicação de código
-     * Fábrica Abstrata = Fábrica de Pessoas
-     * Fábricas concretas = [Fábrica de profissionais, Fábrica de pacientes]
-     * Operação em comum: carregar dados nos atributos de pessoa física
-     *
-     * Bibliografia:
-     * * https://refactoring.guru/pt-br/design-patterns/factory-method/typescript/example
-     */
-    this.usuario = new Profissional(
-      idProfissional,
-      result.data.PessoaFisica_by_pk.username,
-      result.data.PessoaFisica_by_pk.nome,
-      result.data.PessoaFisica_by_pk.docFiscal
-    );
-
-    this.usuario.rg = result.data.PessoaFisica_by_pk.rg;
-    this.usuario.email = result.data.PessoaFisica_by_pk.email;
-    this.usuario.foneUm = result.data.PessoaFisica_by_pk.foneUm;
-    this.usuario.endCEP = result.data.PessoaFisica_by_pk.endCEP;
-    this.usuario.endLogradouro = result.data.PessoaFisica_by_pk.endLogradouro;
-    this.usuario.endNumero = result.data.PessoaFisica_by_pk.endNumero;
-    this.usuario.endBairro = result.data.PessoaFisica_by_pk.endBairro;
-    this.usuario.endCidade = result.data.PessoaFisica_by_pk.endCidade;
-    this.usuario.endEstado = result.data.PessoaFisica_by_pk.endEstado;
-    this.usuario.endPais = result.data.PessoaFisica_by_pk.endPais;
-    // this.usuario.dataDeNascimento =
-    // result.data.PessoaFisica_by_pk.dataDeNascimento;
-    this.usuario.sexo = UsuarioUtils.getSexoByCod(
-      result.data.PessoaFisica_by_pk.sexo
+    this.usuario = this.profissionalFactory.criar(
+      {
+        id: idProfissional,
+        username: result.data.PessoaFisica_by_pk.username,
+        nome: result.data.PessoaFisica_by_pk.nome,
+        docFiscal: result.data.PessoaFisica_by_pk.docFiscal,
+      },
+      {
+        rg: result.data.PessoaFisica_by_pk.rg,
+        email: result.data.PessoaFisica_by_pk.email,
+        foneUm: result.data.PessoaFisica_by_pk.foneUm,
+        endCEP: result.data.PessoaFisica_by_pk.endCEP,
+        endLogradouro: result.data.PessoaFisica_by_pk.endLogradouro,
+        endComplemento: result.data.PessoaFisica_by_pk.endComplemento,
+        endNumero: result.data.PessoaFisica_by_pk.endNumero,
+        endBairro: result.data.PessoaFisica_by_pk.endBairro,
+        endCidade: result.data.PessoaFisica_by_pk.endCidade,
+        endEstado: result.data.PessoaFisica_by_pk.endEstado,
+        endPais: result.data.PessoaFisica_by_pk.endPais,
+        dataDeNascimento: new Date(
+          result.data.PessoaFisica_by_pk.dataDeNascimento * 1e3
+        ),
+        sexo: UsuarioUtils.getSexoByCod(result.data.PessoaFisica_by_pk.sexo),
+      }
     );
 
     return this.usuario;

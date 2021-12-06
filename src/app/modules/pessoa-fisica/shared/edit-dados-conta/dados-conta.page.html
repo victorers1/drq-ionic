@@ -3,12 +3,15 @@
 </ion-header>
 
 <ion-content>
-
   <form [formGroup]="dadosContaForm" (ngSubmit)="saveDadosConta()">
-
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input formControlName="username" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -22,8 +25,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Logradouro</ion-label>
-      <ion-input formControlName="endLogradouro" type="text"></ion-input>
+      <ion-label position="floating">RG</ion-label>
+      <ion-input formControlName="rg" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -32,8 +35,38 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">RG</ion-label>
-      <ion-input formControlName="rg" type="text"></ion-input>
+      <ion-label position="floating">Logradouro</ion-label>
+      <ion-input formControlName="endLogradouro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Numero</ion-label>
+      <ion-input formControlName="endNumero" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Complemento</ion-label>
+      <ion-input formControlName="endComplemento" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CEP</ion-label>
+      <ion-input formControlName="endCEP" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Bairro</ion-label>
+      <ion-input formControlName="endBairro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input formControlName="foneUm" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de nascimento</ion-label>
+      <ion-input formControlName="dataDeNascimento" type="text"></ion-input>
     </ion-item>
 
     <br />
@@ -41,7 +74,5 @@
     <ion-button expand="block" color="primary" type="submit">
       Salvar
     </ion-button>
-
   </form>
-
 </ion-content>

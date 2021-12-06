@@ -57,6 +57,7 @@ export enum STATUS_REQUISICAO_HTTP {
   CONCLUIDO,
   ERRO,
 }
+
 export enum TIPO_PESSOA_JURIDICA {
   MATRIZ = 0,
   FILIAL = 1,
@@ -75,8 +76,8 @@ export enum TIPO_USUARIO {
 }
 
 export enum SEXO {
-  MASCULINO = 1,
-  FEMININO = 2,
-  OUTRO = 3,
-  PREFERE_NAO_DIZER = 4,
+  MASCULINO = 0,
+  FEMININO = 1,
+  OUTRO = 2,
+  PREFERE_NAO_DIZER = 3,
 }
