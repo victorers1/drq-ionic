@@ -11,10 +11,21 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
 
-      <br />
+      <safe-area-bottom [spacing]="2"></safe-area-bottom>
 
       <ion-button expand="block" color="primary" type="submit" shape="round">
         ENTRAR
+      </ion-button>
+
+      <safe-area-bottom [spacing]="1"></safe-area-bottom>
+
+      <ion-button
+        expand="block"
+        color="primary"
+        fill="clear"
+        (click)="criarConta()"
+      >
+        Criar conta
       </ion-button>
     </form>
   </div>

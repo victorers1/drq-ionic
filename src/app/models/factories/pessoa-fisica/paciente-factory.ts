@@ -4,6 +4,6 @@ import { IDadosIniciais, PessoaFisicaFactory } from './pessoa-fisica-factory';
 
 export class PacienteFactory extends PessoaFisicaFactory {
   public factoryMethod(dados: IDadosIniciais): PessoaFisica {
-    return new Paciente(dados.id, dados.username, dados.nome, dados.docFiscal);
+    return new Paciente(dados.id, dados.email, dados.nome, dados.docFiscal);
   }
 }

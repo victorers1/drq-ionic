@@ -18,6 +18,13 @@ const routes: Routes = [
         (m) => m.SelectTipoUsuarioPageModule
       ),
   },
+  {
+    path: drqRoutes.CADASTRO_PESSOA_FISICA,
+    loadChildren: () =>
+      import(
+        '../cadastro-pessoa-fisica/cadastro-pessoa-fisica-routing.module'
+      ).then((m) => m.CadastroPessoaFisicaPageRoutingModule),
+  },
 ];
 
 @NgModule({

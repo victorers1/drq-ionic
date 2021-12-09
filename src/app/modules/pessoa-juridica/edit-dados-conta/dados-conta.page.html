@@ -3,12 +3,10 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-
     <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" value="CSSII"></ion-input>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" value="CSSII@gmail.com"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -28,12 +26,20 @@
 
     <ion-item>
       <ion-label position="floating">Descrição</ion-label>
-      <ion-input type="text" value="Melhor Centro de Saúde do Soledade II"></ion-input>
+      <ion-input
+        type="text"
+        value="Melhor Centro de Saúde do Soledade II"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Tipo</ion-label>
-      <ion-select value="matriz" multiple="false" placeholder="Tipo" interface="popover">
+      <ion-select
+        value="matriz"
+        multiple="false"
+        placeholder="Tipo"
+        interface="popover"
+      >
         <ion-select-option value="matriz">Matriz</ion-select-option>
         <ion-select-option value="filial">Filial</ion-select-option>
       </ion-select>
@@ -44,7 +50,5 @@
     <ion-button expand="block" color="primary" type="submit">
       Salvar
     </ion-button>
-
   </ion-list>
-
 </ion-content>

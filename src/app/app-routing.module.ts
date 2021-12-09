@@ -66,6 +66,10 @@ const routes: Routes = [
         (m) => m.SelectProfissaoPageModule
       ),
   },
+  {
+    path: 'cadastro-pessoa-fisica',
+    loadChildren: () => import('./modules/autenticacao/cadastro-pessoa-fisica/cadastro-pessoa-fisica.module').then( m => m.CadastroPessoaFisicaPageModule)
+  },
 ];
 
 @NgModule({

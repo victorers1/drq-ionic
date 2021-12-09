@@ -1,5 +1,6 @@
 export class DRQRoutes {
   LOGIN = 'login';
+  CADASTRO_PESSOA_FISICA = 'cadastro-pessoa-fisica';
   SELECT_TIPO_USUARIO = 'select-tipo-usuario';
   PESSOA_FISICA_PACIENTE = 'pessoa-fisica-paciente';
   PESSOA_FISICA_PROFISSIONAL = 'pessoa-fisica-profissional';
@@ -31,11 +32,6 @@ export class DRQRoutes {
   PARAM_INDEX_DADO_BANCARIO = 'index_dado_bancario';
   PARAM_INDEX_DADO_PLANO_SAUDE = 'index_dado_plano_saude';
   PARAM_REQUISICAO_DADO = 'requisicao_dado';
-}
-
-export class URLs {
-  BASE_URL_PROD = 'google.com';
-  BASE_URL_DEV = 'google.com';
 }
 
 export enum STATUS_REQUISICAO_DADO {

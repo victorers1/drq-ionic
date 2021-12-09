@@ -29,7 +29,7 @@ export class PessoaFisicaPage implements OnInit {
   }
 
   logOut(): void {
-    console.log(`${this.profissional.username} is loging out`);
+    console.log(`${this.profissional.email} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
 }

@@ -20,10 +20,12 @@ export class ApolloService {
   ): Promise<ApolloQueryResult<TData>> {
     let loading = await this.loadService.carregando();
     loading.present();
+
     const result: ApolloQueryResult<TData> = await this.apollo
       .watchQuery<TData>(options)
       .valueChanges.pipe(first())
       .toPromise();
+      
     loading.dismiss();
     return result;
   }

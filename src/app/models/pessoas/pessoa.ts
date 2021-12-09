@@ -6,7 +6,7 @@ export abstract class Pessoa {
 
   constructor(
     public id: number,
-    public username: string,
+    public email: string,
     public nome: string,
     public docFiscal: string,
     public status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO

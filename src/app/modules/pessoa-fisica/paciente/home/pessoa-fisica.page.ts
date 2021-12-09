@@ -19,7 +19,7 @@ export class PessoaFisicaPage implements OnInit {
   ngOnInit() {}
 
   logOut(): void {
-    console.log(`${this.usuarioService.get().usuario.username} is loging out`);
+    console.log(`${this.usuarioService.get().usuario.email} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
 }

@@ -31,7 +31,7 @@ export class ProfissionalService {
     this.usuario = this.profissionalFactory.criar(
       {
         id: idProfissional,
-        username: result.data.PessoaFisica_by_pk.username,
+        email: result.data.PessoaFisica_by_pk.email,
         nome: result.data.PessoaFisica_by_pk.nome,
         docFiscal: result.data.PessoaFisica_by_pk.docFiscal,
       },

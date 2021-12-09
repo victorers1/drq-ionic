@@ -2,7 +2,6 @@ import { Time, WeekDay } from '@angular/common';
 import { gql } from 'apollo-angular';
 
 export interface IPessoaFisicaHome {
-  username: string;
   nome: string;
   docFiscal: string;
   rg: string;
@@ -26,7 +25,6 @@ export const PROFISSIONAL_HOME_QUERY = gql`
   query MyQuery($id: bigint = "") {
     PessoaFisica_by_pk(id: $id) {
       nome
-      username
       email
       docFiscal
       rg
@@ -176,7 +174,6 @@ export const EDIT_DADOS_PESSOAIS_MUTATION = gql`
   mutation MyMutation(
     $id: bigint = ""
     $nome: String = ""
-    $username: String = ""
     $email: String = ""
     $docFiscal: String = ""
     $rg: String = ""
@@ -208,11 +205,9 @@ export const EDIT_DADOS_PESSOAIS_MUTATION = gql`
         nome: $nome
         rg: $rg
         sexo: $sexo
-        username: $username
       }
     ) {
       nome
-      username
       email
       docFiscal
       rg

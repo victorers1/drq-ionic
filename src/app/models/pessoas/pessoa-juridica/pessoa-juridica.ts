@@ -20,7 +20,7 @@ export class PessoaJuridica extends Pessoa {
 
   constructor(
     id: number,
-    username: string,
+    email: string,
     nome: string,
     docFiscal: string,
     public nomeFantasia: string,
@@ -28,6 +28,6 @@ export class PessoaJuridica extends Pessoa {
     public drqEndpoint: string,
     public tipo: TIPO_PESSOA_JURIDICA
   ) {
-    super(id, username, nome, docFiscal);
+    super(id, email, nome, docFiscal);
   }
 }

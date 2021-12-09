@@ -3,7 +3,7 @@ import { PessoaFisica } from '../../pessoas/pessoa-fisica/pessoa-fisica';
 
 export type IDadosIniciais = {
   id: number;
-  username: string;
+  email: string;
   nome: string;
   docFiscal: string;
 };

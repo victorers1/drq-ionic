@@ -32,7 +32,6 @@ export class DadosContaPage implements OnInit {
 
     this.dadosContaForm = new FormGroup({
       nome: new FormControl(u.nome, Validators.required),
-      username: new FormControl(u.username, Validators.required),
       email: new FormControl(
         u.email,
         Validators.compose([Validators.required, Validators.email])
@@ -64,7 +63,6 @@ export class DadosContaPage implements OnInit {
         variables: {
           id: this.usuarioService.get().usuario.id,
           nome: this.dadosContaForm.get('nome').value,
-          username: this.dadosContaForm.get('username').value,
           email: this.dadosContaForm.get('email').value,
           docFiscal: this.dadosContaForm.get('docFiscal').value,
           rg: this.dadosContaForm.get('rg').value,
@@ -83,14 +81,11 @@ export class DadosContaPage implements OnInit {
         },
       });
 
-      console.log({ saveDadosConta: result });
-
       let pessoaFisicaFactory: PessoaFisicaFactory;
       switch (this.usuarioService.tipoUsuario) {
         case TIPO_USUARIO.PROFISSIONAL:
           pessoaFisicaFactory = new ProfissionalFactory();
           break;
-
         case TIPO_USUARIO.PACIENTE:
         default:
           pessoaFisicaFactory = new PacienteFactory();
@@ -100,7 +95,7 @@ export class DadosContaPage implements OnInit {
         {
           id: this.usuarioService.get().usuario.id,
           nome: result.data.update_PessoaFisica_by_pk.nome,
-          username: result.data.update_PessoaFisica_by_pk.username,
+          email: result.data.update_PessoaFisica_by_pk.email,
           docFiscal: result.data.update_PessoaFisica_by_pk.docFiscal,
         },
         {
@@ -123,6 +118,8 @@ export class DadosContaPage implements OnInit {
           ),
         }
       );
+
+      console.log({ usuarioAtualizado: this.usuarioService.get().usuario });
 
       this.navCtrl.pop();
     } else {

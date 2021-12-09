@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   });
 
   constructor(
-    protected navCtrl: NavController,
+    private navCtrl: NavController,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {}
@@ -44,6 +44,12 @@ export class LoginPage implements OnInit {
     });
 
     this.navCtrl.navigateForward([this.routes.SELECT_TIPO_USUARIO], {
+      relativeTo: this.route,
+    });
+  }
+
+  criarConta() {
+    this.navCtrl.navigateForward([this.routes.CADASTRO_PESSOA_FISICA], {
       relativeTo: this.route,
     });
   }

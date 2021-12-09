@@ -15,7 +15,6 @@ export abstract class PessoaFisica extends Pessoa {
 
   // Dados Adicionais
   public rg: string;
-  public email: string;
   public foneUm: string;
   public endCEP: string;
   public endLogradouro: string;
@@ -30,19 +29,18 @@ export abstract class PessoaFisica extends Pessoa {
 
   constructor(
     id: number,
-    username: string,
+    email: string,
     nome: string,
     docFiscal: string,
     status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO
   ) {
-    super(id, username, nome, docFiscal, status);
+    super(id, email, nome, docFiscal, status);
   }
 
   // * Criar funções específicas nas classes Profissional e Paciente caso os dados forem diferentes
   // No momento os dados são os mesmos
   preencherDados(dados: IDadosAdicionais): void {
     this.rg = dados.rg;
-    this.email = dados.email;
     this.foneUm = dados.foneUm;
     this.endCEP = dados.endCEP;
     this.endLogradouro = dados.endLogradouro;
@@ -52,7 +50,7 @@ export abstract class PessoaFisica extends Pessoa {
     this.endCidade = dados.endCidade;
     this.endEstado = dados.endEstado;
     this.endPais = dados.endPais;
-    // this.dataDeNascimento = dados.dataDeNascimento; // TODO: conversão de number para Date
+    this.dataDeNascimento = dados.dataDeNascimento;
     this.sexo = UsuarioUtils.getSexoByCod(dados.sexo);
   }
 }

@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
   logOut(): void {
-    console.log(`${this.usuarioCtrl.usuario.username} is loging out`);
+    console.log(`${this.usuarioCtrl.usuario.email} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
 }
