@@ -60,15 +60,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'select-profissao',
-    loadChildren: () =>
-      import('./modules/shared/select-profissao/select-profissao.module').then(
-        (m) => m.SelectProfissaoPageModule
-      ),
-  },
-  {
     path: 'cadastro-pessoa-fisica',
-    loadChildren: () => import('./modules/autenticacao/cadastro-pessoa-fisica/cadastro-pessoa-fisica.module').then( m => m.CadastroPessoaFisicaPageModule)
+    loadChildren: () =>
+      import(
+        './modules/autenticacao/cadastro-pessoa-fisica/cadastro-pessoa-fisica.module'
+      ).then((m) => m.CadastroPessoaFisicaPageModule),
   },
 ];
 

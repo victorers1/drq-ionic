@@ -7,7 +7,7 @@ export class DadosBancarios extends Dado {
   public codigoDeOperacao: string;
   public codigoDaAgencia: string;
 
-  constructor(public pessoaFisicaID: number) {
-    super();
+  constructor(public pessoaFisicaID: number, public publico: boolean = false) {
+    super(publico);
   }
 }

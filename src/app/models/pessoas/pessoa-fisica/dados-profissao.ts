@@ -12,7 +12,11 @@ export class DadosDeProfissao extends Dado {
   public especialidade: Especialidade;
   public conselhoDeClasse: ConselhoDeClasse;
 
-  constructor(public pessoaFisicaID: number = 0, public profissao: Profissao) {
-    super();
+  constructor(
+    public pessoaFisicaID: number = 0,
+    public profissao: Profissao,
+    public publico: boolean = false
+  ) {
+    super(publico);
   }
 }

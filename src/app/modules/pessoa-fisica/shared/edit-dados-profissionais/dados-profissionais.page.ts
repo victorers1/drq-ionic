@@ -7,6 +7,7 @@ import { Profissao } from 'src/app/models/geral/profissao';
 import { Dado } from 'src/app/models/pessoas/dado';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
+import { ModalService } from 'src/app/services/modal/modal.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { StringUtils } from 'src/app/utils/string-utils';
@@ -23,7 +24,11 @@ export class DadosProfissionaisPage implements OnInit {
   dadoProfissao: DadosDeProfissao;
   dadosProfissaoForm: FormGroup;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit() {
     this.indexDadoProfissao = this.router.getCurrentNavigation().extras
@@ -33,6 +38,24 @@ export class DadosProfissionaisPage implements OnInit {
     if (this.indexDadoProfissao) {
       this.getDadoProfissao();
     }
+  }
+
+  async selectProfissao() {
+    const modal = await this.modalService.selecionarProfissao();
+    modal.present();
+    const { data } = await modal.onWillDismiss<Profissao>();
+
+    console.log({ data });
+    this.dadoProfissao.profissao = data;
+  }
+
+  async selectEspecialidade() {
+    const modal = await this.modalService.selecionarProfissao();
+    modal.present();
+    const { data } = await modal.onWillDismiss<Profissao>();
+
+    console.log({ data });
+    this.dadoProfissao.profissao = data;
   }
 
   get nomeProfissao(): string {

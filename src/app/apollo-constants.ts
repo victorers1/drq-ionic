@@ -158,9 +158,21 @@ export const CONFIG_DADOS_QUERY = gql`
 export interface IListaProfissao {
   dadosGeral_Profissao: IProfissao[];
 }
-export const LISTA_PROFISSOES = gql`
+export const LISTA_PROFISSOES_QUERY = gql`
   query MyQuery {
     dadosGeral_Profissao {
+      id
+      nome
+    }
+  }
+`;
+
+export interface IListaEspecialidade {
+  dadosGeral_Especialidade: IEspecialidade[];
+}
+export const LISTA_ESPECIALIDADES_QUERY = gql`
+  query MyQuery {
+    dadosGeral_Especialidade {
       id
       nome
     }

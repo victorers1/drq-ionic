@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { Profissao } from 'src/app/models/geral/profissao';
-import { IListaProfissao, LISTA_PROFISSOES } from 'src/app/apollo-constants';
+import {
+  IListaProfissao,
+  LISTA_PROFISSOES_QUERY,
+} from 'src/app/apollo-constants';
 import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 
 @Component({
@@ -10,7 +13,7 @@ import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
   styleUrls: ['./select-profissao.page.scss'],
 })
 export class SelectProfissaoPage implements OnInit {
-  profissoes: Profissao[];
+  profissoes: Profissao[] = [];
 
   constructor(
     private apolloService: ApolloService,
@@ -19,7 +22,7 @@ export class SelectProfissaoPage implements OnInit {
 
   async ngOnInit() {
     const result = await this.apolloService.query<IListaProfissao>({
-      query: LISTA_PROFISSOES,
+      query: LISTA_PROFISSOES_QUERY,
     });
 
     this.profissoes = result.data.dadosGeral_Profissao.map<Profissao>(
@@ -27,7 +30,7 @@ export class SelectProfissaoPage implements OnInit {
     );
   }
 
-  onTapProfissao(id: number) {
-    this.modalCtrl.dismiss({ id });
+  onTapProfissao(p: Profissao) {
+    this.modalCtrl.dismiss({ p });
   }
 }

@@ -53,12 +53,12 @@ export class PacienteService {
     const d1 = new DadosDeProfissao(0, new Profissao(0, 'Dentista'));
     d1.grauDeInstrucao = 'Ensino Superior';
     d1.expedientes = [e1, e2];
-    d1.isPublico = true;
+    d1.publico = true;
 
     const d2 = new DadosDeProfissao(0, new Profissao(1, 'Mecânico'));
     d2.grauDeInstrucao = 'Ensino Superior';
     d2.expedientes = [e2, e3];
-    d2.isPublico = false;
+    d2.publico = false;
 
     this.usuario.dadosProfissao = [d1, d2];
   }
@@ -67,12 +67,12 @@ export class PacienteService {
     const b1 = new DadosBancarios(0);
     b1.nome = 'Banco do Brasil';
     b1.codigoDeOperacao = 'CC';
-    b1.isPublico = true;
+    b1.publico = true;
 
     const b2 = new DadosBancarios(0);
     b2.nome = 'Caixa Econômica Federal';
     b2.codigoDeOperacao = 'CC';
-    b2.isPublico = false;
+    b2.publico = false;
 
     this.usuario.dadosBancarios = [b1, b2];
   }
