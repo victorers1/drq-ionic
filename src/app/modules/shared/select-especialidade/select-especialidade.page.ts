@@ -21,6 +21,7 @@ export class SelectEspecialidadePage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    // TODO query de recuperar especialidades
     let result = await this.apolloService.query<IListaEspecialidade>({
       query: LISTA_ESPECIALIDADES_QUERY,
     });

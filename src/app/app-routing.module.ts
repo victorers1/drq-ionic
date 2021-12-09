@@ -60,6 +60,21 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'select-profissao',
+    loadChildren: () =>
+      import('./modules/shared/select-profissao/select-profissao.module').then(
+        (m) => m.SelectProfissaoPageModule
+      ),
+  },
+
+  {
+    path: 'select-especialidade',
+    loadChildren: () =>
+      import(
+        './modules/shared/select-especialidade/select-especialidade.module'
+      ).then((m) => m.SelectEspecialidadePageModule),
+  },
+  {
     path: 'cadastro-pessoa-fisica',
     loadChildren: () =>
       import(

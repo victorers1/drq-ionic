@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DRQRoutes } from 'src/app/constants';
+import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { Dado } from 'src/app/models/pessoas/dado';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
@@ -37,25 +38,30 @@ export class DadosProfissionaisPage implements OnInit {
 
     if (this.indexDadoProfissao) {
       this.getDadoProfissao();
+    } else {
+      this.dadoProfissao = new DadosDeProfissao(
+        this.usuarioService.get().usuario.id,
+        null
+      );
     }
   }
 
   async selectProfissao() {
     const modal = await this.modalService.selecionarProfissao();
     modal.present();
-    const { data } = await modal.onWillDismiss<Profissao>();
+    const { data } = await modal.onWillDismiss<{ p: Profissao }>();
 
     console.log({ data });
-    this.dadoProfissao.profissao = data;
+    this.dadoProfissao.profissao = data.p;
   }
 
   async selectEspecialidade() {
-    const modal = await this.modalService.selecionarProfissao();
+    const modal = await this.modalService.selecionarEspecialidade();
     modal.present();
-    const { data } = await modal.onWillDismiss<Profissao>();
+    const { data } = await modal.onWillDismiss<{ e: Especialidade }>();
 
     console.log({ data });
-    this.dadoProfissao.profissao = data;
+    this.dadoProfissao.especialidade = data.e;
   }
 
   get nomeProfissao(): string {
