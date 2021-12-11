@@ -91,10 +91,13 @@ export interface IConfigDados {
   DadosDeDependente: IDadosDeDependente[];
 }
 export interface IExpedienteDePessoaFisica {
-  diaDaSemana: WeekDay;
+  id: number;
+  inicio: string;
+  termino: string;
+  pessoaJuridica: number;
+  diaDaSemana: number;
   recorrencia: number;
-  inicio: Time;
-  termino: Time;
+  dadosDeProfissao: number;
 }
 export interface IDadosProfissao {
   profissao: IProfissao;
@@ -171,8 +174,8 @@ export interface IListaEspecialidade {
   dadosGeral_Especialidade: IEspecialidade[];
 }
 export const LISTA_ESPECIALIDADES_QUERY = gql`
-  query MyQuery {
-    dadosGeral_Especialidade {
+  query MyQuery($id: Int = 0) {
+    dadosGeral_Especialidade(where: { profissao: { _eq: $id } }) {
       id
       nome
     }
@@ -182,7 +185,7 @@ export const LISTA_ESPECIALIDADES_QUERY = gql`
 export interface IUpdatePessoaFisica {
   update_PessoaFisica_by_pk: IPessoaFisicaHome;
 }
-export const EDIT_DADOS_PESSOAIS_MUTATION = gql`
+export const DADOS_PESSOAIS_MUTATION = gql`
   mutation MyMutation(
     $id: bigint = ""
     $nome: String = ""
@@ -234,6 +237,88 @@ export const EDIT_DADOS_PESSOAIS_MUTATION = gql`
       endPais
       foneUm
       dataDeNascimento
+    }
+  }
+`;
+
+export interface IInsertDadosDeProfissao {
+  insert_DadosDeProfissao_one: {
+    id: number;
+    situacao: number;
+    publico: boolean;
+    profissao: number;
+    pessoaFisica: number;
+    grauDeInstrucao: string;
+    especialidade: number;
+    conselhoDeClasse: number;
+  };
+}
+export interface IInsertExpedienteDePessoaFisica {
+  insert_ExpedienteDePessoaFisica: {
+    returning: IExpedienteDePessoaFisica[];
+  };
+}
+export const INSERT_EXPEDIENTE_PESSOA_FISICA_MUTATION = gql`
+  mutation MyMutation2(
+    $inicio: String = ""
+    $pessoaJuridica: Int = 0
+    $termino: String = ""
+    $recorrencia: Int = 0
+    $diaDaSemana: Int = 0
+    $dadosDeProfissao: Int = 0
+  ) {
+    insert_ExpedienteDePessoaFisica(
+      objects: [
+        {
+          inicio: $inicio
+          pessoaJuridica: $pessoaJuridica
+          termino: $termino
+          recorrencia: $recorrencia
+          diaDaSemana: $diaDaSemana
+          dadosDeProfissao: $dadosDeProfissao
+        }
+      ]
+    ) {
+      returning {
+        id
+        inicio
+        pessoaJuridica
+        recorrencia
+        termino
+        diaDaSemana
+        dadosDeProfissao
+      }
+    }
+  }
+`;
+
+export const DADO_DE_PROFISSAO_MUTATION = gql`
+  mutation MyMutation(
+    $pessoaFisica: Int = 0
+    $especialidade: Int = 0
+    $grauDeInstrucao: String = ""
+    $profissao: Int = 0
+    $publico: Boolean = false
+    $situacao: Int = 0
+  ) {
+    insert_DadosDeProfissao_one(
+      object: {
+        pessoaFisica: $pessoaFisica
+        profissao: $profissao
+        publico: $publico
+        situacao: $situacao
+        especialidade: $especialidade
+        grauDeInstrucao: $grauDeInstrucao
+      }
+    ) {
+      situacao
+      publico
+      profissao
+      pessoaFisica
+      grauDeInstrucao
+      especialidade
+      conselhoDeClasse
+      id
     }
   }
 `;

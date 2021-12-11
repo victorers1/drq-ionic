@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {
-  EDIT_DADOS_PESSOAIS_MUTATION,
+  DADOS_PESSOAIS_MUTATION,
   IUpdatePessoaFisica,
 } from 'src/app/apollo-constants';
 import { TIPO_USUARIO } from 'src/app/constants';
@@ -59,7 +59,7 @@ export class DadosContaPage implements OnInit {
       console.log(`Save dados de:`, this.usuarioService.get().usuario);
 
       const result = await this.apolloService.mutate<IUpdatePessoaFisica>({
-        mutation: EDIT_DADOS_PESSOAIS_MUTATION,
+        mutation: DADOS_PESSOAIS_MUTATION,
         variables: {
           id: this.usuarioService.get().usuario.id,
           nome: this.dadosContaForm.get('nome').value,

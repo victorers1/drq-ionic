@@ -5,7 +5,7 @@
 <ion-content>
   <ion-item>
     <ion-label>Público</ion-label>
-    <ion-toggle></ion-toggle>
+    <ion-toggle [(ngModel)]="dadoProfissao.publico"></ion-toggle>
   </ion-item>
 
   <ion-item button detail (click)="selectProfissao()">
@@ -18,12 +18,10 @@
 
   <ion-item>
     <ion-label position="floating">Grau de Instrução</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Conselho de Classe</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input
+      type="text"
+      [(ngModel)]="dadoProfissao.grauDeInstrucao"
+    ></ion-input>
   </ion-item>
 
   <ion-item-divider>
@@ -45,7 +43,9 @@
 
   <br />
 
-  <ion-button expand="block" color="primary"> Salvar </ion-button>
+  <ion-button expand="block" color="primary" (click)="saveDadosProfissionais()">
+    Salvar
+  </ion-button>
 
   <safe-area-bottom></safe-area-bottom>
 </ion-content>

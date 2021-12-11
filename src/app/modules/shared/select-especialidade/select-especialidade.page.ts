@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import {
   IListaEspecialidade,
@@ -13,6 +13,7 @@ import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
   styleUrls: ['./select-especialidade.page.scss'],
 })
 export class SelectEspecialidadePage implements OnInit {
+  @Input() id: number;
   especialidades: Especialidade[] = [];
 
   constructor(
@@ -21,9 +22,12 @@ export class SelectEspecialidadePage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    console.log('On Especialidade-Modal: ', { idProfissao: this.id });
+
     // TODO query de recuperar especialidades
     let result = await this.apolloService.query<IListaEspecialidade>({
       query: LISTA_ESPECIALIDADES_QUERY,
+      variables: { id: this.id },
     });
 
     this.especialidades = result.data.dadosGeral_Especialidade.map(

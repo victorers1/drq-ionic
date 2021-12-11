@@ -1,4 +1,3 @@
-import { STATUS_ENTIDADE } from 'src/app/constants';
 import { ConselhoDeClasse } from '../../geral/conselho_de_classe';
 import { Especialidade } from '../../geral/especialidade';
 import { Profissao } from '../../geral/profissao';
@@ -18,5 +17,13 @@ export class DadosDeProfissao extends Dado {
     public publico: boolean = false
   ) {
     super(publico);
+  }
+
+  get nomeProfissao(): string {
+    return this.profissao?.nome ?? 'Profissão não informada';
+  }
+
+  get nomeEspecialidade(): string {
+    return this.especialidade?.nome ?? 'Especialidade não informada';
   }
 }
