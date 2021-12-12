@@ -2,6 +2,8 @@ import { Time, WeekDay } from '@angular/common';
 import { DateUtils, diaDaSemanaOptions } from 'src/app/utils/date-utils';
 
 export class ExpedienteDePessoaFisica {
+  id: number;
+
   constructor(
     public dadosDeProfissaoID: number,
     public pessoaJuridicaID: number,

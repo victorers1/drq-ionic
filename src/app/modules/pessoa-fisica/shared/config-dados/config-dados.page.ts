@@ -60,7 +60,10 @@ export class ConfigDadosPage implements OnInit {
     console.log({ dadosConfig: result });
 
     this.pessoaFisica.dadosProfissao =
-      this.usuarioService.getDadosDeProfissaoFromResult(result, idPessoa);
+      this.usuarioService.mapDadosDeProfissaoFromResult(
+        result.data.DadosDeProfissao,
+        idPessoa
+      );
     this.pessoaFisica.dadosBancarios = [];
     this.pessoaFisica.dadosPlanoSaude = [];
     this.pessoaFisica.dadosDeDependente = [];
@@ -68,6 +71,14 @@ export class ConfigDadosPage implements OnInit {
 
   createDadoProfissional() {
     this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PROFISSIONAIS], {
+      relativeTo: this.route,
+    });
+  }
+
+  openDadoDeProfissao(id: number) {
+    console.log('openDadoDeProfissao: ', id);
+    this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PROFISSIONAIS], {
+      state: { id },
       relativeTo: this.route,
     });
   }

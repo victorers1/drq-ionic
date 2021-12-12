@@ -6,7 +6,6 @@ import {
 import { ProfissionalFactory } from 'src/app/models/factories/pessoa-fisica/profissional-factory';
 
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
-import { UsuarioUtils } from 'src/app/utils/usuario-utils';
 import { ApolloService } from '../apollo/apollo-service.service';
 
 @Injectable({
@@ -50,7 +49,7 @@ export class ProfissionalService {
         dataDeNascimento: new Date(
           result.data.PessoaFisica_by_pk.dataDeNascimento * 1e3
         ),
-        sexo: UsuarioUtils.getSexoByCod(result.data.PessoaFisica_by_pk.sexo),
+        sexo: result.data.PessoaFisica_by_pk.sexo,
       }
     );
 

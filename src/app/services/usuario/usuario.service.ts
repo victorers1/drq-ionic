@@ -6,10 +6,16 @@ import { ConselhoDeClasse } from 'src/app/models/geral/conselho_de_classe';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
-import { IConfigDados } from 'src/app/apollo-constants';
+import {
+  IConfigDados,
+  IDadosDeProfissao,
+  IExpedienteDePessoaFisica,
+} from 'src/app/apollo-constants';
 import { PacienteService } from './paciente.service';
 import { PessoaJuridicaService } from './pessoa-juridica.service';
 import { ProfissionalService } from './profissional.service';
+import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
+import { DateUtils } from 'src/app/utils/date-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -39,15 +45,17 @@ export class UsuarioService {
   }
 
   // Usuario Utils Functions
-  getDadosDeProfissaoFromResult(
-    result: ApolloQueryResult<IConfigDados>,
+  mapDadosDeProfissaoFromResult(
+    dadosDeProfissoes: IDadosDeProfissao[],
     idPessoa: number
-  ) {
-    return result.data.DadosDeProfissao.map<DadosDeProfissao>((dado) => {
-      let dadoDeProfissao = new DadosDeProfissao(
+  ): DadosDeProfissao[] {
+    return dadosDeProfissoes.map<DadosDeProfissao>((dado) => {
+      const dadoDeProfissao = new DadosDeProfissao(
         idPessoa,
         new Profissao(dado.Profissao.id, dado.Profissao.nome)
       );
+      dadoDeProfissao.id = dado.id;
+      dadoDeProfissao.publico = dado.publico;
       dadoDeProfissao.conselhoDeClasse =
         dado.conselhoDeClasse != null
           ? new ConselhoDeClasse(
@@ -63,8 +71,32 @@ export class UsuarioService {
           : null;
       dadoDeProfissao.grauDeInstrucao = dado.grauDeInstrucao;
 
+      dadoDeProfissao.expedientes =
+        dado.ExpedienteDePessoaFisicas != null
+          ? this.mapExpedienteFromResult(
+              dadoDeProfissao,
+              dado.ExpedienteDePessoaFisicas
+            )
+          : null;
+
       return dadoDeProfissao;
     });
+  }
+
+  mapExpedienteFromResult(
+    dadosDeprofissao: DadosDeProfissao,
+    expedientes: IExpedienteDePessoaFisica[]
+  ) {
+    return (dadosDeprofissao.expedientes = expedientes.map((exp) => {
+      return new ExpedienteDePessoaFisica(
+        dadosDeprofissao.id,
+        exp.pessoaJuridica,
+        exp.diaDaSemana,
+        exp.recorrencia,
+        DateUtils.getTimeFromString(exp.inicio),
+        DateUtils.getTimeFromString(exp.termino)
+      );
+    }));
   }
 
   isProfissional = (): boolean => this.tipoUsuario == TIPO_USUARIO.PROFISSIONAL;

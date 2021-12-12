@@ -20,10 +20,15 @@ export class DadosDeProfissao extends Dado {
   }
 
   get nomeProfissao(): string {
-    return this.profissao?.nome ?? 'Profissão não informada';
+    return this.profissao?.nome ?? 'não informada';
   }
 
   get nomeEspecialidade(): string {
-    return this.especialidade?.nome ?? 'Especialidade não informada';
+    return this.especialidade?.nome ?? 'não informada';
+  }
+
+  set newProfissao(p: Profissao) {
+    this.profissao = p;
+    this.especialidade = null;
   }
 }

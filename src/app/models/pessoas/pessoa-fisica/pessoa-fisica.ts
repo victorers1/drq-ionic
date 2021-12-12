@@ -5,7 +5,6 @@ import { DadosBancarios } from './dados-bancarios';
 import { DadosDePlanoDeSaude } from './dados-plano-saude';
 import { DadosDeDependente } from './dados-dependente';
 import { IDadosAdicionais } from '../../factories/pessoa-fisica/pessoa-fisica-factory';
-import { UsuarioUtils } from 'src/app/utils/usuario-utils';
 
 export abstract class PessoaFisica extends Pessoa {
   public dadosProfissao: DadosDeProfissao[];
@@ -51,6 +50,6 @@ export abstract class PessoaFisica extends Pessoa {
     this.endEstado = dados.endEstado;
     this.endPais = dados.endPais;
     this.dataDeNascimento = dados.dataDeNascimento;
-    this.sexo = UsuarioUtils.getSexoByCod(dados.sexo);
+    this.sexo = dados.sexo;
   }
 }

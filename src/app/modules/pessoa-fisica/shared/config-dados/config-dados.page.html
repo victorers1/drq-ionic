@@ -26,10 +26,10 @@
     </ion-item-divider>
 
     <ion-item
-      *ngFor="let dp of pessoaFisica.dadosProfissao; let i=index"
+      *ngFor="let dp of pessoaFisica.dadosProfissao"
       button
       detail
-      [routerLink]="['./' + routes.EDIT_DADOS_PROFISSIONAIS, i]"
+      (click)="openDadoDeProfissao(dp.id)"
     >
       <ion-label>
         <h2>{{dp.nomeProfissao}}</h2>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {
-  DADOS_PESSOAIS_MUTATION,
+  UPDATE_DADOS_PESSOAIS,
   IUpdatePessoaFisica,
 } from 'src/app/apollo-constants';
 import { TIPO_USUARIO } from 'src/app/constants';
@@ -11,9 +11,7 @@ import { PessoaFisicaFactory } from 'src/app/models/factories/pessoa-fisica/pess
 import { ProfissionalFactory } from 'src/app/models/factories/pessoa-fisica/profissional-factory';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
-import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
-import { UsuarioUtils } from 'src/app/utils/usuario-utils';
 
 @Component({
   selector: 'app-dados-conta',
@@ -59,7 +57,7 @@ export class DadosContaPage implements OnInit {
       console.log(`Save dados de:`, this.usuarioService.get().usuario);
 
       const result = await this.apolloService.mutate<IUpdatePessoaFisica>({
-        mutation: DADOS_PESSOAIS_MUTATION,
+        mutation: UPDATE_DADOS_PESSOAIS,
         variables: {
           id: this.usuarioService.get().usuario.id,
           nome: this.dadosContaForm.get('nome').value,
@@ -101,9 +99,7 @@ export class DadosContaPage implements OnInit {
         {
           email: result.data.update_PessoaFisica_by_pk.email,
           rg: result.data.update_PessoaFisica_by_pk.rg,
-          sexo: UsuarioUtils.getSexoByCod(
-            result.data.update_PessoaFisica_by_pk.sexo
-          ),
+          sexo: result.data.update_PessoaFisica_by_pk.sexo,
           endLogradouro: result.data.update_PessoaFisica_by_pk.endLogradouro,
           endNumero: result.data.update_PessoaFisica_by_pk.endNumero,
           endComplemento: result.data.update_PessoaFisica_by_pk.endComplemento,
