@@ -28,13 +28,6 @@ const routes: Routes = [
             (m) => m.DadosProfissionaisPageModule
           ),
       },
-      {
-        path: drqRoutes.EDIT_DADOS_EXPEDIENTE,
-        loadChildren: () =>
-          import('../edit-dados-expediente/dados-expediente.module').then(
-            (m) => m.DadosExpedientePageModule
-          ),
-      },
     ],
   },
   {

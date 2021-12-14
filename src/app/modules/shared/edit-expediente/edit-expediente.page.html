@@ -6,16 +6,17 @@
   <ion-item>
     <ion-label>Dia da semana</ion-label>
     <ion-select
-      [value]="getNomeDiaSemana(expediente.diaDaSemana)"
+      *ngIf="expediente"
+      [value]="expediente.diaDaSemana.valueOf()"
       interface="popover"
       placeholder="Dia da semana"
-      (ionChange)="onSelectChange($event)"
+      (ionChange)="onDiaDaSemanaChange($event)"
     >
       <ion-select-option
-        *ngFor="let ds of diasSemana"
-        [value]="getNomeDiaSemana(ds)"
+        *ngFor="let ds of diasSemana; let i = index"
+        [value]="i"
       >
-        {{getNomeDiaSemana(ds) | capitalize}}
+        {{diaDaSemanaNome(ds) | capitalize}}
       </ion-select-option>
     </ion-select>
   </ion-item>
@@ -23,6 +24,7 @@
   <ion-item>
     <ion-label>Recorrência</ion-label>
     <ion-input
+      *ngIf="expediente"
       type="number"
       placeholder="Recorrência"
       [(ngModel)]="expediente.recorrencia"
@@ -32,26 +34,32 @@
   <ion-item>
     <ion-label>Hora início</ion-label>
     <ion-datetime
-      [(ngModel)]="horaInicio"
+      *ngIf="expediente"
+      #horaInicioDateTime
       display-format="HH:mm"
       presentation="time"
       locale="pt-BR"
       hourCycle="h23"
       cancelText="Cancelar"
       doneText="OK"
+      [value]="'1970-01-01T'+getTimeFormatado(expediente.inicio)"
+      (ionChange)="expediente.inicio = getTimeFromString(horaInicioDateTime.value)"
     ></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label>Hora fim</ion-label>
     <ion-datetime
-      [(ngModel)]="horaFim"
+      *ngIf="expediente"
+      #horaFimDateTime
       display-format="HH:mm"
       presentation="time"
       locale="pt-BR"
       hourCycle="h23"
       cancelText="Cancelar"
       doneText="OK"
+      [value]="'1970-01-01T'+getTimeFormatado(expediente.termino)"
+      (ionChange)="expediente.termino = getTimeFromString(horaFimDateTime.value)"
     ></ion-datetime>
   </ion-item>
 
@@ -60,13 +68,7 @@
     size="block"
     class="ion-margin-top ion-margin-bottom"
   >
-    <ion-icon slot="end" name="save"></ion-icon>
-    Salvar
-  </ion-button>
-
-  <ion-button (click)="onCancel()" color="danger" size="block">
-    <ion-icon slot="end" name="close"></ion-icon>
-    Cancelar
+    Concluir
   </ion-button>
 
   <safe-area-bottom></safe-area-bottom>

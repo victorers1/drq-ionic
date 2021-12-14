@@ -1,10 +1,13 @@
 import { WeekDay, Time } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { ExpedienteDeUnidade } from 'src/app/models/pessoas/pessoa-juridica/expediente-unidade';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { DateUtils } from 'src/app/utils/date-utils';
-import { ClonerService } from 'src/app/services/cloner/cloner.service';
+import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
+import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
+import {
+  EXPEDIENTE_DE_PESSOA_FISICA_QUERY,
+  IExpedienteDePessoaFisicaByPK,
+} from 'src/app/apollo-constants';
 
 @Component({
   selector: 'app-edit-expediente',
@@ -12,27 +15,24 @@ import { ClonerService } from 'src/app/services/cloner/cloner.service';
   styleUrls: ['./edit-expediente.page.scss'],
 })
 export class EditExpedientePage implements OnInit {
-  diasSemana: Array<number> = [];
+  @Input() expediente: ExpedienteDePessoaFisica;
+  @Input() idDadoProfissao: number;
 
-  horaInicio: string;
-  horaFim: string;
+  diasSemana: number[] = [];
 
-  expediente: ExpedienteDeUnidade;
-  constructor(
-    private navCtrl: NavController,
-    private router: Router,
-    private cloner: ClonerService
-  ) {}
+  diaDaSemanaNome = DateUtils.diaDaSemanaNome;
+  getTimeFromString = DateUtils.getTimeFromISO8601String;
+  getTimeFormatado = DateUtils.getTimeFormatado;
+
+  constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {
     this.diasSemana = DateUtils.diasSemana.map((wd: WeekDay) => wd.valueOf());
 
-    const params = this.router.getCurrentNavigation().extras.state;
-    if (params) {
-      this.expediente = this.cloner.deepClone(params as ExpedienteDeUnidade);
-    } else {
-      this.expediente = new ExpedienteDeUnidade(
-        0,
+    if (this.expediente == null) {
+      this.expediente = new ExpedienteDePessoaFisica(
+        this.idDadoProfissao,
+        null,
         this.diasSemana[0],
         1,
         { hours: 0, minutes: 0 },
@@ -41,16 +41,12 @@ export class EditExpedientePage implements OnInit {
     }
   }
 
-  getNomeDiaSemana = DateUtils.diaDaSemanaNome;
-
-  onSelectChange(event: Event) {
-    console.log('onSelectChange: ', event);
+  onDiaDaSemanaChange(event: Event) {
+    console.log('onDiaDaSemanaChange: ', event);
+    this.expediente.diaDaSemana = (event as CustomEvent).detail.value;
   }
-
   onSave() {
-    this.navCtrl.pop();
-  }
-  onCancel() {
-    this.navCtrl.pop();
+    console.log(`this.expediente: `, this.expediente);
+    this.modalCtrl.dismiss();
   }
 }

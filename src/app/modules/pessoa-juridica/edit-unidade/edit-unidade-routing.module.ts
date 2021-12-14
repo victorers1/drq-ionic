@@ -9,16 +9,19 @@ const drqRoutes = new DRQRoutes();
 const routes: Routes = [
   {
     path: '',
-    component: EditUnidadePage
+    component: EditUnidadePage,
   },
   {
-    path: drqRoutes.EDIT_EXPEDIENTE, // SHARED PAGE
-    loadChildren: () => import('../../shared/edit-expediente/edit-expediente.module').then(m => m.EditExpedientePageModule)
-  }
+    path: drqRoutes.EDIT_EXPEDIENTE,
+    loadChildren: () =>
+      import('../../shared/edit-expediente/edit-expediente.module').then(
+        (m) => m.EditExpedientePageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class EditUnidadePageRoutingModule { }
+export class EditUnidadePageRoutingModule {}

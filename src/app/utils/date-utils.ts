@@ -109,6 +109,14 @@ export class DateUtils {
     )}`;
   }
 
+  static getTimeFromISO8601String(s: string): Time {
+    const date = new Date(s);
+    return {
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+    };
+  }
+
   static getTimeFromString(time: string): Time {
     const horaMinuto = time.split(':');
     if (horaMinuto.length == 2) {
@@ -119,7 +127,7 @@ export class DateUtils {
     }
 
     throw new Error(
-      `Formato da hora inválido. Experado era hh:mm, string passada: ${time}`
+      `Formato da hora inválido. Experado era HH:mm, string passada: ${time}`
     );
   }
 }

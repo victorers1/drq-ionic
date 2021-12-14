@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController, ModalOptions } from '@ionic/angular';
 import { ComponentProps } from '@ionic/core';
+import { EditExpedientePage } from 'src/app/modules/shared/edit-expediente/edit-expediente.page';
 import { SelectEspecialidadePage } from 'src/app/modules/shared/select-especialidade/select-especialidade.page';
 import { SelectHorarioPage } from 'src/app/modules/shared/select-horario/select-horario.page';
 import { SelectPlanoSaudePage } from 'src/app/modules/shared/select-plano-saude/select-plano-saude.page';
@@ -60,6 +61,17 @@ export class ModalService {
   async selecionarEspecialidade(componentProps?: ComponentProps) {
     const modal = await this.modalCtrl.create({
       component: SelectEspecialidadePage,
+      showBackdrop: true,
+      backdropDismiss: true,
+      swipeToClose: true,
+      componentProps: componentProps,
+    });
+    return modal;
+  }
+
+  async editarExpediente(componentProps?: ComponentProps) {
+    const modal = await this.modalCtrl.create({
+      component: EditExpedientePage,
       showBackdrop: true,
       backdropDismiss: true,
       swipeToClose: true,

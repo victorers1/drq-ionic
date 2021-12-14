@@ -283,6 +283,59 @@ export const UPDATE_DADOS_DE_PROFISSAO = gql`
   }
 `;
 
+export const INSERT_EXPEDIENTE_DE_PESSOA_FISICA = gql`
+  mutation MyMutation(
+    $inicio: String = ""
+    $termino: String = ""
+    $recorrencia: Int = 0
+    $dadosDeProfissao: Int = 0
+    $diaDaSemana: Int = 0
+  ) {
+    insert_ExpedienteDePessoaFisica_one(
+      object: {
+        inicio: $inicio
+        recorrencia: $recorrencia
+        termino: $termino
+        dadosDeProfissao: $dadosDeProfissao
+        diaDaSemana: $diaDaSemana
+      }
+    ) {
+      termino
+      recorrencia
+      inicio
+      id
+      diaDaSemana
+      dadosDeProfissao
+    }
+  }
+`;
+
+export const UPDATE_EXPEDIENTE_DE_PESSOA_FISICA = gql`
+  mutation MyMutation(
+    $id: Int = 0
+    $dadosDeProfissao: Int = 0
+    $diaDaSemana: Int = 0
+    $inicio: String = ""
+    $recorrencia: Int = 0
+    $termino: String = ""
+    $pessoaJuridica: Int = 0
+  ) {
+    update_ExpedienteDePessoaFisica_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        dadosDeProfissao: $dadosDeProfissao
+        diaDaSemana: $diaDaSemana
+        inicio: $inicio
+        pessoaJuridica: $pessoaJuridica
+        recorrencia: $recorrencia
+        termino: $termino
+      }
+    ) {
+      id
+    }
+  }
+`;
+
 export interface IInsertDadosDeProfissao {
   insert_DadosDeProfissao_one: {
     id: number;
@@ -361,6 +414,44 @@ export const INSERT_DADO_DE_PROFISSAO = gql`
       especialidade
       conselhoDeClasse
       id
+    }
+  }
+`;
+
+export interface IExpedienteDePessoaFisicaByPK {
+  ExpedienteDePessoaFisica_by_pk: {
+    dadosDeProfissao: number;
+    diaDaSemana: number;
+    id: number;
+    inicio: string;
+    pessoaJuridica: number;
+    recorrencia: number;
+    termino: string;
+    PessoaJuridica: {
+      id: number;
+    };
+    DadosDeProfissao: {
+      id: number;
+    };
+  };
+}
+
+export const EXPEDIENTE_DE_PESSOA_FISICA_QUERY = gql`
+  query MyQuery($id: Int = 0) {
+    ExpedienteDePessoaFisica_by_pk(id: $id) {
+      dadosDeProfissao
+      diaDaSemana
+      id
+      inicio
+      pessoaJuridica
+      recorrencia
+      termino
+      PessoaJuridica {
+        id
+      }
+      DadosDeProfissao {
+        id
+      }
     }
   }
 `;

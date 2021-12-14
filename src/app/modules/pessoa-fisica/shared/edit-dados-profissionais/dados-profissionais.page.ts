@@ -11,11 +11,14 @@ import {
   DELETE_DADOS_DE_PROFISSAO,
   IUpdateDadosDeProfissao,
   UPDATE_DADOS_DE_PROFISSAO,
+  UPDATE_EXPEDIENTE_DE_PESSOA_FISICA,
+  INSERT_EXPEDIENTE_DE_PESSOA_FISICA,
 } from 'src/app/apollo-constants';
 import { DRQRoutes, STATUS_ENTIDADE } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
+import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
 import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -30,7 +33,7 @@ import { StringUtils } from 'src/app/utils/string-utils';
 export class DadosProfissionaisPage implements OnInit {
   routes = new DRQRoutes();
 
-  indexDadoProfissao: number;
+  idDadoProfissao: number;
   dadoProfissao: DadosDeProfissao;
 
   constructor(
@@ -43,14 +46,14 @@ export class DadosProfissionaisPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.indexDadoProfissao = this.router.getCurrentNavigation().extras?.state
+    this.idDadoProfissao = this.router.getCurrentNavigation().extras?.state
       ?.id as unknown as number;
     console.log(
-      'DadosProfissionaisPage this.indexDadoProfissao: ',
-      this.indexDadoProfissao
+      'DadosProfissionaisPage this.idDadoProfissao: ',
+      this.idDadoProfissao
     );
 
-    if (this.indexDadoProfissao != null) {
+    if (this.idDadoProfissao != null) {
       this.getDadosProfissao();
     } else {
       this.dadoProfissao = new DadosDeProfissao(
@@ -87,30 +90,42 @@ export class DadosProfissionaisPage implements OnInit {
   private async getDadosProfissao() {
     const result = await this.apolloService.query<IDadosDeProfissaoByPK>({
       query: EDIT_DADOS_DE_PROFISSAO_QUERY,
-      variables: { id: this.indexDadoProfissao },
+      variables: { id: this.idDadoProfissao },
     });
-    console.log(`getDadosProfissao(${this.indexDadoProfissao}): `, result);
+    console.log(`getDadosProfissao(${this.idDadoProfissao}): `, result);
     this.dadoProfissao = this.usuarioService.mapDadosDeProfissaoFromResult(
       [result.data.DadosDeProfissao_by_pk],
       this.usuarioService.get().usuario.id
     )[0];
   }
 
-  openExpediente(id: number) {
-    this.navCtrl.navigateForward([this.routes.EDIT_EXPEDIENTE], {
-      state: { id },
-      relativeTo: this.route,
+  async openExpediente(id?: number) {
+    const modal = await this.modalService.editarExpediente({
+      expediente: this.dadoProfissao.expedientes.find((e) => e.id == id),
+      idDadoProfissao: this.idDadoProfissao,
     });
+    modal.present();
   }
 
   async saveDadosProfissionais() {
-    let result: IInsertDadosDeProfissao | IUpdateDadosDeProfissao;
-    if (this.indexDadoProfissao) {
-      result = (await this.updateDadosDeProfissao()).data;
+    //TODO testar
+    if (this.idDadoProfissao) {
+      await this.updateDadosDeProfissao();
     } else {
-      result = (await this.createDadosDeProfissao()).data;
+      await this.createDadosDeProfissao();
     }
-    console.log('saveDadosProfissionais():', result);
+
+    const expedienteExistentes = this.dadoProfissao.expedientes.filter(
+      (e) => e.id != null
+    );
+    const expedientesNovos = this.dadoProfissao.expedientes.filter(
+      (e) => e.id == null
+    );
+
+    await this.updateExpedientesDePessoaFisica(expedienteExistentes);
+    await this.createExpedientesDePessoaFisica(expedientesNovos);
+
+    console.log('saveDadosProfissionais(): done');
     this.navCtrl.pop();
   }
 
@@ -128,11 +143,11 @@ export class DadosProfissionaisPage implements OnInit {
     });
   }
 
-  private updateDadosDeProfissao() {
-    return this.apolloService.mutate<IUpdateDadosDeProfissao>({
+  private async updateDadosDeProfissao() {
+    await this.apolloService.mutate<IUpdateDadosDeProfissao>({
       mutation: UPDATE_DADOS_DE_PROFISSAO,
       variables: {
-        id: this.indexDadoProfissao,
+        id: this.idDadoProfissao,
         publico: this.dadoProfissao.publico,
         situacao: this.dadoProfissao.status.valueOf(),
         profissao: this.dadoProfissao.profissao.id,
@@ -142,10 +157,47 @@ export class DadosProfissionaisPage implements OnInit {
     });
   }
 
+  async updateExpedientesDePessoaFisica(
+    expedientes: ExpedienteDePessoaFisica[]
+  ) {
+    for (const e of expedientes) {
+      await this.apolloService.mutate({
+        mutation: UPDATE_EXPEDIENTE_DE_PESSOA_FISICA,
+        variables: {
+          id: e.id,
+          dadosDeProfissao: this.dadoProfissao.id,
+          diaDaSemana: e.diaDaSemana,
+          inicio: DateUtils.getTimeFormatado(e.inicio),
+          termino: DateUtils.getTimeFormatado(e.termino),
+          recorrencia: e.recorrencia,
+          pessoaJuridica: e.pessoaJuridicaID,
+        },
+      });
+    }
+  }
+
+  async createExpedientesDePessoaFisica(
+    expedientes: ExpedienteDePessoaFisica[]
+  ) {
+    for (const e of expedientes) {
+      await this.apolloService.mutate({
+        mutation: INSERT_EXPEDIENTE_DE_PESSOA_FISICA,
+        variables: {
+          dadosDeProfissao: this.dadoProfissao.id,
+          diaDaSemana: e.diaDaSemana,
+          inicio: DateUtils.getTimeFormatado(e.inicio),
+          termino: DateUtils.getTimeFormatado(e.termino),
+          recorrencia: e.recorrencia,
+          pessoaJuridica: e.pessoaJuridicaID,
+        },
+      });
+    }
+  }
+
   async deleteDadosDeProfissao() {
     const result = await this.apolloService.mutate<IDeleteDadosDeProfissao>({
       mutation: DELETE_DADOS_DE_PROFISSAO,
-      variables: { id: this.indexDadoProfissao },
+      variables: { id: this.idDadoProfissao },
     });
     console.log('deleteDadosDeProfissao():', result);
     this.navCtrl.pop();

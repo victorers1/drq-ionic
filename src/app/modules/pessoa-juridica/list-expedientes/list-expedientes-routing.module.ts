@@ -9,11 +9,14 @@ const drqRoutes = new DRQRoutes();
 const routes: Routes = [
   {
     path: '',
-    component: ListExpedientesPage
+    component: ListExpedientesPage,
   },
   {
-    path: drqRoutes.EDIT_DADOS_EXPEDIENTE + '/:' + drqRoutes.PARAM_INDEX_DADO_EXPEDIENTE,
-    loadChildren: () => import('../../pessoa-juridica/edit-dados-expediente/dados-expediente.module').then(m => m.DadosExpedientePageModule)
+    path: drqRoutes.EDIT_EXPEDIENTE,
+    loadChildren: () =>
+      import(
+        '../../pessoa-juridica/edit-dados-expediente/dados-expediente.module'
+      ).then((m) => m.DadosExpedientePageModule),
   },
 ];
 
@@ -21,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ListExpedientesPageRoutingModule { }
+export class ListExpedientesPageRoutingModule {}

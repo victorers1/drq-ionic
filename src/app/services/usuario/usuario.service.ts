@@ -88,7 +88,7 @@ export class UsuarioService {
     expedientes: IExpedienteDePessoaFisica[]
   ) {
     return (dadosDeprofissao.expedientes = expedientes.map((exp) => {
-      return new ExpedienteDePessoaFisica(
+      const expediente = new ExpedienteDePessoaFisica(
         dadosDeprofissao.id,
         exp.pessoaJuridica,
         exp.diaDaSemana,
@@ -96,6 +96,8 @@ export class UsuarioService {
         DateUtils.getTimeFromString(exp.inicio),
         DateUtils.getTimeFromString(exp.termino)
       );
+      expediente.id = exp.id;
+      return expediente;
     }));
   }
 
