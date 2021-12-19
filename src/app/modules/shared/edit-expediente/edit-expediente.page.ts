@@ -47,6 +47,10 @@ export class EditExpedientePage implements OnInit {
   }
   onSave() {
     console.log(`this.expediente: `, this.expediente);
+    this.modalCtrl.dismiss({ e: this.expediente });
+  }
+
+  async onDelete() {
     this.modalCtrl.dismiss();
   }
 }

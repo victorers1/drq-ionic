@@ -85,12 +85,7 @@ export interface IDadosDeDependente extends IDado {
   docFiscal: string;
   dataDeNascimento: number;
 }
-export interface IConfigDados {
-  DadosDeProfissao: IDadosDeProfissao[];
-  DadosBancarios: IDadosBancarios[];
-  DadosDePlanoDeSaude: IDadosDePlanoDeSaude[];
-  DadosDeDependente: IDadosDeDependente[];
-}
+
 export interface IExpedienteDePessoaFisica {
   id: number;
   inicio: string;
@@ -104,8 +99,11 @@ export interface IDadosProfissao {
   profissao: IProfissao;
 }
 
-export const CONFIG_DADOS_QUERY = gql`
-  query MyQuery($id: bigint = "") {
+export interface IConfigDadosDeProfissao {
+  DadosDeProfissao: IDadosDeProfissao[];
+}
+export const DADOS_PROFISSAO_SUBSCRIPTION = gql`
+  subscription MySubscription($id: bigint = "") {
     DadosDeProfissao(
       where: { PessoaFisica: { id: { _eq: $id } }, situacao: { _eq: 0 } }
     ) {
@@ -128,8 +126,10 @@ export const CONFIG_DADOS_QUERY = gql`
         nome
       }
     }
-
-    DadosBancarios(
+  }
+`;
+/**
+ *  DadosBancarios(
       where: { PessoaFisica: { id: { _eq: $id }, situacao: { _eq: 0 } } }
     ) {
       id
@@ -160,8 +160,7 @@ export const CONFIG_DADOS_QUERY = gql`
       docFiscal
       dataDeNascimento
     }
-  }
-`;
+ */
 
 export interface IListaProfissao {
   dadosGeral_Profissao: IProfissao[];
@@ -387,6 +386,7 @@ export const INSERT_EXPEDIENTE_PESSOA_FISICA = gql`
     }
   }
 `;
+
 export const INSERT_DADO_DE_PROFISSAO = gql`
   mutation MyMutation(
     $pessoaFisica: Int = 0
@@ -462,12 +462,11 @@ export interface IDadosDeProfissaoByPK {
 export const EDIT_DADOS_DE_PROFISSAO_QUERY = gql`
   query MyQuery($id: Int = 0) {
     DadosDeProfissao_by_pk(id: $id) {
-      situacao
-      publico
-      pessoaFisica
       id
       grauDeInstrucao
-      conselhoDeClasse
+      pessoaFisica
+      publico
+      situacao
       ExpedienteDePessoaFisicas {
         termino
         recorrencia

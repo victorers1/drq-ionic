@@ -1,6 +1,7 @@
 import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { resultKeyNameFromField } from '@apollo/client/utilities';
 import { NavController } from '@ionic/angular';
 import {
   INSERT_DADO_DE_PROFISSAO,
@@ -68,7 +69,7 @@ export class DadosProfissionaisPage implements OnInit {
     modal.present();
     const { data } = await modal.onWillDismiss<{ p: Profissao }>();
     console.log({ profissaoSelecionada: data });
-    this.dadoProfissao.newProfissao ??= data.p;
+    if (data?.p) this.dadoProfissao.newProfissao = data.p;
   }
   async selectEspecialidade() {
     const modal = await this.modalService.selecionarEspecialidade({
@@ -77,7 +78,7 @@ export class DadosProfissionaisPage implements OnInit {
     modal.present();
     const { data } = await modal.onWillDismiss<{ e: Especialidade }>();
     console.log({ especialidadeSelecionada: data });
-    this.dadoProfissao.especialidade ??= data.e;
+    if (data?.e) this.dadoProfissao.especialidade = data.e;
   }
 
   get nomeProfissao(): string {
@@ -100,20 +101,37 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   async openExpediente(id?: number) {
+    // TODO(bug): não há como editar novos expedientes ainda não salvos no banco,
+    // pois todos os expedientes novos têm id iguais (null).
     const modal = await this.modalService.editarExpediente({
-      expediente: this.dadoProfissao.expedientes.find((e) => e.id == id),
+      expediente:
+        id == null
+          ? null
+          : this.dadoProfissao.expedientes.find((e) => e.id == id),
       idDadoProfissao: this.idDadoProfissao,
     });
     modal.present();
+
+    const { data } = await modal.onWillDismiss<{
+      e: ExpedienteDePessoaFisica;
+    }>();
+
+    if (id == null && data && data.e.id == null) {
+      console.log({ expedienteCriado: data });
+      data.e.dadosDeProfissaoID = this.idDadoProfissao;
+      this.dadoProfissao.expedientes.push(data.e);
+    }
   }
 
   async saveDadosProfissionais() {
-    //TODO testar
+    let result;
+    debugger;
     if (this.idDadoProfissao) {
-      await this.updateDadosDeProfissao();
+      result = await this.updateDadosDeProfissao();
     } else {
-      await this.createDadosDeProfissao();
+      result = await this.createDadosDeProfissao();
     }
+    console.log('saveDadosProfissionais(): ', result);
 
     const expedienteExistentes = this.dadoProfissao.expedientes.filter(
       (e) => e.id != null
@@ -121,16 +139,14 @@ export class DadosProfissionaisPage implements OnInit {
     const expedientesNovos = this.dadoProfissao.expedientes.filter(
       (e) => e.id == null
     );
-
     await this.updateExpedientesDePessoaFisica(expedienteExistentes);
     await this.createExpedientesDePessoaFisica(expedientesNovos);
 
-    console.log('saveDadosProfissionais(): done');
     this.navCtrl.pop();
   }
 
-  private createDadosDeProfissao() {
-    return this.apolloService.mutate<IInsertDadosDeProfissao>({
+  private async createDadosDeProfissao() {
+    return await this.apolloService.mutate<IInsertDadosDeProfissao>({
       mutation: INSERT_DADO_DE_PROFISSAO,
       variables: {
         pessoaFisica: this.usuarioService.get().usuario.id,
@@ -144,7 +160,7 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   private async updateDadosDeProfissao() {
-    await this.apolloService.mutate<IUpdateDadosDeProfissao>({
+    return await this.apolloService.mutate<IUpdateDadosDeProfissao>({
       mutation: UPDATE_DADOS_DE_PROFISSAO,
       variables: {
         id: this.idDadoProfissao,
@@ -158,10 +174,10 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   async updateExpedientesDePessoaFisica(
-    expedientes: ExpedienteDePessoaFisica[]
+    expedientesExistentes: ExpedienteDePessoaFisica[]
   ) {
-    for (const e of expedientes) {
-      await this.apolloService.mutate({
+    for (const e of expedientesExistentes) {
+      const result = await this.apolloService.mutate({
         mutation: UPDATE_EXPEDIENTE_DE_PESSOA_FISICA,
         variables: {
           id: e.id,
@@ -173,14 +189,16 @@ export class DadosProfissionaisPage implements OnInit {
           pessoaJuridica: e.pessoaJuridicaID,
         },
       });
+      console.log('updateExpediente:', result);
     }
   }
 
   async createExpedientesDePessoaFisica(
-    expedientes: ExpedienteDePessoaFisica[]
+    expedientesNovos: ExpedienteDePessoaFisica[]
   ) {
-    for (const e of expedientes) {
-      await this.apolloService.mutate({
+    // TODO criar todos com uma mesma mutation
+    for (const e of expedientesNovos) {
+      const result = await this.apolloService.mutate({
         mutation: INSERT_EXPEDIENTE_DE_PESSOA_FISICA,
         variables: {
           dadosDeProfissao: this.dadoProfissao.id,
@@ -188,11 +206,14 @@ export class DadosProfissionaisPage implements OnInit {
           inicio: DateUtils.getTimeFormatado(e.inicio),
           termino: DateUtils.getTimeFormatado(e.termino),
           recorrencia: e.recorrencia,
-          pessoaJuridica: e.pessoaJuridicaID,
+          // pessoaJuridica: e.pessoaJuridicaID,
         },
       });
+      console.log('createExpediente:', result);
     }
   }
+
+  async deleteExpediente(id: number) {}
 
   async deleteDadosDeProfissao() {
     const result = await this.apolloService.mutate<IDeleteDadosDeProfissao>({

@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApolloQueryResult } from '@apollo/client/core/types';
-import { Apollo } from 'apollo-angular';
 import { TIPO_USUARIO } from 'src/app/constants';
 import { ConselhoDeClasse } from 'src/app/models/geral/conselho_de_classe';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import {
-  IConfigDados,
   IDadosDeProfissao,
   IExpedienteDePessoaFisica,
 } from 'src/app/apollo-constants';
