@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">drq-ionic</string>
+    <string name="title_activity_main">drq-ionic</string>
+    <string name="package_name">drq.clinic.app</string>
+    <string name="custom_url_scheme">drq.clinic.app</string>
+</resources>

@@ -395,6 +395,7 @@ export const INSERT_DADO_DE_PROFISSAO = gql`
     $profissao: Int = 0
     $publico: Boolean = false
     $situacao: Int = 0
+    $expediente: [IExpedienteDePessoaFisica]
   ) {
     insert_DadosDeProfissao_one(
       object: {
@@ -404,6 +405,7 @@ export const INSERT_DADO_DE_PROFISSAO = gql`
         situacao: $situacao
         especialidade: $especialidade
         grauDeInstrucao: $grauDeInstrucao
+        ExpedienteDePessoaFisicas: { data: $expedientes }
       }
     ) {
       situacao

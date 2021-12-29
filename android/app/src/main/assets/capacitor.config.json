@@ -1,0 +1,6 @@
+{
+	"appId": "drq.clinic.app",
+	"appName": "drq-ionic",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -155,6 +155,9 @@ export class DadosProfissionaisPage implements OnInit {
         grauDeInstrucao: this.dadoProfissao.grauDeInstrucao,
         publico: this.dadoProfissao.publico,
         situacao: this.dadoProfissao.status.valueOf(),
+        // expedientes: this.dadoProfissao.expedientes.map((e) =>
+        //   e.toHasuraObject()
+        // ),
       },
     });
   }
