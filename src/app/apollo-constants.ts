@@ -1,4 +1,5 @@
 import { gql } from 'apollo-angular';
+import { PessoaFisica } from './models/pessoas/pessoa-fisica/pessoa-fisica';
 
 export interface IPessoaFisicaHome {
   nome: string;
@@ -526,6 +527,35 @@ export const DELETE_DADOS_DE_PROFISSAO = gql`
         nome
         id
       }
+    }
+  }
+`;
+
+export interface IPessoaFisicas {
+  PessoaFisica: {
+    id: number;
+    nome: string;
+    tipoUsuario: string;
+    email: string;
+  }[];
+}
+
+export const PROFISSIONAL_SAUDE_QUERY = gql`
+  query MyQuery($pessoaJuridica: Int = 1, $inicio: String = "00:00") {
+    PessoaFisica(
+      where: {
+        DadosDeProfissaos: {
+          ExpedienteDePessoaFisicas: {
+            inicio: { _eq: $inicio }
+            PessoaJuridica: { id: { _eq: $pessoaJuridica } }
+          }
+        }
+      }
+    ) {
+      id
+      nome
+      tipoUsuario
+      email
     }
   }
 `;
