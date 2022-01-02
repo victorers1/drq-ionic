@@ -289,6 +289,7 @@ export const INSERT_EXPEDIENTE_DE_PESSOA_FISICA = gql`
     $recorrencia: Int = 0
     $dadosDeProfissao: Int = 0
     $diaDaSemana: Int = 0
+    $pessoaJuridica: Int = 1
   ) {
     insert_ExpedienteDePessoaFisica_one(
       object: {
@@ -297,6 +298,7 @@ export const INSERT_EXPEDIENTE_DE_PESSOA_FISICA = gql`
         termino: $termino
         dadosDeProfissao: $dadosDeProfissao
         diaDaSemana: $diaDaSemana
+        pessoaJuridica: $pessoaJuridica
       }
     ) {
       termino
@@ -305,6 +307,7 @@ export const INSERT_EXPEDIENTE_DE_PESSOA_FISICA = gql`
       id
       diaDaSemana
       dadosDeProfissao
+      pessoaJuridica
     }
   }
 `;
@@ -317,7 +320,7 @@ export const UPDATE_EXPEDIENTE_DE_PESSOA_FISICA = gql`
     $inicio: String = ""
     $recorrencia: Int = 0
     $termino: String = ""
-    $pessoaJuridica: Int = 0
+    $pessoaJuridica: Int = 1
   ) {
     update_ExpedienteDePessoaFisica_by_pk(
       pk_columns: { id: $id }
@@ -395,7 +398,6 @@ export const INSERT_DADO_DE_PROFISSAO = gql`
     $profissao: Int = 0
     $publico: Boolean = false
     $situacao: Int = 0
-    $expediente: [IExpedienteDePessoaFisica]
   ) {
     insert_DadosDeProfissao_one(
       object: {
@@ -405,7 +407,6 @@ export const INSERT_DADO_DE_PROFISSAO = gql`
         situacao: $situacao
         especialidade: $especialidade
         grauDeInstrucao: $grauDeInstrucao
-        ExpedienteDePessoaFisicas: { data: $expedientes }
       }
     ) {
       situacao

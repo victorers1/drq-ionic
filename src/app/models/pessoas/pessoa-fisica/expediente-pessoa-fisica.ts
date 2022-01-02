@@ -7,7 +7,7 @@ export class ExpedienteDePessoaFisica {
 
   constructor(
     public dadosDeProfissaoID: number,
-    public pessoaJuridicaID: number,
+    public pessoaJuridicaID: number = 1,
     public diaDaSemana: WeekDay,
     public recorrencia: number,
     public inicio: Time,

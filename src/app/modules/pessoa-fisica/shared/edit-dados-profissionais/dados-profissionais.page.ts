@@ -1,7 +1,7 @@
 import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { resultKeyNameFromField } from '@apollo/client/utilities';
+import { FetchResult } from '@apollo/client/core';
 import { NavController } from '@ionic/angular';
 import {
   INSERT_DADO_DE_PROFISSAO,
@@ -124,12 +124,14 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   async saveDadosProfissionais() {
-    let result;
-    debugger;
+    let result:
+      | FetchResult<IUpdateDadosDeProfissao>
+      | FetchResult<IInsertDadosDeProfissao>;
     if (this.idDadoProfissao) {
       result = await this.updateDadosDeProfissao();
     } else {
       result = await this.createDadosDeProfissao();
+      this.dadoProfissao.id = result.data.insert_DadosDeProfissao_one.id;
     }
     console.log('saveDadosProfissionais(): ', result);
 
@@ -155,9 +157,6 @@ export class DadosProfissionaisPage implements OnInit {
         grauDeInstrucao: this.dadoProfissao.grauDeInstrucao,
         publico: this.dadoProfissao.publico,
         situacao: this.dadoProfissao.status.valueOf(),
-        // expedientes: this.dadoProfissao.expedientes.map((e) =>
-        //   e.toHasuraObject()
-        // ),
       },
     });
   }
@@ -189,7 +188,7 @@ export class DadosProfissionaisPage implements OnInit {
           inicio: DateUtils.getTimeFormatado(e.inicio),
           termino: DateUtils.getTimeFormatado(e.termino),
           recorrencia: e.recorrencia,
-          pessoaJuridica: e.pessoaJuridicaID,
+          pessoaJuridica: e.pessoaJuridicaID ?? 1,
         },
       });
       console.log('updateExpediente:', result);
@@ -199,7 +198,6 @@ export class DadosProfissionaisPage implements OnInit {
   async createExpedientesDePessoaFisica(
     expedientesNovos: ExpedienteDePessoaFisica[]
   ) {
-    // TODO criar todos com uma mesma mutation
     for (const e of expedientesNovos) {
       const result = await this.apolloService.mutate({
         mutation: INSERT_EXPEDIENTE_DE_PESSOA_FISICA,
@@ -209,7 +207,7 @@ export class DadosProfissionaisPage implements OnInit {
           inicio: DateUtils.getTimeFormatado(e.inicio),
           termino: DateUtils.getTimeFormatado(e.termino),
           recorrencia: e.recorrencia,
-          // pessoaJuridica: e.pessoaJuridicaID,
+          pessoaJuridica: e.pessoaJuridicaID ?? 1,
         },
       });
       console.log('createExpediente:', result);
