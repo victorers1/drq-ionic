@@ -110,6 +110,7 @@ export class DadosProfissionaisPage implements OnInit {
   async updateExpedientesDePessoaFisica(
     expedientesExistentes: ExpedienteDePessoaFisica[]
   ) {
+    const result = '';
     for (const e of expedientesExistentes) {
       console.log('updateExpediente:', result);
     }
