@@ -5,12 +5,7 @@ import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
-import {
-  DADOS_PROFISSAO_SUBSCRIPTION,
-  IConfigDadosDeProfissao,
-  IDadosDeProfissao,
-} from 'src/app/apollo-constants';
-import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
+
 import { PacienteService } from 'src/app/services/usuario/paciente.service';
 import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -29,8 +24,7 @@ export class ConfigDadosPage implements OnInit {
   constructor(
     public usuarioService: UsuarioService,
     private navCtrl: NavController,
-    private route: ActivatedRoute,
-    private apolloService: ApolloService
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
@@ -51,33 +45,7 @@ export class ConfigDadosPage implements OnInit {
     await this.getConfigDados(this.pessoaFisica.id);
   }
 
-  async getConfigDados(idPessoa: number) {
-    this.apolloService.subscribe<IConfigDadosDeProfissao>(
-      {
-        query: DADOS_PROFISSAO_SUBSCRIPTION,
-        variables: {
-          id: idPessoa,
-        },
-      },
-      ({ data }) => {
-        if (data) {
-          this.pessoaFisica.dadosProfissao =
-            this.usuarioService.mapDadosDeProfissaoFromResult(
-              data.DadosDeProfissao,
-              idPessoa
-            );
-          this.pessoaFisica.dadosBancarios = [];
-          this.pessoaFisica.dadosPlanoSaude = [];
-          this.pessoaFisica.dadosDeDependente = [];
-        }
-
-        console.log({ dadosConfig: data });
-      },
-      (error) => {
-        console.log('there was an error sending the query', error);
-      }
-    );
-  }
+  async getConfigDados(idPessoa: number) {}
 
   createDadoProfissional() {
     this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PROFISSIONAIS], {

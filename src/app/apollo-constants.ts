@@ -1,6 +1,3 @@
-import { gql } from 'apollo-angular';
-import { PessoaFisica } from './models/pessoas/pessoa-fisica/pessoa-fisica';
-
 export interface IPessoaFisicaHome {
   nome: string;
   docFiscal: string;
@@ -21,27 +18,6 @@ export interface IPessoaFisicaHome {
 export interface IResponseProfissionalHome {
   PessoaFisica_by_pk: IPessoaFisicaHome;
 }
-export const PROFISSIONAL_HOME_QUERY = gql`
-  query MyQuery($id: bigint = "") {
-    PessoaFisica_by_pk(id: $id) {
-      nome
-      email
-      docFiscal
-      rg
-      sexo
-      endLogradouro
-      endNumero
-      endComplemento
-      endCEP
-      endBairro
-      endCidade
-      endEstado
-      endPais
-      foneUm
-      dataDeNascimento
-    }
-  }
-`;
 
 export interface IProfissao {
   id: number;
@@ -103,241 +79,22 @@ export interface IDadosProfissao {
 export interface IConfigDadosDeProfissao {
   DadosDeProfissao: IDadosDeProfissao[];
 }
-export const DADOS_PROFISSAO_SUBSCRIPTION = gql`
-  subscription MySubscription($id: bigint = "") {
-    DadosDeProfissao(
-      where: { PessoaFisica: { id: { _eq: $id } }, situacao: { _eq: 0 } }
-    ) {
-      id
-      publico
-      especialidade
-      conselhoDeClasse
-      grauDeInstrucao
-      Profissao {
-        id
-        nome
-      }
-      ConselhoDeClasse {
-        id
-        nome
-        sigla
-      }
-      Especialidade {
-        id
-        nome
-      }
-    }
-  }
-`;
-/**
- *  DadosBancarios(
-      where: { PessoaFisica: { id: { _eq: $id }, situacao: { _eq: 0 } } }
-    ) {
-      id
-      nome
-      publico
-      codigoDaAgencia
-      codigoDaConta
-      codigoDeOperacao
-      codigoDoBanco
-    }
-
-    DadosDePlanoDeSaude(
-      where: { PessoaFisica: { id: { _eq: $id } }, situacao: { _eq: 0 } }
-    ) {
-      id
-      nome
-      publico
-      registro
-      contrato
-    }
-
-    DadosDeDependente(
-      where: { PessoaFisica: { id: { _eq: $id }, situacao: { _eq: 0 } } }
-    ) {
-      id
-      nome
-      publico
-      docFiscal
-      dataDeNascimento
-    }
- */
 
 export interface IListaProfissao {
   dadosGeral_Profissao: IProfissao[];
 }
-export const LISTA_PROFISSOES_QUERY = gql`
-  query MyQuery {
-    dadosGeral_Profissao {
-      id
-      nome
-    }
-  }
-`;
 
 export interface IListaEspecialidade {
   dadosGeral_Especialidade: IEspecialidade[];
 }
-export const LISTA_ESPECIALIDADES_QUERY = gql`
-  query MyQuery($id: Int = 0) {
-    dadosGeral_Especialidade(where: { profissao: { _eq: $id } }) {
-      id
-      nome
-    }
-  }
-`;
 
 export interface IUpdatePessoaFisica {
   update_PessoaFisica_by_pk: IPessoaFisicaHome;
 }
-export const UPDATE_DADOS_PESSOAIS = gql`
-  mutation MyMutation(
-    $id: bigint = ""
-    $nome: String = ""
-    $email: String = ""
-    $docFiscal: String = ""
-    $rg: String = ""
-    $sexo: Int = ""
-    $endLogradouro: String = ""
-    $endNumero: String = ""
-    $endComplemento: String = ""
-    $endCEP: String = ""
-    $endBairro: String = ""
-    $endCidade: String = ""
-    $endEstado: String = ""
-    $foneUm: String = ""
-    $dataDeNascimento: bigint = ""
-  ) {
-    update_PessoaFisica_by_pk(
-      pk_columns: { id: $id }
-      _set: {
-        dataDeNascimento: $dataDeNascimento
-        docFiscal: $docFiscal
-        email: $email
-        endBairro: $endBairro
-        endCEP: $endCEP
-        endCidade: $endCidade
-        endComplemento: $endComplemento
-        endEstado: $endEstado
-        endLogradouro: $endLogradouro
-        endNumero: $endNumero
-        foneUm: $foneUm
-        nome: $nome
-        rg: $rg
-        sexo: $sexo
-      }
-    ) {
-      nome
-      email
-      docFiscal
-      rg
-      sexo
-      endLogradouro
-      endNumero
-      endComplemento
-      endCEP
-      endBairro
-      endCidade
-      endEstado
-      endPais
-      foneUm
-      dataDeNascimento
-    }
-  }
-`;
 
 export interface IUpdateDadosDeProfissao {
   update_DadosDeProfissao_by_pk: IDadosDeProfissao;
 }
-
-export const UPDATE_DADOS_DE_PROFISSAO = gql`
-  mutation MyMutation(
-    $id: Int = 0
-    $profissao: Int = 0
-    $conselhoDeClasse: Int = null
-    $especialidade: Int = 0
-    $grauDeInstrucao: String = ""
-    $situacao: Int = 0
-    $publico: Boolean = false
-  ) {
-    update_DadosDeProfissao_by_pk(
-      pk_columns: { id: $id }
-      _set: {
-        profissao: $profissao
-        conselhoDeClasse: $conselhoDeClasse
-        especialidade: $especialidade
-        grauDeInstrucao: $grauDeInstrucao
-        situacao: $situacao
-        publico: $publico
-      }
-    ) {
-      id
-      publico
-      situacao
-      profissao
-      pessoaFisica
-      especialidade
-      grauDeInstrucao
-      conselhoDeClasse
-    }
-  }
-`;
-
-export const INSERT_EXPEDIENTE_DE_PESSOA_FISICA = gql`
-  mutation MyMutation(
-    $inicio: String = ""
-    $termino: String = ""
-    $recorrencia: Int = 0
-    $dadosDeProfissao: Int = 0
-    $diaDaSemana: Int = 0
-    $pessoaJuridica: Int = 1
-  ) {
-    insert_ExpedienteDePessoaFisica_one(
-      object: {
-        inicio: $inicio
-        recorrencia: $recorrencia
-        termino: $termino
-        dadosDeProfissao: $dadosDeProfissao
-        diaDaSemana: $diaDaSemana
-        pessoaJuridica: $pessoaJuridica
-      }
-    ) {
-      termino
-      recorrencia
-      inicio
-      id
-      diaDaSemana
-      dadosDeProfissao
-      pessoaJuridica
-    }
-  }
-`;
-
-export const UPDATE_EXPEDIENTE_DE_PESSOA_FISICA = gql`
-  mutation MyMutation(
-    $id: Int = 0
-    $dadosDeProfissao: Int = 0
-    $diaDaSemana: Int = 0
-    $inicio: String = ""
-    $recorrencia: Int = 0
-    $termino: String = ""
-    $pessoaJuridica: Int = 1
-  ) {
-    update_ExpedienteDePessoaFisica_by_pk(
-      pk_columns: { id: $id }
-      _set: {
-        dadosDeProfissao: $dadosDeProfissao
-        diaDaSemana: $diaDaSemana
-        inicio: $inicio
-        pessoaJuridica: $pessoaJuridica
-        recorrencia: $recorrencia
-        termino: $termino
-      }
-    ) {
-      id
-    }
-  }
-`;
 
 export interface IInsertDadosDeProfissao {
   insert_DadosDeProfissao_one: {
@@ -357,71 +114,6 @@ export interface IInsertExpedienteDePessoaFisica {
   };
 }
 
-export const INSERT_EXPEDIENTE_PESSOA_FISICA = gql`
-  mutation MyMutation2(
-    $inicio: String = ""
-    $pessoaJuridica: Int = 0
-    $termino: String = ""
-    $recorrencia: Int = 0
-    $diaDaSemana: Int = 0
-    $dadosDeProfissao: Int = 0
-  ) {
-    insert_ExpedienteDePessoaFisica(
-      objects: [
-        {
-          inicio: $inicio
-          pessoaJuridica: $pessoaJuridica
-          termino: $termino
-          recorrencia: $recorrencia
-          diaDaSemana: $diaDaSemana
-          dadosDeProfissao: $dadosDeProfissao
-        }
-      ]
-    ) {
-      returning {
-        id
-        inicio
-        pessoaJuridica
-        recorrencia
-        termino
-        diaDaSemana
-        dadosDeProfissao
-      }
-    }
-  }
-`;
-
-export const INSERT_DADO_DE_PROFISSAO = gql`
-  mutation MyMutation(
-    $pessoaFisica: Int = 0
-    $especialidade: Int = 0
-    $grauDeInstrucao: String = ""
-    $profissao: Int = 0
-    $publico: Boolean = false
-    $situacao: Int = 0
-  ) {
-    insert_DadosDeProfissao_one(
-      object: {
-        pessoaFisica: $pessoaFisica
-        profissao: $profissao
-        publico: $publico
-        situacao: $situacao
-        especialidade: $especialidade
-        grauDeInstrucao: $grauDeInstrucao
-      }
-    ) {
-      situacao
-      publico
-      profissao
-      pessoaFisica
-      grauDeInstrucao
-      especialidade
-      conselhoDeClasse
-      id
-    }
-  }
-`;
-
 export interface IExpedienteDePessoaFisicaByPK {
   ExpedienteDePessoaFisica_by_pk: {
     dadosDeProfissao: number;
@@ -440,97 +132,15 @@ export interface IExpedienteDePessoaFisicaByPK {
   };
 }
 
-export const EXPEDIENTE_DE_PESSOA_FISICA_QUERY = gql`
-  query MyQuery($id: Int = 0) {
-    ExpedienteDePessoaFisica_by_pk(id: $id) {
-      dadosDeProfissao
-      diaDaSemana
-      id
-      inicio
-      pessoaJuridica
-      recorrencia
-      termino
-      PessoaJuridica {
-        id
-      }
-      DadosDeProfissao {
-        id
-      }
-    }
-  }
-`;
-
 export interface IDadosDeProfissaoByPK {
   DadosDeProfissao_by_pk: IDadosDeProfissao;
 }
-export const EDIT_DADOS_DE_PROFISSAO_QUERY = gql`
-  query MyQuery($id: Int = 0) {
-    DadosDeProfissao_by_pk(id: $id) {
-      id
-      grauDeInstrucao
-      pessoaFisica
-      publico
-      situacao
-      ExpedienteDePessoaFisicas {
-        termino
-        recorrencia
-        pessoaJuridica
-        inicio
-        id
-        diaDaSemana
-        dadosDeProfissao
-      }
-      Profissao {
-        id
-        nome
-      }
-      Especialidade {
-        id
-        nome
-      }
-    }
-  }
-`;
-
 export interface IDeleteDadosDeProfissao {
   delete_ExpedienteDePessoaFisica: {
     returning: IExpedienteDePessoaFisica[];
   };
   delete_DadosDeProfissao_by_pk: IDadosProfissao;
 }
-export const DELETE_DADOS_DE_PROFISSAO = gql`
-  mutation MyMutation($id: Int = 0) {
-    delete_ExpedienteDePessoaFisica(
-      where: { DadosDeProfissao: { id: { _eq: $id } } }
-    ) {
-      returning {
-        diaDaSemana
-        id
-        inicio
-        pessoaJuridica
-        recorrencia
-        termino
-      }
-    }
-    delete_DadosDeProfissao_by_pk(id: $id) {
-      id
-      situacao
-      publico
-      pessoaFisica
-      grauDeInstrucao
-      conselhoDeClasse
-      Profissao {
-        id
-        nome
-      }
-      Especialidade {
-        nome
-        id
-      }
-    }
-  }
-`;
-
 export interface IPessoaFisicas {
   PessoaFisica: {
     id: number;
@@ -539,23 +149,3 @@ export interface IPessoaFisicas {
     email: string;
   }[];
 }
-
-export const PROFISSIONAL_SAUDE_QUERY = gql`
-  query MyQuery($pessoaJuridica: Int = 1, $inicio: String = "00:00") {
-    PessoaFisica(
-      where: {
-        DadosDeProfissaos: {
-          ExpedienteDePessoaFisicas: {
-            inicio: { _eq: $inicio }
-            PessoaJuridica: { id: { _eq: $pessoaJuridica } }
-          }
-        }
-      }
-    ) {
-      id
-      nome
-      tipoUsuario
-      email
-    }
-  }
-`;

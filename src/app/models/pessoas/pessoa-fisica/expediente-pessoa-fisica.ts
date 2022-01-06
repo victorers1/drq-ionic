@@ -1,6 +1,5 @@
 import { Time, WeekDay } from '@angular/common';
-import { IExpedienteDePessoaFisica } from 'src/app/apollo-constants';
-import { DateUtils, diaDaSemanaOptions } from 'src/app/utils/date-utils';
+import { DateUtils } from 'src/app/utils/date-utils';
 
 export class ExpedienteDePessoaFisica {
   id: number;
@@ -20,16 +19,4 @@ export class ExpedienteDePessoaFisica {
   getInicioFormatado = (): string => DateUtils.getTimeFormatado(this.inicio);
 
   getTerminoFormatado = (): string => DateUtils.getTimeFormatado(this.termino);
-
-  toHasuraObject(): IExpedienteDePessoaFisica {
-    return {
-      id: null,
-      dadosDeProfissao: this.dadosDeProfissaoID,
-      diaDaSemana: this.diaDaSemana.valueOf(),
-      inicio: DateUtils.getTimeFormatado(this.inicio),
-      termino: DateUtils.getTimeFormatado(this.termino),
-      pessoaJuridica: 1,
-      recorrencia: this.recorrencia,
-    };
-  }
 }

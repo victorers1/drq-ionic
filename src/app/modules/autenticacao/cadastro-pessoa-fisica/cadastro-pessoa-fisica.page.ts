@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DRQRoutes } from 'src/app/constants';
-import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 
 @Component({
   selector: 'app-cadastro-pessoa-fisica',
@@ -27,11 +26,7 @@ export class CadastroPessoaFisicaPage implements OnInit {
     ),
   });
 
-  constructor(private apolloService: ApolloService) {}
-
   ngOnInit() {}
 
-  async criarConta() {
-    // const result = await this.apolloService.mutate();
-  }
+  async criarConta() {}
 }

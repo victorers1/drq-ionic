@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {
-  IPessoaFisicas,
-  PROFISSIONAL_SAUDE_QUERY,
-} from 'src/app/apollo-constants';
-import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 
 @Component({
   selector: 'app-select-profissional',
@@ -14,21 +9,10 @@ import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
 export class SelectProfissionalPage implements OnInit {
   profissionais: string[] = [];
 
-  constructor(
-    private modalCtrl: ModalController,
-    private apolloService: ApolloService
-  ) {}
+  constructor(private modalCtrl: ModalController) {}
 
   async ngOnInit() {
-    const result = await this.apolloService.query<IPessoaFisicas>({
-      query: PROFISSIONAL_SAUDE_QUERY,
-      variables: {
-        inicio: '00:00',
-        pessoaJuridica: 1,
-      },
-    });
-
-    this.profissionais = result.data.PessoaFisica.map((p) => p.nome);
+    const result = '';
   }
 
   buttonSair() {

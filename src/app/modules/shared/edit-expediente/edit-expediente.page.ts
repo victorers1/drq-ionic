@@ -3,11 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
-import { ApolloService } from 'src/app/services/apollo/apollo-service.service';
-import {
-  EXPEDIENTE_DE_PESSOA_FISICA_QUERY,
-  IExpedienteDePessoaFisicaByPK,
-} from 'src/app/apollo-constants';
 
 @Component({
   selector: 'app-edit-expediente',
