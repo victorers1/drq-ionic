@@ -1,22 +1,26 @@
-export interface IPessoaFisicaHome {
+export interface IPessoaFisica {
   nome: string;
-  docFiscal: string;
+  docfiscal: string;
   rg: string;
   email: string;
-  foneUm: string;
-  endCEP: string;
-  endLogradouro: string;
-  endComplemento: string;
-  endNumero: string;
-  endBairro: string;
-  endCidade: string;
-  endEstado: string;
-  endPais: string;
-  dataDeNascimento: number;
+  foneum: string;
+  endlogradouro: string;
+  endcomplemento: string;
+  endnumero: string;
+  endbairro: string;
+  endcidade: string;
+  endestado: string;
+  endpais: string;
+  datadenascimento: number;
   sexo: number;
-}
-export interface IResponseProfissionalHome {
-  PessoaFisica_by_pk: IPessoaFisicaHome;
+  id: number;
+  endcep: string;
+  role: string;
+  version: number;
+  createdat: number;
+  user: string;
+  classUID: string;
+  status: number;
 }
 
 export interface IProfissao {
@@ -80,34 +84,29 @@ export interface IConfigDadosDeProfissao {
   DadosDeProfissao: IDadosDeProfissao[];
 }
 
-export interface IListaProfissao {
-  dadosGeral_Profissao: IProfissao[];
+export interface IReadAllProfissao {
+  data: IProfissao[];
 }
 
-export interface IListaEspecialidade {
-  dadosGeral_Especialidade: IEspecialidade[];
-}
-
-export interface IUpdatePessoaFisica {
-  update_PessoaFisica_by_pk: IPessoaFisicaHome;
+export interface IReadAllEspecialidade {
+  data: IEspecialidade[];
 }
 
 export interface IUpdateDadosDeProfissao {
   update_DadosDeProfissao_by_pk: IDadosDeProfissao;
 }
 
-export interface IInsertDadosDeProfissao {
-  insert_DadosDeProfissao_one: {
-    id: number;
-    situacao: number;
-    publico: boolean;
-    profissao: number;
-    pessoaFisica: number;
-    grauDeInstrucao: string;
-    especialidade: number;
-    conselhoDeClasse: number;
-  };
+export interface ICreateDadosDeProfissao {
+  id: number;
+  situacao: number;
+  publico: boolean;
+  profissao: number;
+  pessoaFisica: number;
+  grauDeInstrucao: string;
+  especialidade: number;
+  conselhoDeClasse: number;
 }
+
 export interface IInsertExpedienteDePessoaFisica {
   insert_ExpedienteDePessoaFisica: {
     returning: IExpedienteDePessoaFisica[];

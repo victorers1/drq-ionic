@@ -9,6 +9,7 @@ import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional'
 import { PacienteService } from 'src/app/services/usuario/paciente.service';
 import { ProfissionalService } from 'src/app/services/usuario/profissional.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 
 @Component({
   selector: 'app-config-dados',
@@ -24,7 +25,8 @@ export class ConfigDadosPage implements OnInit {
   constructor(
     public usuarioService: UsuarioService,
     private navCtrl: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private yc: YCodifyService
   ) {}
 
   async ngOnInit() {
@@ -45,7 +47,12 @@ export class ConfigDadosPage implements OnInit {
     await this.getConfigDados(this.pessoaFisica.id);
   }
 
-  async getConfigDados(idPessoa: number) {}
+  async getConfigDados(idPessoa: number) {
+    this.yc.request({
+      action: YC_ACTION.READ,
+      object: {},
+    });
+  }
 
   createDadoProfissional() {
     this.navCtrl.navigateForward([this.routes.EDIT_DADOS_PROFISSIONAIS], {

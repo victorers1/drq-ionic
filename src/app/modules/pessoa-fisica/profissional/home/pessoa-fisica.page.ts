@@ -24,12 +24,12 @@ export class PessoaFisicaPage implements OnInit {
     // ! tipo usuário deve ser setado antes de carregar usuário
     this.usuarioService.tipoUsuario = TIPO_USUARIO.PROFISSIONAL;
     this.profissionalService = this.usuarioService.get() as ProfissionalService;
-    this.profissional =
-      await this.profissionalService.setAndGetProfissionalById(5);
+    await this.profissionalService.setProfissionalById(4);
+    this.profissional = this.profissionalService.usuario;
   }
 
   logOut(): void {
-    console.log(`${this.profissional.email} is loging out`);
+    console.log(`${this.profissional?.email} is loging out`);
     this.navCtrl.navigateRoot('login');
   }
 }

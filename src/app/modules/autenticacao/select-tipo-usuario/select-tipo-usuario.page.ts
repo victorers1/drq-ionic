@@ -22,7 +22,6 @@ export class SelectTipoUsuarioPage implements OnInit {
 
     this.setTipoUsuario(route);
 
-    this.navCtrl.navigateForward([route]);
     this.navCtrl.navigateRoot([route]);
   }
 

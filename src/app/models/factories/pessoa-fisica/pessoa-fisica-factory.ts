@@ -9,7 +9,6 @@ export type IDadosIniciais = {
 };
 
 export type IDadosAdicionais = {
-  email: string;
   rg: string;
   sexo: SEXO;
   endLogradouro: string;
@@ -29,10 +28,12 @@ export abstract class PessoaFisicaFactory {
 
   public criar(
     dadosIniciais: IDadosIniciais,
-    dadosAdicionais: IDadosAdicionais
+    dadosAdicionais?: IDadosAdicionais
   ): PessoaFisica {
     const pessoa = this.factoryMethod(dadosIniciais);
-    pessoa.preencherDados(dadosAdicionais);
+    if (dadosAdicionais) {
+      pessoa.preencherDados(dadosAdicionais);
+    }
     return pessoa;
   }
 }
