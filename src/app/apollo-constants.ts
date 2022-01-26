@@ -36,6 +36,7 @@ export interface IConselhoDeClasse {
 export interface IEspecialidade {
   id: number;
   nome: string;
+  profissao: IProfissao;
 }
 export interface IDado {
   id: number;
@@ -43,11 +44,10 @@ export interface IDado {
   situacao: number;
 }
 export interface IDadosDeProfissao extends IDado {
-  Profissao: IProfissao;
-  grauDeInstrucao: string;
-  Especialidade: IEspecialidade;
-  conselhoDeClasse: IConselhoDeClasse;
-  ExpedienteDePessoaFisicas: IExpedienteDePessoaFisica[];
+  graudeinstrucao: string;
+  especialidade: IEspecialidade;
+  conselhodeclasse: IConselhoDeClasse;
+  expedientedepessoafisica?: IExpedienteDePessoaFisica[];
 }
 export interface IDadosBancarios extends IDado {
   nome: string;
@@ -101,10 +101,10 @@ export interface ICreateDadosDeProfissao {
   situacao: number;
   publico: boolean;
   profissao: number;
-  pessoaFisica: number;
-  grauDeInstrucao: string;
+  pessoafisica: number;
+  graudeinstrucao: string;
   especialidade: number;
-  conselhoDeClasse: number;
+  conselhodeclasse: number;
 }
 
 export interface IInsertExpedienteDePessoaFisica {

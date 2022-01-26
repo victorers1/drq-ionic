@@ -7,14 +7,14 @@ import { ExpedienteDePessoaFisica } from './expediente-pessoa-fisica';
 export class DadosDeProfissao extends Dado {
   public expedientes: ExpedienteDePessoaFisica[] = [];
 
-  public grauDeInstrucao: string;
-  public especialidade: Especialidade;
+  public profissao: Profissao;
   public conselhoDeClasse: ConselhoDeClasse;
 
   constructor(
     public pessoaFisicaID: number = 0,
-    public profissao: Profissao,
-    public publico: boolean = false
+    public especialidade: Especialidade,
+    public publico: boolean = false,
+    public grauDeInstrucao: string = ''
   ) {
     super(publico);
   }

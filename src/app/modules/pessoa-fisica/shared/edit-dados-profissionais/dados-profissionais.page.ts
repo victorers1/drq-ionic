@@ -10,6 +10,7 @@ import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-pro
 import { ExpedienteDePessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/expediente-pessoa-fisica';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { StringUtils } from 'src/app/utils/string-utils';
 
@@ -29,7 +30,8 @@ export class DadosProfissionaisPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private yc: YCodifyService
   ) {}
 
   ngOnInit() {
@@ -99,11 +101,36 @@ export class DadosProfissionaisPage implements OnInit {
     }
   }
 
-  async saveDadosProfissionais() {
-    this.navCtrl.pop();
+  private async createDadosDeProfissao() {
+    const result = this.yc.request({
+      action: YC_ACTION.CREATE,
+      object: {
+        classUID: 'dadosdeprofissao',
+        especialidade: {
+          classUID: 'especialidade',
+          id: this.dadoProfissao.especialidade.id,
+          role: 'ROLE_ADMIN',
+        },
+        profissao: {
+          classUID: 'profissao',
+          id: this.dadoProfissao.profissao.id,
+          role: 'ROLE_ADMIN',
+        },
+        pessoafisica: {
+          classUID: 'pessoafisica',
+          id: this.usuarioService.get().usuario.id,
+          role: 'ROLE_ADMIN',
+        },
+        conselhodeclasseid: null,
+        conselhodeclasse: null,
+        graudeinstrucao: 'SUPERIOR',
+        publico: false,
+        status: true,
+        role: 'ROLE_ADMIN',
+        user: 'victorers',
+      },
+    });
   }
-
-  private async createDadosDeProfissao() {}
 
   private async updateDadosDeProfissao() {}
 
@@ -130,6 +157,10 @@ export class DadosProfissionaisPage implements OnInit {
   async deleteDadosDeProfissao() {
     const result = '';
     console.log('deleteDadosDeProfissao():', result);
+    this.navCtrl.pop();
+  }
+
+  async saveDadosProfissionais() {
     this.navCtrl.pop();
   }
 

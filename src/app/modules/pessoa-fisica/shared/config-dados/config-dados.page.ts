@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { IDadosDeProfissao } from 'src/app/apollo-constants';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
+import { Especialidade } from 'src/app/models/geral/especialidade';
+import { Profissao } from 'src/app/models/geral/profissao';
+import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-profissao';
 import { Paciente } from 'src/app/models/pessoas/pessoa-fisica/paciente';
 import { PessoaFisica } from 'src/app/models/pessoas/pessoa-fisica/pessoa-fisica';
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';
@@ -44,14 +48,53 @@ export class ConfigDadosPage implements OnInit {
         throw new Error('Service não criado. Tipo de usuário inválido.');
     }
 
-    await this.getConfigDados(this.pessoaFisica.id);
+    this.getConfigDados(this.pessoaFisica.id);
   }
 
   async getConfigDados(idPessoa: number) {
-    this.yc.request({
+    const result = await this.yc.request<{ data: IDadosDeProfissao[] }>({
       action: YC_ACTION.READ,
-      object: {},
+      object: {
+        classUID: 'dadosdeprofissao',
+        role: 'ROLE_ADMIN',
+        pessoafisica: {
+          id: idPessoa,
+          role: 'ROLE_ADMIN',
+          classUID: 'pessoafisica',
+        },
+      },
+      criterion: {
+        connective: 'AND',
+        toCount: false,
+        orderBy: 'id',
+        order: 'asc',
+        maxRegisters: 20,
+        firstRegister: 0,
+      },
+      associations: {
+        mode: true,
+        level: 2,
+      },
     });
+
+    const dadosDeProfissao = result.data.map(
+      (dp) =>
+        new DadosDeProfissao(
+          dp.id,
+          new Especialidade(
+            dp.especialidade.id,
+            dp.especialidade.nome,
+            new Profissao(
+              dp.especialidade.profissao.id,
+              dp.especialidade.profissao.nome
+            )
+          ),
+          dp.publico,
+          dp.graudeinstrucao
+        )
+    );
+
+    this.pessoaFisica.dadosProfissao = dadosDeProfissao;
   }
 
   createDadoProfissional() {

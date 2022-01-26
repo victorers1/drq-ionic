@@ -49,30 +49,37 @@ export class UsuarioService {
     return dadosDeProfissoes.map<DadosDeProfissao>((dado) => {
       const dadoDeProfissao = new DadosDeProfissao(
         idPessoa,
-        new Profissao(dado.Profissao.id, dado.Profissao.nome)
+        new Especialidade(
+          dado.especialidade.id,
+          dado.especialidade.nome,
+          new Profissao(
+            dado.especialidade.profissao.id,
+            dado.especialidade.profissao.nome
+          )
+        )
       );
       dadoDeProfissao.id = dado.id;
       dadoDeProfissao.publico = dado.publico;
       dadoDeProfissao.conselhoDeClasse =
-        dado.conselhoDeClasse != null
+        dado.conselhodeclasse != null
           ? new ConselhoDeClasse(
-              dado.conselhoDeClasse.id,
-              dado.conselhoDeClasse.sigla,
-              dado.conselhoDeClasse.nome
+              dado.conselhodeclasse.id,
+              dado.conselhodeclasse.sigla,
+              dado.conselhodeclasse.nome
             )
           : null;
 
       dadoDeProfissao.especialidade =
-        dado.Especialidade != null
-          ? new Especialidade(dado.Especialidade.id, dado.Especialidade.nome)
+        dado.especialidade != null
+          ? new Especialidade(dado.especialidade.id, dado.especialidade.nome)
           : null;
-      dadoDeProfissao.grauDeInstrucao = dado.grauDeInstrucao;
+      dadoDeProfissao.grauDeInstrucao = dado.graudeinstrucao;
 
       dadoDeProfissao.expedientes =
-        dado.ExpedienteDePessoaFisicas != null
+        dado.expedientedepessoafisica != null
           ? this.mapExpedienteFromResult(
               dadoDeProfissao,
-              dado.ExpedienteDePessoaFisicas
+              dado.expedientedepessoafisica
             )
           : null;
 

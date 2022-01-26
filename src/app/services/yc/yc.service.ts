@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs/operators';
+import { LoadingService } from '../loading/loading.service';
 
 export enum YC_ACTION {
   CREATE = 0,
@@ -31,7 +32,7 @@ export interface YCOptions {
 export class YCodifyService {
   private readonly url = 'http://baas.ycodify.com/api/interpreters-grid/s';
   private readonly APP_ACCESS_TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyIjoiV3lKN1hDSnZkMjVsY2x3aU9sd2lkbWxqZEc5eVpYSnpYQ0lzWENKelkyaGxiV0ZjSWpwY0ltUnljVndpTEZ3aWJtRnRaVndpT2x3aVVrOU1SVjlCUkUxSlRsd2lmU0pkIiwidXNlcl9uYW1lIjoidmljdG9yZXJzQGRycSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJuYW1lIjoiYXBwbGljYXRpb24gYWRtaW4gYWNjb3VudCIsImV4cCI6MTY0Mjk5MDMxMiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIzYTEwYWRhMC1mZWZiLTRhMjQtYjM0MS03NDkyMDI1MTA3YWEiLCJlbWFpbCI6bnVsbCwiY2xpZW50X2lkIjoiZnJvbnRlbmQiLCJ1c2VybmFtZSI6InZpY3RvcmVyc0BkcnEiLCJzdGF0dXMiOjF9.HVq77XrwT8YomK9m1r_5BCa0iJq6dy14z4a8RduE7hI';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyIjoiV3lKN1hDSnZkMjVsY2x3aU9sd2lkbWxqZEc5eVpYSnpYQ0lzWENKelkyaGxiV0ZjSWpwY0ltUnljVndpTEZ3aWJtRnRaVndpT2x3aVVrOU1SVjlCUkUxSlRsd2lmU0pkIiwidXNlcl9uYW1lIjoidmljdG9yZXJzQGRycSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJuYW1lIjoiYXBwbGljYXRpb24gYWRtaW4gYWNjb3VudCIsImV4cCI6MTY0MzE2MTYyNiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJlYmNjNDFjNC1iYTAwLTQzOTMtYTMwMS03ZjY2ZmJjYjk0NzIiLCJlbWFpbCI6bnVsbCwiY2xpZW50X2lkIjoiZnJvbnRlbmQiLCJ1c2VybmFtZSI6InZpY3RvcmVyc0BkcnEiLCJzdGF0dXMiOjF9.Wn5568Hxh21ZxS-mt7UFQB3R-ZYKoUPNMwsPyCVdEjc';
   private readonly httpOptions = {
     headers: {
       'Content-Type': 'application/json' as const,
@@ -40,12 +41,17 @@ export class YCodifyService {
     },
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private loading: LoadingService) {}
 
   async request<T>(options: YCOptions): Promise<T> {
-    return await this.http
+    const loading = await this.loading.carregando();
+    loading.present();
+    const result = await this.http
       .post<T>(this.url, options, this.httpOptions)
       .pipe(tap(console.log), first())
       .toPromise();
+    loading.dismiss();
+
+    return result;
   }
 }
