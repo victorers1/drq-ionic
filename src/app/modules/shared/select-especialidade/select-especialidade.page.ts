@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { IReadAllEspecialidade } from 'src/app/apollo-constants';
 
 import { Especialidade } from 'src/app/models/geral/especialidade';
+import { Profissao } from 'src/app/models/geral/profissao';
 import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 
 @Component({
@@ -11,13 +12,13 @@ import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
   styleUrls: ['./select-especialidade.page.scss'],
 })
 export class SelectEspecialidadePage implements OnInit {
-  @Input() id: number;
+  @Input() profissao: Profissao;
   especialidades: Especialidade[] = [];
 
   constructor(private modalCtrl: ModalController, private yc: YCodifyService) {}
 
   async ngOnInit() {
-    console.log('On Especialidade-Modal: ', { idProfissao: this.id });
+    console.log('On Especialidade-Modal: ', { profissao: this.profissao });
 
     const result = await this.yc.request<IReadAllEspecialidade>({
       action: YC_ACTION.READ,
@@ -26,7 +27,7 @@ export class SelectEspecialidadePage implements OnInit {
         role: 'ROLE_ADMIN',
         profissao: {
           classUID: 'profissao',
-          id: this.id,
+          id: this.profissao.id,
           role: 'ROLE_ADMIN',
         },
       },
@@ -45,7 +46,7 @@ export class SelectEspecialidadePage implements OnInit {
     });
 
     this.especialidades = result.data.map(
-      (p) => new Especialidade(p.id, p.nome)
+      (p) => new Especialidade(p.id, p.nome, this.profissao)
     );
   }
 

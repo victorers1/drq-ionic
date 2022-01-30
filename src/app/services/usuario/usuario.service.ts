@@ -18,7 +18,7 @@ import { DateUtils } from 'src/app/utils/date-utils';
   providedIn: 'root',
 })
 export class UsuarioService {
-  tipoUsuario: TIPO_USUARIO;
+  tipoUsuario: TIPO_USUARIO = TIPO_USUARIO.INVALIDO;
 
   constructor(
     private pacienteService: PacienteService,
@@ -69,10 +69,6 @@ export class UsuarioService {
             )
           : null;
 
-      dadoDeProfissao.especialidade =
-        dado.especialidade != null
-          ? new Especialidade(dado.especialidade.id, dado.especialidade.nome)
-          : null;
       dadoDeProfissao.grauDeInstrucao = dado.graudeinstrucao;
 
       dadoDeProfissao.expedientes =
@@ -88,12 +84,12 @@ export class UsuarioService {
   }
 
   mapExpedienteFromResult(
-    dadosDeprofissao: DadosDeProfissao,
+    dadosDeProfissao: DadosDeProfissao,
     expedientes: IExpedienteDePessoaFisica[]
   ) {
-    return (dadosDeprofissao.expedientes = expedientes.map((exp) => {
+    return (dadosDeProfissao.expedientes = expedientes.map((exp) => {
       const expediente = new ExpedienteDePessoaFisica(
-        dadosDeprofissao.id,
+        dadosDeProfissao.id,
         exp.pessoaJuridica,
         exp.diaDaSemana,
         exp.recorrencia,

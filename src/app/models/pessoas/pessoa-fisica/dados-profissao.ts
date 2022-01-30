@@ -7,28 +7,29 @@ import { ExpedienteDePessoaFisica } from './expediente-pessoa-fisica';
 export class DadosDeProfissao extends Dado {
   public expedientes: ExpedienteDePessoaFisica[] = [];
 
-  public profissao: Profissao;
   public conselhoDeClasse: ConselhoDeClasse;
 
   constructor(
     public pessoaFisicaID: number = 0,
     public especialidade: Especialidade,
+    public id?: number,
     public publico: boolean = false,
     public grauDeInstrucao: string = ''
   ) {
-    super(publico);
+    super(publico, id);
+  }
+
+  get profissao(): Profissao {
+    return this.especialidade.profissao;
+  }
+  set profissao(p: Profissao) {
+    this.especialidade.profissao = p;
   }
 
   get nomeProfissao(): string {
     return this.profissao?.nome ?? 'não informada';
   }
-
   get nomeEspecialidade(): string {
-    return this.especialidade?.nome ?? 'não informada';
-  }
-
-  set newProfissao(p: Profissao) {
-    this.profissao = p;
-    this.especialidade = null;
+    return this.especialidade.nome ?? 'não informada';
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { IDadosDeProfissao } from 'src/app/apollo-constants';
+import { IDadosDeProfissao, YCArray } from 'src/app/apollo-constants';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';
@@ -52,7 +52,7 @@ export class ConfigDadosPage implements OnInit {
   }
 
   async getConfigDados(idPessoa: number) {
-    const result = await this.yc.request<{ data: IDadosDeProfissao[] }>({
+    const result = await this.yc.request<YCArray<IDadosDeProfissao>>({
       action: YC_ACTION.READ,
       object: {
         classUID: 'dadosdeprofissao',
@@ -80,7 +80,7 @@ export class ConfigDadosPage implements OnInit {
     const dadosDeProfissao = result.data.map(
       (dp) =>
         new DadosDeProfissao(
-          dp.id,
+          dp.pessoafisica.id,
           new Especialidade(
             dp.especialidade.id,
             dp.especialidade.nome,
@@ -89,11 +89,11 @@ export class ConfigDadosPage implements OnInit {
               dp.especialidade.profissao.nome
             )
           ),
+          dp.id,
           dp.publico,
           dp.graudeinstrucao
         )
     );
-
     this.pessoaFisica.dadosProfissao = dadosDeProfissao;
   }
 

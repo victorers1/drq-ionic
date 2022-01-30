@@ -5,10 +5,9 @@
 import { STATUS_ENTIDADE } from 'src/app/constants';
 
 export abstract class Dado {
-  public id: number;
-
   constructor(
     public publico: boolean = false,
+    public id?: number,
     public status: STATUS_ENTIDADE = STATUS_ENTIDADE.ATIVO
   ) {}
 }

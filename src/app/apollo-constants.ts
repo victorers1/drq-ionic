@@ -1,3 +1,7 @@
+export interface YCArray<T> {
+  data: T[];
+}
+
 export interface IPessoaFisica {
   nome: string;
   docfiscal: string;
@@ -46,25 +50,9 @@ export interface IDado {
 export interface IDadosDeProfissao extends IDado {
   graudeinstrucao: string;
   especialidade: IEspecialidade;
-  conselhodeclasse: IConselhoDeClasse;
+  conselhodeclasse?: IConselhoDeClasse;
   expedientedepessoafisica?: IExpedienteDePessoaFisica[];
-}
-export interface IDadosBancarios extends IDado {
-  nome: string;
-  codigoDaConta: string;
-  codigoDoBanco: string;
-  codigoDeOperacao: string;
-  codigoDaAgencia: string;
-}
-export interface IDadosDePlanoDeSaude extends IDado {
-  nome: string;
-  contrato: string;
-  registro: string;
-}
-export interface IDadosDeDependente extends IDado {
-  nome: string;
-  docFiscal: string;
-  dataDeNascimento: number;
+  pessoafisica: IPessoaFisica;
 }
 
 export interface IExpedienteDePessoaFisica {

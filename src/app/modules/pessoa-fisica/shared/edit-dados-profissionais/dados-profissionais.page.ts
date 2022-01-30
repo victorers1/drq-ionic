@@ -2,6 +2,7 @@ import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { IDadosDeProfissao, YCArray } from 'src/app/apollo-constants';
 
 import { DRQRoutes, STATUS_ENTIDADE } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';
@@ -29,7 +30,6 @@ export class DadosProfissionaisPage implements OnInit {
     private usuarioService: UsuarioService,
     private router: Router,
     private navCtrl: NavController,
-    private route: ActivatedRoute,
     private modalService: ModalService,
     private yc: YCodifyService
   ) {}
@@ -57,11 +57,11 @@ export class DadosProfissionaisPage implements OnInit {
     modal.present();
     const { data } = await modal.onWillDismiss<{ p: Profissao }>();
     console.log({ profissaoSelecionada: data });
-    if (data?.p) this.dadoProfissao.newProfissao = data.p;
+    if (data?.p) this.dadoProfissao.profissao = data.p;
   }
   async selectEspecialidade() {
     const modal = await this.modalService.selecionarEspecialidade({
-      id: this.dadoProfissao.profissao.id,
+      profissao: this.dadoProfissao.profissao,
     });
     modal.present();
     const { data } = await modal.onWillDismiss<{ e: Especialidade }>();
@@ -76,7 +76,45 @@ export class DadosProfissionaisPage implements OnInit {
     return this.dadoProfissao?.nomeEspecialidade ?? 'Não selecionada';
   }
 
-  private async getDadosProfissao() {}
+  private async getDadosProfissao() {
+    let result: any = await this.yc.request<YCArray<IDadosDeProfissao>>({
+      action: YC_ACTION.READ,
+      object: {
+        classUID: 'dadosdeprofissao',
+        role: 'ROLE_ADMIN',
+        id: this.idDadoProfissao,
+      },
+      criterion: {
+        connective: 'AND',
+        toCount: false,
+        orderBy: 'id',
+        order: 'asc',
+        maxRegisters: 20,
+        firstRegister: 0,
+      },
+      associations: {
+        mode: true,
+        level: 2,
+      },
+    });
+
+    result = result.data[0]; // converts array into object
+
+    this.dadoProfissao = new DadosDeProfissao(
+      result.pessoafisica.id,
+      new Especialidade(
+        result.especialidade.id,
+        result.especialidade.nome,
+        new Profissao(
+          result.especialidade.profissao.id,
+          result.especialidade.profissao.nome
+        )
+      ),
+      result.id,
+      result.publico,
+      result.graudeinstrucao
+    );
+  }
 
   async openExpediente(id?: number) {
     // TODO(bug): não há como editar novos expedientes ainda não salvos no banco,
