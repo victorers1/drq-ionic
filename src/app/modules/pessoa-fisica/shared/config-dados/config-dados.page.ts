@@ -47,7 +47,9 @@ export class ConfigDadosPage implements OnInit {
       default:
         throw new Error('Service não criado. Tipo de usuário inválido.');
     }
+  }
 
+  ionViewWillEnter() {
     this.getConfigDados(this.pessoaFisica.id);
   }
 
