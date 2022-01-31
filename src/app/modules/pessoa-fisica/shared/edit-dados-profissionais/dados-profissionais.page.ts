@@ -230,7 +230,6 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   async saveDadosProfissionais() {
-    debugger;
     if (this.dadoProfissao.id) {
       await this.updateDadosDeProfissao();
     } else {
