@@ -19,17 +19,17 @@ export class DadosDeProfissao extends Dado {
     super(publico, id);
   }
 
-  get profissao(): Profissao {
-    return this.especialidade.profissao;
+  get profissao(): Profissao | null {
+    return this.especialidade?.profissao;
   }
   set profissao(p: Profissao) {
-    this.especialidade.profissao = p;
+    this.especialidade = new Especialidade(0, '', p);
   }
 
   get nomeProfissao(): string {
     return this.profissao?.nome ?? 'não informada';
   }
   get nomeEspecialidade(): string {
-    return this.especialidade.nome ?? 'não informada';
+    return this.especialidade?.nome ?? 'não informada';
   }
 }

@@ -42,14 +42,24 @@ export class DadosProfissionaisPage implements OnInit {
       this.idDadoProfissao
     );
 
-    if (this.idDadoProfissao != null) {
+    if (this.idDadoProfissao) {
       this.getDadosProfissao();
     } else {
       this.dadoProfissao = new DadosDeProfissao(
         this.usuarioService.get().usuario.id,
+        null,
+        null,
+        false,
         null
       );
     }
+  }
+
+  get nomeProfissao(): string {
+    return this.dadoProfissao?.nomeProfissao ?? 'Não selecionada';
+  }
+  get nomeEspecialidade(): string {
+    return this.dadoProfissao?.nomeEspecialidade ?? 'Não selecionada';
   }
 
   async selectProfissao() {
@@ -67,13 +77,6 @@ export class DadosProfissionaisPage implements OnInit {
     const { data } = await modal.onWillDismiss<{ e: Especialidade }>();
     console.log({ especialidadeSelecionada: data });
     if (data?.e) this.dadoProfissao.especialidade = data.e;
-  }
-
-  get nomeProfissao(): string {
-    return this.dadoProfissao?.nomeProfissao ?? 'Não selecionada';
-  }
-  get nomeEspecialidade(): string {
-    return this.dadoProfissao?.nomeEspecialidade ?? 'Não selecionada';
   }
 
   private async getDadosProfissao() {
@@ -140,7 +143,7 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   private async createDadosDeProfissao() {
-    const result = this.yc.request({
+    await this.yc.request({
       action: YC_ACTION.CREATE,
       object: {
         classUID: 'dadosdeprofissao',
@@ -161,16 +164,43 @@ export class DadosProfissionaisPage implements OnInit {
         },
         conselhodeclasseid: null,
         conselhodeclasse: null,
-        graudeinstrucao: 'SUPERIOR',
-        publico: false,
-        status: true,
+        graudeinstrucao: this.dadoProfissao.grauDeInstrucao,
+        publico: this.dadoProfissao.publico,
+        status: this.dadoProfissao.status,
         role: 'ROLE_ADMIN',
-        user: 'victorers',
       },
     });
   }
 
-  private async updateDadosDeProfissao() {}
+  private async updateDadosDeProfissao() {
+    await this.yc.request({
+      action: YC_ACTION.UPDATE,
+      object: {
+        classUID: 'dadosdeprofissao',
+        id: this.dadoProfissao.id,
+        graudeinstrucao: this.dadoProfissao.grauDeInstrucao,
+        publico: this.dadoProfissao.publico,
+        status: this.dadoProfissao.status,
+        role: 'ROLE_ADMIN',
+        especialidade: {
+          classUID: 'especialidade',
+          id: this.dadoProfissao.especialidade.id,
+          role: 'ROLE_ADMIN',
+          nome: this.dadoProfissao.especialidade.nome,
+          profissao: {
+            id: this.dadoProfissao.especialidade.profissao.id,
+            role: 'ROLE_ADMIN',
+            classUID: 'profissao',
+          },
+        },
+        pessoafisica: {
+          classUID: 'pessoafisica',
+          id: this.dadoProfissao.pessoaFisicaID,
+          role: 'ROLE_ADMIN',
+        },
+      },
+    });
+  }
 
   async updateExpedientesDePessoaFisica(
     expedientesExistentes: ExpedienteDePessoaFisica[]
@@ -195,10 +225,17 @@ export class DadosProfissionaisPage implements OnInit {
   async deleteDadosDeProfissao() {
     const result = '';
     console.log('deleteDadosDeProfissao():', result);
+    // TODO: delete expedientes antes
     this.navCtrl.pop();
   }
 
   async saveDadosProfissionais() {
+    debugger;
+    if (this.dadoProfissao.id) {
+      await this.updateDadosDeProfissao();
+    } else {
+      await this.createDadosDeProfissao();
+    }
     this.navCtrl.pop();
   }
 
