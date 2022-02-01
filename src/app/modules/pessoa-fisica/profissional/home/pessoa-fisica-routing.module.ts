@@ -24,27 +24,6 @@ const routes: Routes = [
         (m) => m.ConfigDadosPageModule
       ),
   },
-  {
-    path: drqRoutes.LIST_RECEITAS,
-    loadChildren: () =>
-      import('../../../shared/list-receita/list-receita.module').then(
-        (m) => m.ListReceitaPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_ATESTADOS,
-    loadChildren: () =>
-      import('../../../shared/list-atestado/list-atestado.module').then(
-        (m) => m.ListAtestadoPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_PRONTUARIOS,
-    loadChildren: () =>
-      import('../../../shared/list-prontuario/list-prontuario.module').then(
-        (m) => m.ListProntuarioPageModule
-      ),
-  },
 ];
 
 @NgModule({

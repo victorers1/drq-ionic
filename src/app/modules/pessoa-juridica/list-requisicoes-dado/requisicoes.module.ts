@@ -6,9 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { RequisicoesPageRoutingModule } from './requisicoes-routing.module';
 
-import { RequisicoesPage } from './requisicoes.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { RequisicaoDadosComponent } from 'src/app/components/requisicao-dados/requisicao-dados.component';
 
 @NgModule({
   imports: [
@@ -16,8 +14,8 @@ import { RequisicaoDadosComponent } from 'src/app/components/requisicao-dados/re
     FormsModule,
     IonicModule,
     ComponentsModule,
-    RequisicoesPageRoutingModule
+    RequisicoesPageRoutingModule,
   ],
-  declarations: [RequisicoesPage, RequisicaoDadosComponent]
+  declarations: [],
 })
-export class RequisicoesPageModule { }
+export class RequisicoesPageModule {}

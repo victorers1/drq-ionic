@@ -10,11 +10,7 @@ const routes: Routes = [
     path: '',
     component: PessoaFisicaPage,
   },
-  {
-    path: drqRoutes.AGENDAR,
-    loadChildren: () =>
-      import('../agendar/agendar.module').then((m) => m.AgendarPageModule),
-  },
+
   {
     path: drqRoutes.AGENDA,
     loadChildren: () =>
@@ -27,27 +23,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('../../shared/config-dados/config-dados.module').then(
         (m) => m.ConfigDadosPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_RECEITAS,
-    loadChildren: () =>
-      import('../../../shared/list-receita/list-receita.module').then(
-        (m) => m.ListReceitaPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_ATESTADOS,
-    loadChildren: () =>
-      import('../../../shared/list-atestado/list-atestado.module').then(
-        (m) => m.ListAtestadoPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_PRONTUARIOS,
-    loadChildren: () =>
-      import('../../../shared/list-prontuario/list-prontuario.module').then(
-        (m) => m.ListProntuarioPageModule
       ),
   },
 ];

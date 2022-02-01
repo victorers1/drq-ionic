@@ -4,7 +4,6 @@ import { ComponentProps } from '@ionic/core';
 import { EditExpedientePage } from 'src/app/modules/shared/edit-expediente/edit-expediente.page';
 import { SelectEspecialidadePage } from 'src/app/modules/shared/select-especialidade/select-especialidade.page';
 import { SelectHorarioPage } from 'src/app/modules/shared/select-horario/select-horario.page';
-import { SelectPlanoSaudePage } from 'src/app/modules/shared/select-plano-saude/select-plano-saude.page';
 import { SelectProfissaoPage } from 'src/app/modules/shared/select-profissao/select-profissao.page';
 import { SelectProfissionalPage } from 'src/app/modules/shared/select-profissional/select-profissional.page';
 
@@ -13,17 +12,6 @@ import { SelectProfissionalPage } from 'src/app/modules/shared/select-profission
 })
 export class ModalService {
   constructor(public modalCtrl: ModalController) {}
-
-  async selecionarPlanoSaude(componentProps?: ModalOptions) {
-    const modal = await this.modalCtrl.create({
-      component: SelectPlanoSaudePage,
-      showBackdrop: true,
-      backdropDismiss: true,
-      swipeToClose: true,
-      componentProps: componentProps,
-    });
-    return await modal.present();
-  }
 
   async selecionarHorario(componentProps?: ModalOptions) {
     const modal = await this.modalCtrl.create({

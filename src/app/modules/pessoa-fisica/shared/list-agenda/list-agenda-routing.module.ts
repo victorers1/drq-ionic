@@ -11,13 +11,6 @@ const routes: Routes = [
     path: '',
     component: ListAgendaPage,
   },
-  {
-    path: drqRoutes.EDIT_ATENDIMENTO, // SHARED PAGE
-    loadChildren: () =>
-      import('../../../shared/edit-atendimento/edit-atendimento.module').then(
-        (m) => m.EditAtendimentoPageModule
-      ),
-  },
 ];
 
 @NgModule({
