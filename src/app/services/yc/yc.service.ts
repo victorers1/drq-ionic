@@ -21,7 +21,8 @@ export enum ClassUID {
 
 export interface YCOptions {
   action: YC_ACTION;
-  object: {};
+  object?: {};
+  objects?: {}[];
   criterion?: {};
   associations?: {};
 }

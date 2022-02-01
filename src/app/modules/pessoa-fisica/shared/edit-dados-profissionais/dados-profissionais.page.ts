@@ -2,7 +2,11 @@ import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { IDadosDeProfissao, YCArray } from 'src/app/interfaces';
+import {
+  IDadosDeProfissao,
+  IExpedienteDePessoaFisica,
+  YCArray,
+} from 'src/app/interfaces';
 
 import { DRQRoutes, STATUS_ENTIDADE } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';
@@ -14,6 +18,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { StringUtils } from 'src/app/utils/string-utils';
+import { TimeUtils } from 'src/app/utils/time-utils';
 
 @Component({
   selector: 'app-dados-profissionais',
@@ -117,6 +122,29 @@ export class DadosProfissionaisPage implements OnInit {
       result.publico,
       result.graudeinstrucao
     );
+
+    const expedientes = this.yc.request<YCArray<IExpedienteDePessoaFisica>>({
+      action: YC_ACTION.READ,
+      object: {
+        classUID: 'expedientedepessoafisica',
+        dadosdeprofissao: {
+          classUID: 'dadosdeprofissao',
+          id: this.dadoProfissao.id,
+          role: 'ROLE_ADMIN',
+        },
+      },
+    });
+
+    this.dadoProfissao.expedientes = (await expedientes).data.map((e) => {
+      return new ExpedienteDePessoaFisica(
+        this.dadoProfissao.id,
+        1,
+        e.diadasemana,
+        e.recorrencia,
+        DateUtils.getTimeFromString(e.inicio),
+        DateUtils.getTimeFromString(e.termino)
+      );
+    });
   }
 
   async openExpediente(id?: number) {
@@ -224,8 +252,8 @@ export class DadosProfissionaisPage implements OnInit {
         role: 'ROLE_ADMIN',
         id: e.id,
         diadasemana: e.diaDaSemana,
-        inicio: e.inicio,
-        termino: e.termino,
+        inicio: DateUtils.getTimeFormatado(e.inicio),
+        termino: DateUtils.getTimeFormatado(e.termino),
         recorrencia: e.recorrencia,
         pessoajuridica: {
           classUID: 'pessoajuridica',
@@ -242,7 +270,7 @@ export class DadosProfissionaisPage implements OnInit {
 
     await this.yc.request({
       action: YC_ACTION.UPDATE,
-      object: objectsExpedientes,
+      objects: objectsExpedientes,
     });
   }
 
@@ -273,25 +301,28 @@ export class DadosProfissionaisPage implements OnInit {
     });
     await this.yc.request({
       action: YC_ACTION.CREATE,
-      object: objectsExpedientes,
+      objects: objectsExpedientes,
     });
   }
 
-  async deleteExpediente(id: number) {
-    await this.yc.request({
-      action: YC_ACTION.DELETE,
-      object: {
-        id: id,
+  async deleteExpedientes(ids: ExpedienteDePessoaFisica[]) {
+    const expedienteObjects = this.dadoProfissao.expedientes.map((e) => {
+      return {
+        id: e.id,
         classUID: 'expedientedepessoafisica',
         role: 'ROLE_ADMIN',
-      },
+      };
+    });
+
+    await this.yc.request({
+      action: YC_ACTION.DELETE,
+      objects: expedienteObjects,
     });
   }
 
   async deleteDadosDeProfissao() {
-    for (let e of this.dadoProfissao.expedientes) {
-      await this.deleteExpediente(e.id);
-    }
+    this.deleteExpedientes(this.dadoProfissao.expedientes);
+
     await this.yc.request({
       action: YC_ACTION.DELETE,
       object: {
