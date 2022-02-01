@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { IDadosDeProfissao, YCArray } from 'src/app/apollo-constants';
+import { IDadosDeProfissao, YCArray } from 'src/app/interfaces';
 import { DRQRoutes, TIPO_USUARIO } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';

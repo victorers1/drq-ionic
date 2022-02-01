@@ -2,7 +2,7 @@ import { WeekDay } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { IDadosDeProfissao, YCArray } from 'src/app/apollo-constants';
+import { IDadosDeProfissao, YCArray } from 'src/app/interfaces';
 
 import { DRQRoutes, STATUS_ENTIDADE } from 'src/app/constants';
 import { Especialidade } from 'src/app/models/geral/especialidade';

@@ -7,7 +7,7 @@ import { DadosDeProfissao } from 'src/app/models/pessoas/pessoa-fisica/dados-pro
 import {
   IDadosDeProfissao,
   IExpedienteDePessoaFisica,
-} from 'src/app/apollo-constants';
+} from 'src/app/interfaces';
 import { PacienteService } from './paciente.service';
 import { PessoaJuridicaService } from './pessoa-juridica.service';
 import { ProfissionalService } from './profissional.service';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IExpedienteDePessoaFisica, YCArray } from 'src/app/apollo-constants';
+import { IExpedienteDePessoaFisica, YCArray } from 'src/app/interfaces';
 import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 
 @Component({

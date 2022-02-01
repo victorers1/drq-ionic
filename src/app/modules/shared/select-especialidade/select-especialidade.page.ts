@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IReadAllEspecialidade } from 'src/app/apollo-constants';
+import { IReadAllEspecialidade } from 'src/app/interfaces';
 
 import { Especialidade } from 'src/app/models/geral/especialidade';
 import { Profissao } from 'src/app/models/geral/profissao';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IPessoaFisica } from 'src/app/apollo-constants';
+import { IPessoaFisica } from 'src/app/interfaces';
 import { ProfissionalFactory } from 'src/app/models/factories/pessoa-fisica/profissional-factory';
 
 import { Profissional } from 'src/app/models/pessoas/pessoa-fisica/profissional';

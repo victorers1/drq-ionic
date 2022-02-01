@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IProfissao, IReadAllProfissao } from 'src/app/apollo-constants';
+import { IProfissao, IReadAllProfissao } from 'src/app/interfaces';
 import { Profissao } from 'src/app/models/geral/profissao';
 import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 
