@@ -59,10 +59,9 @@ export interface IExpedienteDePessoaFisica {
   id: number;
   inicio: string;
   termino: string;
-  pessoaJuridica: number;
-  diaDaSemana: number;
+  diadasemana: number;
+  pessoajuridica: number;
   recorrencia: number;
-  dadosDeProfissao: number;
 }
 export interface IDadosProfissao {
   profissao: IProfissao;

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { IExpedienteDePessoaFisica, YCArray } from 'src/app/apollo-constants';
+import { YCodifyService, YC_ACTION } from 'src/app/services/yc/yc.service';
 
 @Component({
   selector: 'app-select-horario',
@@ -7,42 +9,33 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./select-horario.page.scss'],
 })
 export class SelectHorarioPage implements OnInit {
-  horarios = [
-    '09:00',
-    '09:30',
-    '10:00',
-    '10:30',
-    '11:00',
-    '11:30',
-    '12:00',
-    '12:30',
-    '13:00',
-    '13:30',
-    '14:00',
-    '14:30',
-    '15:00',
-    '15:30',
-    '16:00',
-    '16:30',
-    '17:00',
-    '17:30',
-    '18:00',
-    '18:30',
-    '19:00',
-    '19:30',
-    '20:00',
-    '20:30',
-  ];
+  horarios: String[] = [];
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private yc: YCodifyService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    const result = await this.yc.request<YCArray<IExpedienteDePessoaFisica>>({
+      action: YC_ACTION.READ,
+      object: {
+        classUID: 'expedientedepessoafisica',
+        dadosdeprofissao: {
+          classUID: 'dadosdeprofissao',
+          id: 6,
+        },
+        pessoajuridica: {
+          classUID: 'pessoajuridica',
+          role: 'ROLE_ADMIN',
+          id: 1,
+        },
+      },
+    });
+
+    this.horarios = result.data.map((h) => h.inicio);
   }
 
   buttonSair() {
     this.modalCtrl.dismiss({
-      'dismissed': true
+      dismissed: true,
     });
   }
-
 }

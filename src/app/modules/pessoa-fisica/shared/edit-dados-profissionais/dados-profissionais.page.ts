@@ -80,7 +80,7 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   private async getDadosProfissao() {
-    const result: any = await this.yc.request<IDadosDeProfissao>({
+    let result: any = await this.yc.request<YCArray<IDadosDeProfissao>>({
       action: YC_ACTION.READ,
       object: {
         classUID: 'dadosdeprofissao',
@@ -100,6 +100,8 @@ export class DadosProfissionaisPage implements OnInit {
         level: 2,
       },
     });
+
+    result = result.data[0];
 
     this.dadoProfissao = new DadosDeProfissao(
       result.pessoafisica.id,
@@ -168,6 +170,8 @@ export class DadosProfissionaisPage implements OnInit {
         role: 'ROLE_ADMIN',
       },
     });
+
+    this.createExpedientesDePessoaFisica(this.dadoProfissao.expedientes);
   }
 
   private async updateDadosDeProfissao() {
@@ -198,32 +202,104 @@ export class DadosProfissionaisPage implements OnInit {
         },
       },
     });
+
+    const expedientesNovos = this.dadoProfissao.expedientes.filter((e) => {
+      e.id == null;
+    });
+    const expedientesExistentes = this.dadoProfissao.expedientes.filter((e) => {
+      e.id != null;
+    });
+    this.createExpedientesDePessoaFisica(expedientesNovos);
+    this.updateExpedientesDePessoaFisica(expedientesExistentes);
   }
 
   async updateExpedientesDePessoaFisica(
     expedientesExistentes: ExpedienteDePessoaFisica[]
   ) {
-    const result = '';
-    for (const e of expedientesExistentes) {
-      console.log('updateExpediente:', result);
-    }
+    if (expedientesExistentes.length == 0) return;
+
+    const objectsExpedientes: any[] = expedientesExistentes.map((e) => {
+      return {
+        classUID: 'expedientedepessoafisica',
+        role: 'ROLE_ADMIN',
+        id: e.id,
+        diadasemana: e.diaDaSemana,
+        inicio: e.inicio,
+        termino: e.termino,
+        recorrencia: e.recorrencia,
+        pessoajuridica: {
+          classUID: 'pessoajuridica',
+          id: 1,
+          role: 'ROLE_ADMIN',
+        },
+        dadosdeprofissao: {
+          classUID: 'dadosdeprofissao',
+          role: 'ROLE_ADMIN',
+          id: this.dadoProfissao.id,
+        },
+      };
+    });
+
+    await this.yc.request({
+      action: YC_ACTION.UPDATE,
+      object: objectsExpedientes,
+    });
   }
 
   async createExpedientesDePessoaFisica(
     expedientesNovos: ExpedienteDePessoaFisica[]
   ) {
-    for (const e of expedientesNovos) {
-      const result = '';
-      console.log('createExpediente:', result);
-    }
+    if (expedientesNovos.length == 0) return;
+
+    const objectsExpedientes: any[] = expedientesNovos.map((e) => {
+      return {
+        classUID: 'expedientedepessoafisica',
+        role: 'ROLE_ADMIN',
+        diadasemana: e.diaDaSemana,
+        inicio: e.inicio,
+        termino: e.termino,
+        recorrencia: e.recorrencia,
+        pessoajuridica: {
+          classUID: 'pessoajuridica',
+          id: 1,
+          role: 'ROLE_ADMIN',
+        },
+        dadosdeprofissao: {
+          classUID: 'dadosdeprofissao',
+          role: 'ROLE_ADMIN',
+          id: this.dadoProfissao.id,
+        },
+      };
+    });
+    await this.yc.request({
+      action: YC_ACTION.CREATE,
+      object: objectsExpedientes,
+    });
   }
 
-  async deleteExpediente(id: number) {}
+  async deleteExpediente(id: number) {
+    await this.yc.request({
+      action: YC_ACTION.DELETE,
+      object: {
+        id: id,
+        classUID: 'expedientedepessoafisica',
+        role: 'ROLE_ADMIN',
+      },
+    });
+  }
 
   async deleteDadosDeProfissao() {
-    const result = '';
-    console.log('deleteDadosDeProfissao():', result);
-    // TODO: delete expedientes antes
+    for (let e of this.dadoProfissao.expedientes) {
+      await this.deleteExpediente(e.id);
+    }
+    await this.yc.request({
+      action: YC_ACTION.DELETE,
+      object: {
+        id: this.dadoProfissao.id,
+        classUID: 'dadosdeprofissao',
+        role: 'ROLE_ADMIN',
+      },
+    });
     this.navCtrl.pop();
   }
 

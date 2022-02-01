@@ -90,8 +90,8 @@ export class UsuarioService {
     return (dadosDeProfissao.expedientes = expedientes.map((exp) => {
       const expediente = new ExpedienteDePessoaFisica(
         dadosDeProfissao.id,
-        exp.pessoaJuridica,
-        exp.diaDaSemana,
+        exp.pessoajuridica,
+        exp.diadasemana,
         exp.recorrencia,
         DateUtils.getTimeFromString(exp.inicio),
         DateUtils.getTimeFromString(exp.termino)
