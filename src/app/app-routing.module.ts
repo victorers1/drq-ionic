@@ -38,13 +38,7 @@ const routes: Routes = [
         (m) => m.HomePageModule
       ),
   },
-  {
-    path: 'select-plano-saude',
-    loadChildren: () =>
-      import(
-        './modules/shared/select-plano-saude/select-plano-saude.module'
-      ).then((m) => m.SelectPlanoSaudePageModule),
-  },
+
   {
     path: 'select-profissional',
     loadChildren: () =>
