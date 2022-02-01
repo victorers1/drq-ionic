@@ -30,25 +30,12 @@ const routes: Routes = [
         (m) => m.DadosContaPageModule
       ),
   },
-  {
-    path: drqRoutes.LIST_REQUISICOES_DADOS,
-    loadChildren: () =>
-      import('../list-requisicoes-dado/requisicoes.module').then(
-        (m) => m.RequisicoesPageModule
-      ),
-  },
+
   {
     path: drqRoutes.LIST_EXPEDIENTES,
     loadChildren: () =>
       import('../list-expedientes/list-expedientes.module').then(
         (m) => m.ListExpedientesPageModule
-      ),
-  },
-  {
-    path: drqRoutes.LIST_UNIDADES,
-    loadChildren: () =>
-      import('../list-unidades/list-unidades.module').then(
-        (m) => m.ListUnidadesPageModule
       ),
   },
 ];

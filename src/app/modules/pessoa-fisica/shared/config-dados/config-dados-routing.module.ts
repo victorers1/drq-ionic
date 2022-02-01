@@ -30,20 +30,6 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: drqRoutes.EDIT_DADOS_BANCARIOS,
-    loadChildren: () =>
-      import('../edit-dados-bancarios/dados-bancarios.module').then(
-        (m) => m.DadosBancariosPageModule
-      ),
-  },
-  {
-    path: drqRoutes.EDIT_DADOS_PLANO_SAUDE,
-    loadChildren: () =>
-      import('../edit-dados-plano-saude/dados-plano-saude.module').then(
-        (m) => m.DadosPlanoSaudePageModule
-      ),
-  },
 ];
 
 @NgModule({

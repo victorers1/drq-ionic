@@ -54,49 +54,53 @@ export class ConfigDadosPage implements OnInit {
   }
 
   async getConfigDados(idPessoa: number) {
-    const result = await this.yc.request<YCArray<IDadosDeProfissao>>({
-      action: YC_ACTION.READ,
-      object: {
-        classUID: 'dadosdeprofissao',
-        role: 'ROLE_ADMIN',
-        pessoafisica: {
-          id: idPessoa,
+    try {
+      const result = await this.yc.request<YCArray<IDadosDeProfissao>>({
+        action: YC_ACTION.READ,
+        object: {
+          classUID: 'dadosdeprofissao',
           role: 'ROLE_ADMIN',
-          classUID: 'pessoafisica',
+          pessoafisica: {
+            id: idPessoa,
+            role: 'ROLE_ADMIN',
+            classUID: 'pessoafisica',
+          },
         },
-      },
-      criterion: {
-        connective: 'AND',
-        toCount: false,
-        orderBy: 'id',
-        order: 'asc',
-        maxRegisters: 20,
-        firstRegister: 0,
-      },
-      associations: {
-        mode: true,
-        level: 2,
-      },
-    });
+        criterion: {
+          connective: 'AND',
+          toCount: false,
+          orderBy: 'id',
+          order: 'asc',
+          maxRegisters: 20,
+          firstRegister: 0,
+        },
+        associations: {
+          mode: true,
+          level: 2,
+        },
+      });
 
-    const dadosDeProfissao = result.data.map(
-      (dp) =>
-        new DadosDeProfissao(
-          dp.pessoafisica.id,
-          new Especialidade(
-            dp.especialidade.id,
-            dp.especialidade.nome,
-            new Profissao(
-              dp.especialidade.profissao.id,
-              dp.especialidade.profissao.nome
-            )
-          ),
-          dp.id,
-          dp.publico,
-          dp.graudeinstrucao
-        )
-    );
-    this.pessoaFisica.dadosProfissao = dadosDeProfissao;
+      const dadosDeProfissao = result.data.map(
+        (dp) =>
+          new DadosDeProfissao(
+            dp.pessoafisica.id,
+            new Especialidade(
+              dp.especialidade.id,
+              dp.especialidade.nome,
+              new Profissao(
+                dp.especialidade.profissao.id,
+                dp.especialidade.profissao.nome
+              )
+            ),
+            dp.id,
+            dp.publico,
+            dp.graudeinstrucao
+          )
+      );
+      this.pessoaFisica.dadosProfissao = dadosDeProfissao;
+    } catch (error) {
+      this.navCtrl.pop();
+    }
   }
 
   createDadoProfissional() {

@@ -80,7 +80,7 @@ export class DadosProfissionaisPage implements OnInit {
   }
 
   private async getDadosProfissao() {
-    let result: any = await this.yc.request<YCArray<IDadosDeProfissao>>({
+    const result: any = await this.yc.request<IDadosDeProfissao>({
       action: YC_ACTION.READ,
       object: {
         classUID: 'dadosdeprofissao',
@@ -100,8 +100,6 @@ export class DadosProfissionaisPage implements OnInit {
         level: 2,
       },
     });
-
-    result = result.data[0]; // converts array into object
 
     this.dadoProfissao = new DadosDeProfissao(
       result.pessoafisica.id,
