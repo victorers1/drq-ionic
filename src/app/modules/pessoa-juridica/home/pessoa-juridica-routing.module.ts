@@ -16,28 +16,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('../agendar/agendar.module').then((m) => m.AgendarPageModule),
   },
-  {
-    path: drqRoutes.AGENDA,
-    loadChildren: () =>
-      import('../list-agenda/list-agenda.module').then(
-        (m) => m.ListAgendaPageModule
-      ),
-  },
-  {
-    path: drqRoutes.EDIT_DADOS_CONTA,
-    loadChildren: () =>
-      import('../edit-dados-conta/dados-conta.module').then(
-        (m) => m.DadosContaPageModule
-      ),
-  },
-
-  {
-    path: drqRoutes.LIST_EXPEDIENTES,
-    loadChildren: () =>
-      import('../list-expedientes/list-expedientes.module').then(
-        (m) => m.ListExpedientesPageModule
-      ),
-  },
 ];
 
 @NgModule({
